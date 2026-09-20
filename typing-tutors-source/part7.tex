@@ -1,0 +1,259 @@
+\part{The Exercises}
+
+\chapter{Constrained Literature}
+\label{ch:constrained}
+
+A line such as \texttt{a sad lad asks dad;} is language generated under an expanding admissibility boundary. This chapter treats such lines as a genre.
+
+\section{The Phenomenon}
+
+If $\Kset_i$ is the current key set and $\Sig(w)$ the characters a word $w$ requires, the vocabulary available to a lesson author is
+\[
+\Vocab_i=\{\,w\in\Vocab:\Sig(w)\subseteq\Kset_i\,\}.
+\]
+The author does not choose freely from English but from $\Vocab_i$, and the peculiar texture of early exercises is the visible shape of that restriction. In the first exercises of the Academy pages the restriction produces \texttt{ass lad add alf} and \texttt{flak alas fall asks} in Exercise~1 and the phrase \texttt{a sad lad asks dad;} that closes Exercise~2. In Exercise~2 it produces \texttt{gaff gash lags hall} and the marginal words \texttt{gald} and \texttt{jaffa}.
+
+\section{Two Regimes}
+
+Chapter~8 distinguished two regimes. In the \emph{admissibility regime} the constraint is what can be spelled, and the author strains for words. In the \emph{salience regime} the constraint is what will exercise the new key,
+\[
+\Vocab_i^{\mathrm{new}}=\{\,w\in\Vocab_i:\Sig(w)\cap\Newk_i\neq\varnothing\,\}.
+\]
+Exercise~13 is entirely in the salience regime: \texttt{zip zoo zig zag}, \texttt{zinc: zulu zero jazz:}, \texttt{quiz doze size hazy:}, \texttt{zeal lazy fizz fuzz:}. The sentences on the pages that continue Exercises 6 and later show the same regime at the level of the sentence: \texttt{Ilse who is a redhead is a selfish girl who likes a wild life;} is a sentence chosen so that every content word contains W or I, and its meaning is incidental.
+
+\section{Kinship with Constrained Writing}
+
+The genre is a relative of the lipogram, a text written without one or more letters. Georges Perec's novel \emph{La Disparition} (1969) avoids the letter E throughout, and the lessons here are the pedagogical inverse: they permit a small set and exclude the rest. The comparison is instructive because in each case the constraint is announced by the format and its effects are read in the prose. In a typing lesson the constraint is announced by the diagram at the top of the page.
+
+\section{The Successive Alphabet}
+
+The following passages are reconstructed, not transcribed. They show how a text can be written under a sequence of enlarged key sets. The first line is observed; the rest are constructed.
+
+\begin{Verbatim}[label=QWERTY, labelposition=topline]
+a sad lad asks dad;                        (observed, keys: A S D F J K L ;)
+a glad lad has a flask;                    (constructed, adds G H)
+a sad lad has used a glass flask;          (constructed, adds E U)
+a lad has a rose; dad asks for a jug;      (constructed, adds R O)
+today a lad dared to ask dad;              (constructed, adds T Y)
+\end{Verbatim}
+
+The prose begins almost as incantation, grows faintly surreal, and resolves into ordinary language only when the alphabet nearly completes.
+
+\section{Two Constraints Running in Opposite Directions}
+
+An acrostic mnemonic restricts the initial letters of the words in a phrase. A restricted-alphabet lesson restricts all the letters. The first constraint runs from a target set to a phrase; the second runs from a permitted set to a vocabulary. Chapter~24 shows self-devised mnemonics of the first kind for the Dvorak keyboard, and the contrast clarifies what each constraint is for: the acrostic fixes a position in memory, and the lesson fixes a movement in the hand.
+
+\section{Measuring a Restriction}
+
+The size $|\Vocab_i|$ is a measurable property of a lesson. Appendix~D gives the procedure, and Table~\ref{tab:vocab} reports the result for the design key order of Chapter~\ref{ch:qwerty}, for QWERTY and for Dvorak by position matching. Letter matching has the QWERTY column by definition. Counts are taken from two lists. The first is a cleaned copy of the google-10000-english list (9\,486 entries after removing short tokens, place names, and brands), and the column ``cov.'' is the share of rank-weighted frequency (weight $1/\mathrm{rank}$) that the admissible words capture. The second, used only in the text below, is a 370\,105-entry list of English words that includes many rare and inflected forms.
+
+\begin{table}[ht]
+\centering
+\caption{Admissible vocabulary by exercise under the design key order. Letters only; punctuation keys are omitted from the ``new'' columns because they form no words.}
+\label{tab:vocab}
+\input{tab_stats}
+\end{table}
+
+Four findings follow, each subject to the caveat that the frequency list is drawn from web text and the key order is a design.
+
+\begin{enumerate}
+\item \textbf{The first exercise.} Only 21 entries of the cleaned frequency list are spellable from the QWERTY home-row letters, and some of them are fragments (for example \texttt{dsl}); the same list yields 185 words for the Dvorak home-row set, including \texttt{the}, \texttt{to}, \texttt{on}, \texttt{that} and \texttt{not}. The 370\,105-entry list gives 173 against 1\,599, a ratio of about nine in both lists.
+\item \textbf{Coverage.} The admissible words capture about 1.1\% of rank-weighted frequency at QWERTY Exercise~1 and about 20.7\% at the Dvorak counterpart. QWERTY does not reach a third of the weighted frequency until Exercise~5, while Dvorak by position exceeds it by Exercise~3.
+\item \textbf{The advantage is early.} From Exercise~7 onward the two vocabularies are close, and at Exercises 8 to 10 QWERTY under the design order is ahead in coverage, because the design introduces N, M, V, B and C while position matching sends Dvorak to its bottom-row letters K, X, J and W. The effect belongs to the first six exercises.
+\item \textbf{Punctuation positions.} Exercise~12 introduces no letter on QWERTY and Exercise~13 introduces none on Dvorak. In each case $\Vocab_i^{\mathrm{new}}$ is empty, so the salience regime cannot operate through words.
+\end{enumerate}
+
+The expectation that the first-exercise vocabulary would be far larger for Dvorak is therefore supported for the first six exercises and reversed later in this particular order.
+
+\chapter{The QWERTY Curriculum}
+\label{ch:qwerty}
+
+This chapter states a QWERTY curriculum as a template instantiation. It is a design, not a report of the historical order, except where the two observed exercises fix an anchor. \design{the order below is proposed; only Exercises 1, 2, 6 and 13 are anchored to the Academy pages}
+
+\section{The Ladder Template}
+
+For an exercise $i$ with new keys $\Newk_i$ and admitted set $\Kset_i$, the template produces groups as follows.
+
+\begin{enumerate}[label=\textbf{G\arabic*.}]
+\item A chain of the keys in $\Newk_i$ (Exercises 1 and 2), or, for later exercises, a sandwich drill in which each new key is placed between two presses of the home key of its finger column (\texttt{ded}, \texttt{juj}).
+\item The chain with one old key inserted (Exercises 1 and 2), or the sandwich drill with the new letter capitalized, so that shift coordination is practiced from the first reach.
+\item A scramble of the first group, or short words from $\Vocab_i^{\mathrm{new}}$.
+\item Words from $\Vocab_i^{\mathrm{new}}$.
+\item Longer words from $\Vocab_i^{\mathrm{new}}$.
+\item A phrase.
+\item[\textbf{G7+.}] Sentences, in which each content word contains a new key where possible.
+\end{enumerate}
+
+Each group is printed as three lines, each a window of fixed width on the endless repetition of a unit. The template has three parameters: the key-introduction order, the lexicon, and the layout header. Appendix~G contains the corpora generated from the template for both layouts.
+
+\section{The Key Order}
+
+The order below is designed so that the four anchor exercises are respected and every letter is introduced by Exercise~13.
+
+\begin{center}
+\begin{tabular}{@{}cll@{}}
+\toprule
+Ex. & New keys & Status \\
+\midrule
+1 & A S D F ; L K J & anchored \\
+2 & G H & anchored \\
+3 & E U & design \\
+4 & R O & design \\
+5 & T Y & design \\
+6 & W I & anchored \\
+7 & N M & design \\
+8 & V B & design \\
+9 & C , & design \\
+10 & Q P & design \\
+11 & X . & design \\
+12 & / and shifted punctuation & design \\
+13 & Z & anchored \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Home Row, Reaches, Alternation}
+
+The first two exercises complete the home row. Reaches follow as sandwich drills of the form home, reach, home, exactly as in both paper sources (\texttt{sws}, \texttt{kik}, \texttt{aqa}). Alternation exercises then use words in which consecutive letters fall on opposite hands, and same-hand exercises use words typed entirely by one hand. The workbook's later lessons treat alternate-hand and one-hand words as topics in their own right, which supports treating hand alternation as a curricular category and not merely as an incidental property of words.
+
+\section{Digraphs, Punctuation, Capitals, Numbers}
+
+After the letters, the curriculum introduces frequent digraphs as units, then punctuation as keystrokes within sentences, then capitals through case-alternating drills, then the number row, and finally longer passages. The workbook places numbers and symbols in separate drill blocks (Lessons 6 to 10 and 11 to 15) and does so after the alphabet is complete, a sequencing that the design here follows.
+
+\section{Longer Passages}
+
+The final stage moves to continuous prose and to timed passages. For the timed passages the design adopts the scoring conventions found in the workbook: five-minute timings repeated twice, cumulative word counts printed at the right margin, and a policy of not correcting errors. Appendix~B states the scoring rules.
+
+\chapter{The Dvorak Curriculum}
+\label{ch:dvorakcurr}
+
+The same ladder can be applied to Dvorak, and there are two ways to do so. This chapter derives both from the QWERTY exercises and shows what each costs.
+
+\section{Position Matching}
+
+Position matching transposes the QWERTY key order by physical location, using the mapping of Chapter~12. Exercise~1 becomes the keys A O E U and S N T H. The chain groups transpose cleanly:
+
+\begin{Verbatim}
+G1   aoeu snth aoeu snth ...
+G2   aoeua snths aoeua snths ...
+G3   eauo tshn eauo tshn ...
+\end{Verbatim}
+
+(derived by mapping the QWERTY lines \texttt{asdf ;lkj}, \texttt{asdfa ;lkj;}, \texttt{dafs k;jl}; not observed.) The word groups do not transpose. The QWERTY words \texttt{ass lad add alf} map to \texttt{aoo nae aee anu}, which are not words. A position-matched lesson can keep the geometry and must therefore replace the lexicon.
+
+\section{Dvorak-Native Vocabulary}
+
+Regenerating the words from $\Vocab_1$ for the Dvorak key set $\{a,o,e,u,h,t,n,s\}$ gives real and frequent words, among them \texttt{the}, \texttt{that}, \texttt{than}, \texttt{then}, \texttt{thus}, \texttt{east}, \texttt{aunt}, \texttt{haunt}, \texttt{those}, \texttt{these}, \texttt{south}, \texttt{house}, \texttt{hasten}, \texttt{tenants} and \texttt{sunset}. Groups 4 and 5 can be filled with these, and a phrase such as \texttt{the tan hen sat on the nest} is available for Group~6. The QWERTY first exercise has no word as common as \texttt{the}. Table~\ref{tab:vocab} in Chapter~\ref{ch:constrained} quantifies the difference: 185 admissible words against 21 in the cleaned frequency list, and about a fifth of rank-weighted frequency against about one percent. The generated corpus of Appendix~G shows what the difference looks like on the page. Exercise~1 for Dvorak by position begins with the chains above, then the words \texttt{the that not has}, then \texttt{that these than state}, then \texttt{states estate status season}.
+
+\section{The Cost of Matching by Position}
+
+Position matching breaks down at later stages, because the mapping sends some QWERTY new keys to punctuation.
+
+\begin{center}
+\begin{tabular}{@{}clp{6.8cm}@{}}
+\toprule
+Ex. & Dvorak keys & Effect on the lesson \\
+\midrule
+1 & A O E U S N T H & rich vocabulary; no semicolon in the lesson \\
+2 & I D & completes the home row; sentences become possible \\
+6 & comma, C & the comma is a punctuation key, so words cannot exercise it; sentences must \\
+13 & semicolon & no letter at all; the lesson can only be sentences with clauses \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+At Exercise~6 the new key W maps to the comma, so a sentence such as \texttt{the students, the tenants, count the stones} is needed to exercise it. At Exercise~13 the Z position holds the semicolon, so the salience regime requires syntactic structure in place of words, since no word contains a semicolon. Matching by position exposes a fact that matching by letter conceals, namely that the difficulty of a key depends on its role in language as well as its location.
+
+\section{Matching by Letter}
+
+The alternative is to keep the QWERTY letter order and let the geometry differ. The vocabulary $\Vocab_i$ is preserved, so the lexicon of each lesson is the same across layouts, but the diagram changes and the learner's movement at each stage differs. The two approaches answer different questions: position matching asks what the same movements permit, and letter matching asks what the same words require.
+
+\section{The Letter Region}
+
+A useful figure for each layout is the outline of the letter region by row.
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Row & QWERTY letters & Dvorak letters \\
+\midrule
+Top & Q to P (10 keys) & P to L (7 keys) \\
+Home & A to L (9 keys) & A to S (10 keys) \\
+Bottom & Z to M (7 keys) & Q to Z (9 keys) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Dvorak concentrates the letters on the home row and places punctuation where the QWERTY letters were, so the region that a QWERTY typist reaches most often for letters is a region of punctuation in Dvorak.
+
+\section{Transfer Learners and Region Mnemonics}
+
+A person retraining from QWERTY to Dvorak differs from the novice of the paper tutors, because habits already exist and must change. A set of handwritten retraining notes shows how such a learner can structure the task.
+
+\begin{itemize}
+\item \textbf{Start from invariants.} The notes begin with the two letters whose positions do not change, A and M, and drill them in combinations: \texttt{a m am ma amma mama}. The learner thereby begins with keys that carry no interference.
+\item \textbf{Name the displaced keys.} The notes record the interference directly, for example that the key in the QWERTY F position is U and the key in the J position is H, with the instruction to use the home row.
+\item \textbf{Drill by vowel and consonant blocks.} The blocks \texttt{aoeui} and \texttt{dhtns} are typed in isolation before words.
+\item \textbf{Use vowel-free words as consonant drills.} \texttt{ssh}, \texttt{shh}, \texttt{nth}, \texttt{brr}, \texttt{hmm}.
+\item \textbf{Use rare-key words.} \texttt{kook}, \texttt{yippee}, \texttt{yuppie}, \texttt{exequy}, \texttt{opaque}, \texttt{upkeep} exercise the keys on the outer and lower rows.
+\end{itemize}
+
+The notes also record acrostic mnemonics that fix the columns by language.
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Region & Keys (top to bottom) & Mnemonic \\
+\midrule
+Inner left column & Y, I, X & \emph{Yes, its xmas} \\
+Inner right column & F, D, B & \emph{find daily bread} \\
+Right edge & L, S, Z & \emph{la zy} (marks corners L and Z; S implicit) \\
+Left edge & P, A, Q & none recorded \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each phrase fixes a column by the initials of its words read in top-to-bottom order, so the mnemonic is a positional index and not a drill. The right-edge mnemonic marks endpoints only. The gap on the left edge is the natural place to add a further aid. These are self-devised aids of a kind that no paper tutor supplies: the paper tutors teach location by repetition and by the highlighted diagram, and this learner adds a fourth route through language.
+
+\chapter{Two Pedagogical Dialects}
+
+Two layouts generate different early English even when both train toward the same competence.
+
+\section{Parallel Passages}
+
+The QWERTY lines below are transcribed from the Academy pages. The Dvorak lines are constructed for illustration, using only the keys that position matching admits at the same exercise number.
+
+\begin{Verbatim}[label=Exercise 1, labelposition=topline]
+QWERTY  ass lad add alf
+Dvorak  the tenants hasten out at sunset
+\end{Verbatim}
+
+\begin{Verbatim}[label=Exercise 2, labelposition=topline]
+QWERTY  a sad lad asks dad;
+Dvorak  the students hate it and sit in the sun
+\end{Verbatim}
+
+\begin{Verbatim}[label=Exercise 6, labelposition=topline]
+QWERTY  Ilse who is a redhead is a selfish girl who likes a wild life;
+Dvorak  the students, the tenants, count the stones
+\end{Verbatim}
+
+The first Dvorak line is a plausible English clause and the first QWERTY line is a list of near-words. By Exercise~6 the new keys of the Dvorak lesson are a comma and C, so the comma has forced a sentence structure onto the lesson, while the QWERTY sentence is selected only to contain W and I.
+
+\section{Convenient versus Representative Text}
+
+A pedagogically convenient sequence is not necessarily a linguistically representative one. A line built from the home row of QWERTY is easy to generate and lexically odd; a line built from the home row of Dvorak is closer to ordinary prose, because English concentrates its frequent letters there. Yet representativeness is not always a virtue in a lesson. A representative lesson exercises the most frequent transitions and may leave rare keys undertrained until late, while a lesson that is salient for the new key deliberately over-samples it. The two dialects show the tension: the geometry of a keyboard sets which sequences are easy to write, and the author's choice of regime decides whether the lesson follows that ease or corrects for it.
+
+\section{What the Dialects Reveal}
+
+Comparing the dialects makes visible three things that a single layout hides. The first is that the strangeness of early exercises is a property of the pair (layout, lexicon) and not of typing instruction as such. The second is that the difficulty of a key depends on its linguistic role, since a punctuation key cannot be exercised by a word list. The third is that the ladder is independent of the layout, which is why it can serve as the common baseline of the comparison.
+
+\chapter*{Study Questions, Part VII}
+\addcontentsline{toc}{chapter}{Study Questions, Part VII}
+\begin{enumerate}
+\item Write a five-line lesson under the alphabet $\{a,o,e,u,h,t,n,s\}$, then a second under the QWERTY home row, and compare their readability.
+\item Use the script of Appendix~D with a word list of your choice and report $|\Vocab_1|$ for both layouts. State the list.
+\item Why can the comma not be exercised by a word list? What kind of lesson exercises it?
+\item Devise a mnemonic for the left edge (P, A, Q) of the Dvorak letter region, in the manner of the three recorded in Chapter~24.
+\item Compare position matching and letter matching. Which question does each answer?
+\end{enumerate}
