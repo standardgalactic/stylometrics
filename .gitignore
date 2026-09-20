@@ -32,6 +32,3 @@ Thumbs.db
 *.bak
 *.backup
 .cache/
-
-# Repository construction script
-monotonic-commit.sh
