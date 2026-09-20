@@ -1,0 +1,652 @@
+%% ---------------------------------------------------------------------------
+%%  SPHEREPOP DESKTOP  ·  a LaTeX document pretending to be a window manager
+%%  Flyxion  ·  compile with:  pdflatex spherepop-desktop.tex  (twice)
+%%  Open the PDF full screen; the dock icons are real hyperlinks.
+%% ---------------------------------------------------------------------------
+\documentclass[10pt]{article}
+\usepackage[paperwidth=320mm,paperheight=180mm,margin=0pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{courier}
+\usepackage[scaled=.92]{helvet}
+\usepackage{pifont,amssymb,amsmath,textcomp,graphicx}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[dvipsnames,svgnames,table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shadows.blur,shapes.geometric,shapes.misc,calc,positioning,fit,%
+  backgrounds,decorations.text,decorations.pathmorphing,fadings,patterns,%
+  arrows.meta,shadings,intersections}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks,pdfpagemode=FullScreen,pdftitle={Spherepop Desktop},pdfauthor={Flyxion}]{hyperref}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\tolerance=9999 \hbadness=10000 \hfuzz=50pt \vbadness=10000 \emergencystretch=3em
+
+%% ---------------------------------------------------------------- palette
+\definecolor{desk1}{HTML}{0B1533}
+\definecolor{desk2}{HTML}{5A3A93}
+\definecolor{chromeA}{HTML}{F6F7FA}
+\definecolor{chromeB}{HTML}{D2D6DF}
+\definecolor{ink}{HTML}{1F232B}
+\definecolor{acc}{HTML}{3B82F6}
+\definecolor{okc}{HTML}{16A34A}
+\definecolor{rejc}{HTML}{DC2626}
+\definecolor{repc}{HTML}{D97706}
+\definecolor{term}{HTML}{0D1117}
+\definecolor{tgreen}{HTML}{7EE787}
+\definecolor{tblue}{HTML}{79C0FF}
+\definecolor{tgray}{HTML}{8B949E}
+\definecolor{tyellow}{HTML}{E3B341}
+\definecolor{tred}{HTML}{FF7B72}
+\definecolor{edbg}{HTML}{1E1F29}
+\definecolor{edfg}{HTML}{D6DBE8}
+\definecolor{edkw}{HTML}{C792EA}
+\definecolor{edty}{HTML}{FFCB6B}
+\definecolor{edcm}{HTML}{6B7394}
+\definecolor{edfn}{HTML}{82AAFF}
+\definecolor{edok}{HTML}{C3E88D}
+\definecolor{amber}{HTML}{F5B942}
+\definecolor{nc}{HTML}{0000AA}
+\definecolor{ncy}{HTML}{00AAAA}
+\definecolor{ncw}{HTML}{55FFFF}
+\definecolor{ncg}{HTML}{AAAAAA}
+\colorlet{fc1}{red!80!orange}\colorlet{fc2}{orange}\colorlet{fc3}{yellow!85!orange}
+\colorlet{fc4}{green!60!black}\colorlet{fc5}{cyan!70!blue}\colorlet{fc6}{blue!70}
+\colorlet{fc7}{violet}\colorlet{fc8}{magenta!80}
+
+\colorlet{dcred}{red!80!orange}\colorlet{dcorange}{orange}\colorlet{dcgreen}{green!60!black}\colorlet{dcviolet}{violet}
+\colorlet{dcblue}{blue!70}\colorlet{dccyan}{cyan!70!blue}\colorlet{dcmag}{magenta!80}\colorlet{dcgray}{black!60}
+\newif\ifmini
+\newcommand\gfont[2]{\fontsize{#1}{#2}\selectfont}
+\tikzset{scr/.style={remember picture,overlay,x=1mm,y=1mm,line cap=round,line join=round,font=\gfont{6}{7}}}
+\def\gwbg{white}\def\gwfg{ink}
+
+%% ------------------------------------------- expl3 ledger: LCG + MD5 chain
+%%  A tiny linear congruential generator drives the events; each digest is the
+%%  MD5 of (previous digest . seed), so the ledger is an actual hash chain.
+\ExplSyntaxOn
+\int_new:N \g_flx_seed_int
+\int_new:N \g_flx_adm_int
+\int_new:N \g_flx_rej_int
+\int_new:N \g_flx_rep_int
+\int_gset:Nn \g_flx_seed_int { 42 }
+\tl_new:N \g_flx_hash_tl
+\tl_gset:Nn \g_flx_hash_tl { genesis }
+\int_step_inline:nn { 16 }
+  {
+    \int_gset:Nn \g_flx_seed_int { \int_mod:nn { \g_flx_seed_int * 75 + 74 } { 65537 } }
+    \tl_gset:cx { flx_op_#1 }
+      { \clist_item:nn { Pop , Refuse , Bind , Collapse } { \int_mod:nn { \g_flx_seed_int } { 4 } + 1 } }
+    \int_set:Nn \l_tmpa_int { \int_mod:nn { \int_div_truncate:nn { \g_flx_seed_int } { 7 } } { 10 } }
+    \tl_gset:cx { flx_st_#1 }
+      {
+        \int_compare:nNnTF { \l_tmpa_int } < { 6 } { Admitted }
+          { \int_compare:nNnTF { \l_tmpa_int } < { 8 } { Rejected } { Repaired } }
+      }
+    \int_compare:nNnTF { \l_tmpa_int } < { 6 } { \int_gincr:N \g_flx_adm_int }
+      { \int_compare:nNnTF { \l_tmpa_int } < { 8 } { \int_gincr:N \g_flx_rej_int } { \int_gincr:N \g_flx_rep_int } }
+    \tl_gset:cx { flx_p_#1 } { \tl_range:Nnn \g_flx_hash_tl { 1 } { 8 } }
+    \tl_gset:Nx \g_flx_hash_tl { \use:c { pdf@mdfivesum } { \g_flx_hash_tl \int_use:N \g_flx_seed_int } }
+    \tl_gset:cx { flx_h_#1 } { \tl_range:Nnn \g_flx_hash_tl { 1 } { 8 } }
+  }
+\cs_gset_nopar:Npx \flxadm { \int_use:N \g_flx_adm_int }
+\cs_gset_nopar:Npx \flxrej { \int_use:N \g_flx_rej_int }
+\cs_gset_nopar:Npx \flxrep { \int_use:N \g_flx_rep_int }
+\ExplSyntaxOff
+
+\makeatletter
+\newcommand\flxf[2]{\csname flx_#1_#2\endcsname}
+\newcommand\two[1]{\ifnum#1<10 0\fi\number#1}
+\newcount\flxi
+\newcommand\flxeach[3]{\global\flxi=#2\relax
+  \@whilenum\flxi<\numexpr#3+1\relax\do{#1{\the\flxi}\global\advance\flxi by 1 }}
+
+% dispatch on the verdict string via \csname
+\newcommand\flxbadgebox[2]{\tcbox[on line,boxrule=0pt,arc=.7mm,colback=#1!14,colupper=#1!75!black,%
+  boxsep=0pt,left=1.2mm,right=1.2mm,top=.25mm,bottom=.25mm,fontupper=\bfseries\gfont{5}{5}]{#2}}
+\def\flxbadge@Admitted{\flxbadgebox{okc}{Admitted}}
+\def\flxbadge@Rejected{\flxbadgebox{rejc}{Rejected}}
+\def\flxbadge@Repaired{\flxbadgebox{repc}{Repaired}}
+\newcommand\flxbadge[1]{\csname flxbadge@#1\endcsname}
+\def\flxtc@Admitted{\textcolor{tgreen}}
+\def\flxtc@Rejected{\textcolor{tred}}
+\def\flxtc@Repaired{\textcolor{tyellow}}
+
+% dispatch on the operator: tiny inline TikZ glyphs
+\def\flxicon@Pop{\tikz[baseline=-.5ex,x=1mm,y=1mm]{\draw[acc!80!black,line width=.4pt](0,0)circle(1.1);%
+  \foreach\a in{0,60,...,300}\draw[acc!80!black,line width=.3pt](\a:1.5)--(\a:2.2);}}
+\def\flxicon@Refuse{\tikz[baseline=-.5ex,x=1mm,y=1mm]{\draw[rejc,line width=.45pt](0,0)circle(1.7);%
+  \draw[rejc,line width=.45pt](-1.2,1.2)--(1.2,-1.2);}}
+\def\flxicon@Bind{\tikz[baseline=-.5ex,x=1mm,y=1mm]{\draw[okc!80!black,line width=.4pt](-.7,0)circle(1.3);%
+  \draw[okc!80!black,line width=.4pt](.7,0)circle(1.3);}}
+\def\flxicon@Collapse{\tikz[baseline=-.5ex,x=1mm,y=1mm]{\draw[violet,line width=.4pt](0,0)circle(1.7);%
+  \fill[violet](0,0)circle(.8);}}
+\newcommand\flxopcell[1]{\csname flxicon@\flxf{op}{#1}\endcsname\,\flxf{op}{#1}}
+\newcommand\flxrow[1]{\texttt{\#\two{#1}}& \flxopcell{#1}& \flxbadge{\flxf{st}{#1}}&
+  \texttt{\flxf{h}{#1}}& \texttt{\flxf{p}{#1}}\\}
+\newcommand\flxterm[1]{\textcolor{tgray}{\#\two{#1}\ }\makebox[11mm][l]{\textcolor{tyellow}{\flxf{op}{#1}}}%
+  \makebox[11mm][l]{\csname flxtc@\flxf{st}{#1}\endcsname{\flxf{st}{#1}}}%
+  \textcolor{tgray}{\flxf{p}{#1}}\ \textcolor{tblue}{\textgreater}\ \textcolor{tgreen}{\flxf{h}{#1}}\par}
+
+% ------------------------------------------------ window chrome via \csname
+\def\gwin@btn@mac#1{\foreach \gc [count=\gi from 0] in {red!75!orange,yellow!85!orange,green!65!black}{%
+   \fill[\gc] ({3+\gi*4.2},-3.5) circle (1.35);\draw[black!35,line width=.2pt] ({3+\gi*4.2},-3.5) circle (1.35);}}
+\def\gwin@btn@win#1{%
+   \draw[ink,line width=.45pt] ({#1-16},-3.5)--({#1-13.5},-3.5);
+   \draw[ink,line width=.4pt] ({#1-11},-2.1) rectangle ({#1-8.6},-4.7);
+   \fill[red!75!black,rounded corners=.5mm] ({#1-6.4},-.7) rectangle ({#1-1.6},-6.3);
+   \draw[white,line width=.5pt] ({#1-5},-2.3)--({#1-3},-4.7) ({#1-5},-4.7)--({#1-3},-2.3);}
+\def\gwin@btn@retro#1{%
+   \draw[black!60,fill=black!12,line width=.3pt] (1,-1) rectangle (6,-6);
+   \draw[black!70,line width=.6pt] (2,-3.5)--(5,-3.5);
+   \draw[black!60,fill=black!12,line width=.3pt] ({#1-11},-1) rectangle ({#1-6},-6);
+   \draw[black!60,fill=black!12,line width=.3pt] ({#1-5},-1) rectangle ({#1-.5},-6);
+   \draw[black!70] ({#1-9.5},-2.5) rectangle ({#1-7.5},-4.5);}
+
+\newcommand{\gwin}[8][mac]{%
+  \begin{scope}[shift={(#3,-#4)}]
+   \node[anchor=north west,inner sep=0,minimum width=#5mm,minimum height=#6mm,rounded corners=1.8mm,fill=white,
+     blur shadow={shadow blur steps=9,shadow blur extra rounding=1.8mm,shadow xshift=.6mm,shadow yshift=-1.4mm,
+     shadow blur radius=1.8mm,shadow opacity=42}] at (0,0) {};
+   \begin{scope}
+    \clip[rounded corners=1.8mm] (0,0) rectangle (#5,-#6);
+    \fill[\gwbg] (0,-7) rectangle (#5,-#6);
+    \shade[top color=chromeA,bottom color=chromeB] (0,0) rectangle (#5,-7);
+    \draw[black!28,line width=.25pt] (0,-7)--(#5,-7);
+   \end{scope}
+   \draw[rounded corners=1.8mm,black!55,line width=.35pt] (0,0) rectangle (#5,-#6);
+   \csname gwin@btn@#1\endcsname{#5}
+   \node[font=\bfseries\gfont{6.4}{7},text=ink] at ({#5/2},-3.5) {#7};
+   \pgfmathsetmacro\gwtw{#5-5}
+   \node[anchor=north west,inner sep=0,text width=\gwtw mm,align=left,font=\gfont{6}{7.2},text=\gwfg] (#2) at (2.5,-9) {#8};
+  \end{scope}}
+\makeatother
+
+% ------------------------------------------------------------- widgets
+\newcommand\btn[5][]{\node[anchor=north west,inner sep=0,minimum width=#4mm,minimum height=5mm,rounded corners=1mm,%
+  draw=black!45,line width=.3pt,top color=white,bottom color=black!9,font=\gfont{5.8}{6},text=ink,#1] at (#2,-#3) {#5};}
+\newcommand\slider[5]{\node[anchor=west,font=\gfont{5.5}{6}] at (#1,-#2) {#5};
+  \draw[line width=1.2pt,black!15] (#1,{-#2-3.5})--({#1+#3},{-#2-3.5});
+  \draw[line width=1.2pt,acc] (#1,{-#2-3.5})--({#1+#3*#4},{-#2-3.5});
+  \shade[ball color=white] ({#1+#3*#4},{-#2-3.5}) circle (1.3);
+  \draw[black!40,line width=.25pt] ({#1+#3*#4},{-#2-3.5}) circle (1.3);}
+\newcommand\chk[4]{\shadedraw[rounded corners=.5mm,draw=black!45,top color=white,bottom color=black!8,line width=.3pt]
+  (#1,-#2) rectangle ({#1+3.2},{-#2-3.2});
+  \ifnum#3=1 \draw[acc!80!black,line width=.6pt] ({#1+.6},{-#2-1.7})--({#1+1.4},{-#2-2.5})--({#1+2.7},{-#2-.7});\fi
+  \node[anchor=west,font=\gfont{5.6}{6}] at ({#1+4.6},{-#2-1.6}) {#4};}
+\newcommand\radio[4]{\draw[black!45,line width=.3pt,fill=white] ({#1+1.6},{-#2-1.6}) circle (1.6);
+  \ifnum#3=1 \fill[acc!85!black] ({#1+1.6},{-#2-1.6}) circle (.85);\fi
+  \node[anchor=west,font=\gfont{5.6}{6}] at ({#1+4.6},{-#2-1.6}) {#4};}
+\newcommand\switch[4]{\ifnum#3=1 \fill[okc,rounded corners=1.8mm] (#1,-#2) rectangle ({#1+7},{-#2-3.6});
+  \fill[white] ({#1+5.2},{-#2-1.8}) circle (1.4);
+  \else\fill[black!25,rounded corners=1.8mm] (#1,-#2) rectangle ({#1+7},{-#2-3.6});
+  \fill[white] ({#1+1.8},{-#2-1.8}) circle (1.4);\fi
+  \node[anchor=west,font=\gfont{5.6}{6}] at ({#1+9},{-#2-1.8}) {#4};}
+\newcommand\prog[5]{\fill[black!12,rounded corners=.8mm] (#1,-#2) rectangle ({#1+#3},{-#2-2.2});
+  \shade[rounded corners=.8mm,left color=#5!55,right color=#5] (#1,-#2) rectangle ({#1+#3*#4},{-#2-2.2});
+  \draw[black!35,line width=.25pt,rounded corners=.8mm] (#1,-#2) rectangle ({#1+#3},{-#2-2.2});}
+\newcommand\vscroll[4]{\fill[black!6] (#1,-#2) rectangle ({#1+3},{-#2-#3});
+  \draw[black!20,line width=.2pt] (#1,-#2) rectangle ({#1+3},{-#2-#3});
+  \fill[black!35,rounded corners=.8mm] ({#1+.5},{-#2-1-#4*(#3-14)}) rectangle ({#1+2.5},{-#2-13-#4*(#3-14)});}
+\newcommand\bevelbtn[6]{\fill[black!14] (#1,-#2) rectangle ({#1+#3},{-#2-#4});
+  \ifnum#5=0 \draw[white,line width=.7pt] (#1,{-#2-#4})--(#1,-#2)--({#1+#3},-#2);
+  \draw[black!55,line width=.7pt] ({#1+#3},-#2)--({#1+#3},{-#2-#4})--(#1,{-#2-#4});
+  \else\draw[black!55,line width=.7pt] (#1,{-#2-#4})--(#1,-#2)--({#1+#3},-#2);
+  \draw[white,line width=.7pt] ({#1+#3},-#2)--({#1+#3},{-#2-#4})--(#1,{-#2-#4});\fi
+  \node[font=\gfont{6}{6.5}] at ({#1+#3/2},{-#2-#4/2}) {#6};}
+\newcommand\group[5]{\draw[rounded corners=1mm,black!25,line width=.3pt] (#1,-#2) rectangle ({#1+#3},{-#2-#4});
+  \node[anchor=west,fill=black!3,inner sep=1pt,font=\bfseries\gfont{5.4}{6}] at ({#1+3},-#2) {#5};}
+\newcommand\dropdown[4]{\shadedraw[rounded corners=.8mm,draw=black!45,top color=white,bottom color=black!7,line width=.3pt]
+  (#1,-#2) rectangle ({#1+#3},{-#2-4.2});
+  \node[anchor=west,font=\gfont{5.6}{6}] at ({#1+1.5},{-#2-2.1}) {#4};
+  \fill[acc,rounded corners=.8mm] ({#1+#3-5},-#2) rectangle ({#1+#3},{-#2-4.2});
+  \fill[white] ({#1+#3-3.9},{-#2-1.5})--({#1+#3-1.1},{-#2-1.5})--({#1+#3-2.5},{-#2-3}) --cycle;}
+\newcommand\textfield[4]{\draw[rounded corners=.6mm,black!45,fill=white,line width=.3pt] (#1,-#2) rectangle ({#1+#3},{-#2-4.2});
+  \node[anchor=west,font=\gfont{5.6}{6}] at ({#1+1.5},{-#2-2.1}) {#4};}
+
+% ----------------------------------------------------- desktop furniture
+\newcommand\wallpaper{%
+ \shade[top color=desk1,bottom color=desk2] (0,0) rectangle (320,-180);
+ \fill[cyan!55!blue,path fading=circle with fuzzy edge 20 percent,opacity=.55] (255,-40) circle (95);
+ \fill[magenta!50!violet,path fading=circle with fuzzy edge 20 percent,opacity=.45] (40,-150) circle (100);
+ \pgfmathsetseed{11}
+ \foreach \wk in {1,...,34}{%
+   \pgfmathsetmacro\wx{rnd*320}\pgfmathsetmacro\wy{-rnd*180}\pgfmathsetmacro\wrad{3+rnd*rnd*26}
+   \pgfmathsetmacro\wea{.22*\wrad}\pgfmathsetmacro\web{.12*\wrad}
+   \pgfmathsetmacro\hx{\wx-.35*\wrad}\pgfmathsetmacro\hy{\wy+.4*\wrad}
+   \begin{scope}[opacity=.16]\fill[white] (\wx,\wy) circle (\wrad);\end{scope}
+   \draw[white,opacity=.35,line width=.3pt] (\wx,\wy) circle (\wrad);
+   \fill[white,opacity=.35] (\hx,\hy) ellipse [x radius=\wea,y radius=\web];}}
+\newcommand\menubar{%
+ \fill[white,opacity=.78] (0,0) rectangle (320,-6);
+ \draw[black!30,line width=.2pt] (0,-6)--(320,-6);
+ \node[anchor=west,font=\bfseries\gfont{6.5}{7},text=ink] at (3,-3) {\ding{117}\ Spherepop};
+ \foreach \mt/\mx in {File/28,Edit/38,Address/48,Command/64,View/82,Ledger/93,Window/106,Help/120}{%
+   \node[anchor=west,font=\gfont{6.2}{7},text=ink] at (\mx,-3) {\mt};}
+ \node[anchor=east,font=\gfont{6.2}{7},text=ink] at (317,-3) {Sun 20 Sep\quad 14:07};
+ \draw[ink,line width=.3pt,rounded corners=.4mm] (270,-1.8) rectangle (277,-4.2); \fill[okc] (270.4,-2.2) rectangle (275.5,-3.8);
+ \fill[ink] (277.2,-2.6) rectangle (277.9,-3.4);
+ \foreach \wrad in {1,2,3}{\draw[ink,line width=.35pt] (290,-4.3) ++(50:\wrad*.9) arc(50:130:\wrad*.9);}
+ \fill[ink] (290,-4.4) circle (.3);}
+\newcommand\dock{%
+ \node[rounded corners=3mm,fill=white,fill opacity=.55,draw=white,line width=.4pt,minimum width=150mm,minimum height=14mm,
+   blur shadow={shadow blur steps=8,shadow blur extra rounding=3mm,shadow yshift=-1mm,shadow opacity=35}] at (160,-172) {};
+ \fill[white,path fading=south,opacity=.5,rounded corners=3mm] (85,-165) rectangle (235,-172);
+ \foreach \dg/\dc/\dl [count=\di from 0] in {{\ding{108}}/dcred/scr1,{\ding{110}}/dcorange/scr2,{\ding{72}}/dcgreen/scr3,%
+     {\ding{108}}/dcviolet/scr4,{\ding{109}}/dcblue/scr1,{\ding{115}}/dccyan/scr2,{\ding{116}}/dcmag/scr3,{\ding{110}}/dcgray/scr4}{%
+   \pgfmathsetmacro\dx{160+(\di-3.5)*16.5}
+   \node[rounded corners=2.2mm,minimum size=10mm,inner sep=0,top color=\dc!55!white,bottom color=\dc!90!black,
+     draw=white,line width=.3pt,text=white,font=\bfseries\gfont{9}{9}] at (\dx,-172) {\dg};
+   \ifmini\else\node[inner sep=0] at (\dx,-172) {\hyperlink{\dl}{\rule{0pt}{10mm}\rule{10mm}{0pt}}};\fi}}
+
+% ------------------------------------------- parshape text in a bubble
+\newcommand\bubblepar{\gdef\bubblepars{}%
+ \foreach \bk in {1,...,17}{%
+   \pgfmathsetmacro\by{(\bk-9)*2.8}\pgfmathsetmacro\bw{2*sqrt(max(24.5*24.5-\by*\by,4))}%
+   \pgfmathsetmacro\bi{24.5-\bw/2}\xdef\bubblepars{\bubblepars \bi mm \bw mm }}}
+\newcommand\bubbletext{A bubble is a scope. To pop it is to open it, to refuse is to decline a merge that would break its
+ constraints, to bind is to let two scopes share a name, and to collapse is to fold a scope into the log without losing how
+ it was made. Nothing in the log is edited. What a viewer sees is a fold of that history, and what a screen shows is a
+ rendering of that fold. When a step is refused the refusal is recorded and a repair may follow, so the system continues
+ instead of stopping. Every layer below can rebuild every layer above.\par}
+
+% ------------------------------------------------------------ page one
+\makeatletter
+\newcommand\DesktopOne{%
+ \wallpaper
+ %% ---- Ledger (mac)
+ \gwin{wled}{6}{10}{122}{72}{Ledger \textperiodcentered\ session.evt}{%
+  \rule{0pt}{8mm}\par\rowcolors{1}{white}{black!4}\setlength\tabcolsep{2pt}\renewcommand\arraystretch{1.25}%
+  \begin{tabular}{@{}p{9mm}p{18mm}p{19mm}p{21mm}p{21mm}@{}}
+  \rowcolor{black!10}\bfseries \# & \bfseries Operator & \bfseries Verdict & \bfseries Digest & \bfseries Parent\\
+  \flxeach\flxrow18\end{tabular}}
+ \btn{8.5}{19.5}{17}{\flxicon@Pop\ Pop}\btn{27}{19.5}{20}{\flxicon@Refuse\ Refuse}
+ \btn{49}{19.5}{17}{\flxicon@Bind\ Bind}\btn{68}{19.5}{22}{\flxicon@Collapse\ Collapse}
+ \node[anchor=north west,inner sep=0,minimum width=28mm,minimum height=5mm,rounded corners=2.5mm,draw=black!30,fill=black!4,
+   font=\gfont{5.6}{6},text=black!50] at (95,-19.5) {\ding{72}\ filter};
+ \vscroll{125}{17}{62}{.15}
+ \draw[black!20,line width=.25pt] (6,-76)--(128,-76);
+ \node[anchor=west,font=\gfont{5.4}{6},text=black!55] at (9,-79) {\flxadm\ admitted \textperiodcentered\ \flxrej\ rejected \textperiodcentered\ \flxrep\ repaired \textperiodcentered\ chain intact};
+ %% ---- Terminal (dark)
+ \begingroup\def\gwbg{term}\def\gwfg{tgreen}%
+ \gwin{wterm}{6}{86}{122}{72}{sp \textperiodcentered\ ledger \textperiodcentered\ 96$\times$24}{%
+  \ttfamily\gfont{5.4}{7.2}\raggedright
+  \textcolor{tgray}{sp@flyxion}\textcolor{tblue}{:\textasciitilde/ledger}\textcolor{tgray}{\$} sp log --tail --chain\par
+  \flxeach\flxterm{11}{16}%
+  \textcolor{tgray}{sp\textgreater}\ \textcolor{tyellow}{3,5}\ \textcolor{tgreen}{bind}\hfill\textcolor{tgray}{; address first, operator second}\par
+  \textcolor{tgray}{sp\textgreater}\ \textcolor{tyellow}{,\$}\ \textcolor{tgreen}{collapse}\ \textcolor{tred}{refused: constraint C}\par
+  \textcolor{tgray}{sp\textgreater}\ \textcolor{tyellow}{\%}\ \textcolor{tgreen}{repair}\ \textcolor{tgray}{0007}\par
+  \textcolor{tgray}{sp\textgreater}\ \colorbox{tgreen}{\phantom{M}}}%
+ \endgroup
+ %% ---- RSVP field inspector (win)
+ \gwin[win]{wrsvp}{132}{10}{100}{78}{RSVP Field Inspector}{}
+ \foreach \qi in {0,...,19}{\foreach \qj in {0,...,16}{%
+   \pgfmathtruncatemacro\fp{50+22*sin(\qi*17)+22*cos(\qj*23)}
+   \fill[blue!\fp!orange!75!yellow] ({135+\qi*3},{-19-\qj*3}) rectangle ++(3,-3);}}
+ \foreach \fa in {0,...,9}{\foreach \fb in {0,...,7}{%
+   \pgfmathsetmacro\fang{70*sin(\fa*37)+70*cos(\fb*41)+20}
+   \begin{scope}[shift={({138+6*\fa},{-22-6*\fb})},rotate=\fang]
+    \draw[-{Stealth[length=1.3mm,width=1mm]},white,line width=.45pt] (-1.9,0)--(1.9,0);\end{scope}}}
+ \draw[black!55,line width=.3pt] (135,-19) rectangle (195,-70);
+ \shade[left color=blue,right color=orange!75!yellow] (135,-72.5) rectangle (195,-74.5);
+ \node[anchor=west,font=\gfont{5}{5}] at (135,-77) {$\Phi_{\min}$};\node[anchor=east,font=\gfont{5}{5}] at (195,-77) {$\Phi_{\max}$};
+ \node[font=\bfseries\gfont{5.6}{6},anchor=west] at (199,-20) {Field};
+ \radio{199}{23}{1}{$\Phi$ scalar}\radio{199}{28.5}{0}{$\vec v$ vector}\radio{199}{34}{0}{$S$ entropy}
+ \slider{199}{41}{28}{.62}{$\lambda$ coupling}\slider{199}{51}{28}{.35}{$\Delta t$ step}
+ \chk{199}{62}{1}{show arrows}\chk{199}{67.5}{1}{lock $\nabla\!\cdot v$}\chk{199}{73}{0}{record trace}
+ \node[anchor=west,font=\gfont{5.2}{6},text=black!55] at (135,-83) {step 0384 \textperiodcentered\ $S=2.31$ \textperiodcentered\ descent 62\%};
+ \prog{199}{81}{28}{.62}{acc}
+ %% ---- Bubble (round window)
+ \bubblepar
+ \node[circle,minimum size=76mm,inner sep=0,fill=white,blur shadow={shadow blur steps=9,shadow xshift=.6mm,shadow yshift=-1.4mm,
+   shadow blur radius=1.8mm,shadow opacity=42}] at (276,-48) {};
+ \shade[inner color=white,outer color=cyan!28] (276,-48) circle (37);
+ \draw[line width=1.1pt,cyan!60!blue] (276,-48) circle (37);
+ \draw[cyan!50!blue,line width=.25pt] (276,-48) circle (27.2);
+ \path[decorate,decoration={text along path,text={|\bfseries\gfont{4.6}{5}|POP / REFUSE / BIND / COLLAPSE / POP / REFUSE / BIND / COLLAPSE /},
+   text align={fit to path stretching spaces}}] ([shift={(276,-48)}]180:29.4) arc[start angle=180,end angle=-180,radius=29.4];
+ \foreach \bc/\bd in {red!75!orange/{45},yellow!85!orange/{57},green!65!black/{69}}{%
+   \fill[\bc] ([shift={(276,-48)}]\bd:37) circle (1.6);}
+ \node[anchor=center,inner sep=0,text width=49mm,font=\gfont{5.6}{8},text=ink] at (276,-48)
+   {\parshape 17 \bubblepars \raggedright \rightskip=0pt plus 4mm \bubbletext};
+ %% ---- Toolbox palette (retro)
+ \gwin[retro]{wtool}{132}{92}{44}{64}{Toolbox}{}
+ \bevelbtn{135}{102}{38}{11}{0}{\flxicon@Pop\ Pop}\bevelbtn{135}{115}{38}{11}{0}{\flxicon@Refuse\ Refuse}
+ \bevelbtn{135}{128}{38}{11}{1}{\flxicon@Bind\ Bind}\bevelbtn{135}{141}{38}{11}{0}{\flxicon@Collapse\ Collapse}
+ \draw[black!50,line width=.5pt] (135,-153.5)--(173,-153.5)--(173,-154.2);
+ %% ---- Repair monitor
+ \gwin{wmon}{238}{92}{76}{64}{Repair Queue}{}
+ \foreach \tn/\tx/\tsel in {Ledger/240/0,Repair/254/1,Continuation/268/0}{%
+   \ifnum\tsel=1 \fill[white,rounded corners=.8mm] (\tx,-100) rectangle ++(13,-5.5);\draw[black!30,rounded corners=.8mm,line width=.3pt] (\tx,-100) rectangle ++(13,-5.5);
+   \else\fill[black!7,rounded corners=.8mm] (\tx,-100) rectangle ++(13,-5.5);\fi
+   \node[font=\gfont{5}{5}] at ({\tx+6.5},-102.7) {\tn};}
+ \begin{scope}[shift={(256,-131)}]
+  \foreach \ga/\gb/\gcol in {180/120/rejc,120/60/repc,60/0/okc}{\draw[line width=3pt,\gcol!80,line cap=butt] (\ga:11) arc(\ga:\gb:11);}
+  \draw[line width=.9pt,ink,-{Latex[length=1.6mm]}] (0,0)--(52:10); \fill[ink] (0,0) circle (1.2);
+  \node[font=\gfont{5}{5},anchor=north] at (0,-3) {continuation};\node[font=\bfseries\gfont{6}{6},anchor=north] at (0,-7.5) {0.62};
+ \end{scope}
+ \draw[black!20,line width=.25pt,rounded corners=.6mm,fill=white] (272,-108) rectangle (311,-126);
+ \draw[acc,line width=.6pt] plot[domain=0:36,samples=28,smooth] ({273.5+\x},{-117-4*sin(\x*20)-3*cos(\x*47)});
+ \node[anchor=west,font=\gfont{5}{5}] at (272,-129) {rejections / epoch};
+ \node[anchor=west,font=\gfont{5.2}{6}] at (240,-142) {0007 collapse}; \prog{264}{140.8}{45}{.72}{repc}
+ \node[anchor=west,font=\gfont{5.2}{6}] at (240,-147.5) {0011 bind}; \prog{264}{146.3}{45}{.31}{acc}
+ \node[anchor=west,font=\gfont{5.2}{6}] at (240,-153) {0014 pop}; \prog{264}{151.8}{45}{1}{okc}
+ %% ---- modal dim + dialog
+ \fill[black,opacity=.14] (0,-6) rectangle (320,-180);
+ \gwin{wdlg}{168}{76}{96}{46}{Operation refused}{%
+  \leftskip=15mm\bfseries Collapse refused\par\normalfont\vspace{.6mm}
+  The candidate merge of scopes 0007 and 0009 violates constraint set C. Nothing was written to the log.\par\vspace{.6mm}
+  \textcolor{black!60}{A repair that restores admissibility is available.}\par}
+ \fill[rejc!85!black] (177,-94) circle (5); \draw[white,line width=1.6pt] (173.8,-90.8)--(180.2,-97.2);
+ \draw[white,line width=.6pt] (177,-94) circle (3.6);
+ \chk{172}{111}{0}{show trace}
+ \btn{196}{112}{20}{Details}\btn{218}{112}{20}{Cancel}
+ \btn[top color=acc!65,bottom color=acc,text=white,draw=acc!60!black,font=\bfseries\gfont{5.8}{6}]{240}{112}{20}{Repair}
+ \menubar\dock}
+
+
+% ======================================================== screen two: apps
+\newcommand\iconfolder[3]{%
+  \fill[amber!70!black,rounded corners=.6mm] ({#1-7},{-#2-1}) rectangle ({#1-1},{-#2-3.4});
+  \shadedraw[rounded corners=.9mm,top color=amber!55!white,bottom color=amber,draw=amber!60!black,line width=.25pt]
+    ({#1-8},{-#2-2.4}) rectangle ({#1+8},{-#2-12.5});
+  \node[font=\gfont{5}{5.5},anchor=north,align=center,text width=22mm] at (#1,{-#2-13.5}) {#3};}
+\newcommand\icondoc[4]{%
+  \filldraw[fill=white,draw=black!40,line width=.3pt] ({#1-5.5},{-#2-1})--({#1+2},{-#2-1})--({#1+5.5},{-#2-4.5})--({#1+5.5},{-#2-13})--({#1-5.5},{-#2-13})--cycle;
+  \fill[black!12] ({#1+2},{-#2-1})--({#1+2},{-#2-4.5})--({#1+5.5},{-#2-4.5})--cycle;
+  \fill[#4] ({#1-4},{-#2-7}) rectangle ({#1+4},{-#2-9.5});
+  \foreach \dl in {10.6,11.8}{\draw[black!25,line width=.3pt] ({#1-4},{-#2-\dl})--({#1+4},{-#2-\dl});}
+  \node[font=\gfont{5}{5.5},anchor=north,align=center,text width=22mm] at (#1,{-#2-13.5}) {#3};}
+\newcommand\edline[2]{\makebox[5mm][r]{\textcolor{edcm}{\gfont{5}{5}#1}}\hspace{2.5mm}#2\par}
+\newcommand\kw[1]{\textcolor{edkw}{#1}}\newcommand\ty[1]{\textcolor{edty}{#1}}
+\newcommand\cm[1]{\textcolor{edcm}{#1}}\newcommand\fn[1]{\textcolor{edfn}{#1}}
+\newcommand\ind[1]{\hspace*{#1\dimexpr1.143mm\relax}}
+\newcommand\powerseg[5]{\fill[#4] (#1,-#2)--({#1+#3},-#2)--({#1+#3+2.5},{-#2-2.5})--({#1+#3},{-#2-5})--(#1,{-#2-5})--cycle;
+  \node[font=\bfseries\gfont{5}{5},text=black!85] at ({#1+#3/2},{-#2-2.5}) {#5};}
+\newcommand\layerplane[5]{\begin{scope}[shift={(#1,#2)},cm={1,0,.55,.42,(0,0)}]
+  \fill[#3,opacity=.9] (0,0) rectangle (34,14);\draw[black!55,line width=.3pt] (0,0) rectangle (34,14);
+  #4\end{scope}\node[anchor=west,font=\gfont{5.4}{6}] at ({#1+45},{#2+2.5}) {#5};}
+\newcommand\sticky[6]{\node[rotate=#3,fill=#4,text width=#5mm,inner sep=2mm,align=left,font=\itshape\gfont{6.6}{8.4},text=black!75,
+  blur shadow={shadow blur steps=6,shadow xshift=.4mm,shadow yshift=-.8mm,shadow blur radius=1mm,shadow opacity=40}] at (#1,-#2) {#6};
+  \node[rotate=#3,fill=white,fill opacity=.55,minimum width=9mm,minimum height=2.6mm,inner sep=0] at (#1,{-#2+4.2}) {};}
+
+\newcommand\DesktopTwo{%
+ \wallpaper
+ %% ---- file manager
+ \gwin{wfm}{6}{10}{150}{88}{sp-research \textperiodcentered\ 6 items}{}
+ \btn{8.5}{19.5}{7}{$\blacktriangleleft$}\btn{16.5}{19.5}{7}{$\blacktriangleright$}
+ \draw[rounded corners=1mm,black!30,fill=black!3,line width=.3pt] (26,-19.5) rectangle (118,-24.5);
+ \foreach \pt/\px in {\textasciitilde/28,research/34,unpublished/50,processing/70}{%
+   \node[anchor=west,font=\gfont{5.4}{6}] at (\px,-22) {\pt};}
+ \foreach \sx in {33,49.5,69.5}{\node[font=\bfseries\gfont{6}{6},text=black!40] at (\sx,-22) {\guilsinglright};}
+ \node[anchor=west,inner sep=0,minimum width=30mm,minimum height=5mm,rounded corners=2.5mm,draw=black!30,fill=black!4,font=\gfont{5.6}{6},text=black!50] at (122,-22) {};
+ \node[anchor=west,font=\gfont{5.6}{6},text=black!50] at (125,-22) {\ding{72}\ search};
+ \fill[black!4] (8.5,-27) rectangle (40,-93);\draw[black!20,line width=.3pt] (40,-27)--(40,-93);
+ \node[anchor=west,font=\bfseries\gfont{4.6}{5},text=black!45] at (10,-30) {FAVORITES};
+ \fill[acc!18,rounded corners=.8mm] (9.5,-42.5) rectangle (39,-47.5);
+ \foreach \sn/\sc [count=\si from 0] in {Research/fc6,Essays/fc4,Ledgers/fc1,Lean/fc7,Desktop/fc5}{%
+   \fill[\sc] (12.5,{-35-\si*5.2}) circle (1.1);\node[anchor=west,font=\gfont{5.6}{6}] at (15.5,{-35-\si*5.2}) {\sn};}
+ \node[anchor=west,font=\bfseries\gfont{4.6}{5},text=black!45] at (10,-66) {LOCATIONS};
+ \foreach \sn/\sc [count=\si from 0] in {Atlas/fc8,Processing/fc3}{%
+   \fill[\sc] (12.5,{-71-\si*5.2}) circle (1.1);\node[anchor=west,font=\gfont{5.6}{6}] at (15.5,{-71-\si*5.2}) {\sn};}
+ \iconfolder{52}{29}{essays}\iconfolder{77}{29}{theory\_tests}\iconfolder{102}{29}{macrolife}\iconfolder{127}{29}{unpublished}
+ \icondoc{52}{57}{spherepop-os.tex}{fc6}\icondoc{77}{57}{distinction.tex}{fc6}\icondoc{102}{57}{ledger.rs}{fc2}\icondoc{127}{57}{Kernel.lean}{fc7}
+ \vscroll{152.5}{27}{64}{.0}
+ \draw[black!20,line width=.25pt] (6,-91)--(156,-91);
+ \node[anchor=west,inner sep=0,font=\ttfamily\gfont{5}{6},text=black!55] at (9,-94.5) {\hbox to 140mm{6 items\leaders\hbox to 1.5mm{\hss.\hss}\hfill 4 folders, 4 files}};
+ %% ---- code editor (dark)
+ \begingroup\def\gwbg{edbg}\def\gwfg{edfg}%
+ \gwin[win]{wcode}{162}{10}{152}{88}{Editor \textperiodcentered\ ledger.rs}{%
+  \rule{0pt}{8mm}\par\ttfamily\gfont{5.4}{7.2}\raggedright
+  \edline{1}{\cm{// history first: state and appearance are folds of the log}}
+  \edline{2}{\kw{enum} \ty{Op} \{ Pop, Refuse, Bind, Collapse \}}
+  \edline{3}{\kw{enum} \ty{Verdict} \{ Admitted, Rejected, Repaired \}}
+  \edline{4}{}
+  \edline{5}{\kw{fn} \fn{step}(log: \&\kw{mut} \ty{Ledger}, op: \ty{Op}, c: \&\ty{Constraints}) -\textgreater\ \ty{Verdict} \{}
+  \edline{6}{\ind4\kw{let} cand = log.state().apply(\&op);}
+  \edline{7}{\ind4\kw{if} c.admits(\&cand) \{ log.append(op, \ty{Admitted}); \ty{Verdict}::Admitted \}}
+  \edline{8}{\ind4\kw{else if let} Some(fix) = c.repair(\&cand) \{}
+  \edline{9}{\ind8log.append(fix, \ty{Repaired}); \ty{Verdict}::Repaired}
+  \edline{10}{\ind4\} \kw{else} \{ log.append(op, \ty{Rejected}); \ty{Verdict}::Rejected \}}
+  \edline{11}{\}}
+  \edline{12}{}
+  \edline{13}{\cm{-- kernel.lean}}
+  \edline{14}{\kw{theorem} refuse\_then\_repair (s : State) (c : Constraints) :}
+  \edline{15}{\ind2$\neg$ c.admits s $\to$ $\exists$ f, c.admits (repair f s) := \kw{by}}
+  \edline{16}{\ind2\kw{intro} h; \kw{exact} c.repair\_exists h}
+  \edline{17}{}
+  \edline{18}{\cm{;; an ed-style session against the same log: address first}}
+  \edline{19}{\textcolor{edfn}{:3,5}\textcolor{edok}{collapse}\ \textcolor{edcm}{\textbar}\ \textcolor{edfn}{:\$}\textcolor{edok}{p}}}%
+ \endgroup
+ \foreach \tn/\tx/\ta in {ledger.rs/165/1,spherepop.tex/191/0,kernel.lean/222/0}{%
+   \ifnum\ta=1 \fill[edbg!85!white,rounded corners=.8mm] (\tx,-19) rectangle ++(24,-5.5);
+   \else\fill[edbg!60!black,rounded corners=.8mm] (\tx,-19) rectangle ++(24,-5.5);\fi
+   \node[font=\gfont{5.2}{5.5},text=edfg] at ({\tx+12},-21.8) {\tn};}
+ \pgfmathsetseed{5}
+ \foreach \mi in {0,...,25}{\pgfmathsetmacro\mw{2+rnd*9}\pgfmathtruncatemacro\mc{1+int(rnd*3)}
+   \ifcase\mc\or\fill[edkw,opacity=.7]\or\fill[edty,opacity=.7]\or\fill[edfn,opacity=.7]\fi
+   (300,{-27-\mi*2.4}) rectangle ++(\mw,-1.3);}
+ \draw[white,opacity=.4,line width=.3pt] (298,-27) rectangle (312,-62);
+ \fill[edbg!60!black] (162,-91) rectangle (314,-98);
+ \powerseg{164}{92}{15}{okc!85}{NORMAL}\powerseg{182.5}{92}{10}{edcm!80!white}{main}
+ \node[anchor=west,font=\gfont{5.2}{5}\ttfamily,text=edfg] at (199,-94.5) {ledger.rs \textcolor{edty}{[+]}};
+ \node[anchor=east,font=\gfont{5.2}{5}\ttfamily,text=edfg] at (310,-94.5) {rust \textbar\ utf-8 \textbar\ 7:12 \textbar\ 38\%};
+ %% ---- browser
+ \gwin{wweb}{6}{104}{120}{54}{Layers \textperiodcentered\ spherepop.local}{}
+ \foreach \bn/\bx/\ba in {layers/8/1,log/34/0}{%
+   \ifnum\ba=1 \fill[white,rounded corners=1mm] (\bx,-111) rectangle ++(24,-5.5);\draw[black!25,line width=.3pt,rounded corners=1mm] (\bx,-111) rectangle ++(24,-5.5);
+   \else\fill[black!8,rounded corners=1mm] (\bx,-111) rectangle ++(24,-5.5);\fi
+   \node[font=\gfont{5.2}{5.5}] at ({\bx+12},-113.8) {\bn};}
+ \draw[rounded corners=1.5mm,black!25,fill=black!3,line width=.3pt] (8,-118) rectangle (123,-123);
+ \node[anchor=west,font=\gfont{5.4}{6},text=black!60] at (10,-120.5) {\ding{51}\ spherepop.local/layers};
+ \layerplane{12}{-152}{blue!35}{\foreach\ll in {2,4,...,12}{\draw[black!35,line width=.25pt](1,\ll)--(33,\ll);}}{history}
+ \layerplane{12}{-142}{green!40}{\foreach\ll in {2,4,...,12}{\draw[black!25,line width=.25pt](\ll*2.4,1)--(\ll*2.4,13);}}{state}
+ \layerplane{12}{-132}{magenta!30}{\fill[white,opacity=.7](8,3) rectangle (26,11);}{appearance}
+ \draw[-{Stealth[length=1.6mm]},black!60,line width=.5pt] (30,-146.1)--(30,-142.2) (30,-136.1)--(30,-132.2);
+ \node[anchor=west,font=\itshape\gfont{4.8}{5},text=black!55] at (31.5,-144.2) {fold};\node[anchor=west,font=\itshape\gfont{4.8}{5},text=black!55] at (31.5,-134.2) {render};
+ \node[anchor=west,text width=38mm,font=\gfont{5.4}{6.6},text=black!65] at (84,-138) {Each layer can be rebuilt from the one below it. Nothing is edited in place: a change is a new entry.};
+ %% ---- calculator
+ \gwin[retro]{wcalc}{132}{104}{50}{54}{Logic}{}
+ \fill[term] (135,-113) rectangle (179,-121);
+ \node[anchor=east,text=tgreen,font=\gfont{6.4}{7}] at (177.5,-117) {$p \to \neg q$};
+ \foreach \kk [count=\ki from 0] in {7,8,9,$\wedge$,4,5,6,$\vee$,1,2,3,$\neg$,0,$\top$,$\bot$,$\to$}{%
+   \pgfmathsetmacro\kx{135+mod(\ki,4)*11.2}\pgfmathsetmacro\ky{123.5+int(\ki/4)*8.3}
+   \bevelbtn{\kx}{\ky}{10}{7.2}{0}{\kk}}
+ %% ---- sticky notes, calendar, clock
+ \sticky{206}{124}{3}{yellow!70}{28}{refuse first,\\repair second}
+ \sticky{238}{131}{-4}{pink!75}{30}{history is authority;\\state is a fold;\\view is disposable}
+ \sticky{212}{149}{2}{green!25}{30}{address, then\\operator}
+ \node[anchor=north west,inner sep=0,minimum width=24mm,minimum height=28mm,rounded corners=2mm,fill=white,draw=black!20,
+   blur shadow={shadow blur steps=7,shadow blur extra rounding=2mm,shadow yshift=-1mm,shadow opacity=40}] at (262,-112) {};
+ \fill[rejc!85,rounded corners=2mm] (262,-112) rectangle (286,-119);\fill[rejc!85] (262,-115) rectangle (286,-119);
+ \node[font=\bfseries\gfont{6}{6},text=white] at (274,-115.5) {SEP};
+ \node[font=\bfseries\fontsize{19}{19}\selectfont,text=ink] at (274,-129) {20};
+ \node[font=\gfont{5.5}{6},text=black!55] at (274,-137) {Sunday};
+ \begin{scope}[shift={(302,-133)}]
+  \node[circle,minimum size=34mm,inner sep=0,fill=white,draw=black!25,line width=.5pt,
+    blur shadow={shadow blur steps=7,shadow yshift=-1mm,shadow opacity=40}] {};
+  \shade[inner color=white,outer color=black!8] (0,0) circle (16);
+  \foreach \ta in {0,30,...,330}{\draw[ink,line width=.5pt] (\ta:13.6)--(\ta:15);}
+  \foreach \ta in {0,6,...,354}{\draw[black!35,line width=.2pt] (\ta:14.4)--(\ta:15);}
+  \draw[ink,line width=1.2pt] (0,0)--({90-(2*30+3.5)}:8);\draw[ink,line width=.8pt] (0,0)--({90-42}:12);
+  \draw[rejc,line width=.3pt] (0,0)--({90-200}:13);\fill[ink] (0,0) circle (.9);
+ \end{scope}
+ \menubar\dock}
+
+% ============================================ screen three: control panel
+\newcommand\toast[6]{\begin{scope}[opacity=#6]
+  \node[anchor=north west,inner sep=0,minimum width=74mm,minimum height=14mm,rounded corners=2mm,fill=white,draw=black!15,line width=.3pt,
+    blur shadow={shadow blur steps=7,shadow blur extra rounding=2mm,shadow yshift=-1mm,shadow opacity=40}] at (240,-#1) {};
+  \fill[#2] (246.4,{-#1-7}) circle (3.6);\node[text=white,font=\bfseries\gfont{7}{7}] at (246.4,{-#1-7}) {#3};
+  \node[anchor=north west,font=\bfseries\gfont{6}{6.5}] at (253,{-#1-2.4}) {#4};
+  \node[anchor=north west,text width=58mm,font=\gfont{5.4}{6.2},text=black!65] at (253,{-#1-6.2}) {#5};\end{scope}}
+\def\cmx{196}\def\cmy{44}\def\cmw{44}
+\newcommand\mi[4]{\ifnum#4=4 \fill[acc,rounded corners=.6mm] ({\cmx+.8},{-\cmy-#1+.6}) rectangle ({\cmx+\cmw-.8},{-\cmy-#1-4.4});\fi
+  \ifnum#4=4 \def\mic{white}\else\ifnum#4=2 \def\mic{black!35}\else\def\mic{ink}\fi\fi
+  \node[anchor=west,font=\gfont{5.8}{6},text=\mic] at ({\cmx+5},{-\cmy-#1-1.9}) {#2};
+  \node[anchor=east,font=\gfont{5.2}{6},text=\mic] at ({\cmx+\cmw-2.5},{-\cmy-#1-1.9}) {#3};
+  \ifnum#4=1 \node[font=\gfont{6}{6}] at ({\cmx+2.6},{-\cmy-#1-1.9}) {\ding{51}};\fi
+  \ifnum#4=3 \node[font=\gfont{6}{6},text=black!60] at ({\cmx+\cmw-3},{-\cmy-#1-1.9}) {$\triangleright$};\fi}
+\newcommand\mtab[4]{\ifnum#4=1 \fill[black!3,rounded corners=1mm] (#1,-19.5) rectangle ({#1+#2},-26);\draw[black!30,line width=.3pt,rounded corners=1mm] (#1,-26) --(#1,-19.5) -- ({#1+#2},-19.5)--({#1+#2},-26);
+  \else\fill[black!9,rounded corners=1mm] (#1,-20.5) rectangle ({#1+#2},-25);\fi
+  \node[font=\gfont{5.4}{6}] at ({#1+#2/2},-22.8) {#3};}
+
+\newcommand\DesktopThree{%
+ \wallpaper
+ %% ---- preferences
+ \gwin{wpref}{6}{10}{112}{108}{Preferences}{}
+ \draw[rounded corners=1mm,black!30,fill=black!3,line width=.3pt] (9,-25.5) rectangle (115,-101.5);
+ \mtab{10}{20}{General}{0}\mtab{31}{30}{Admissibility}{1}\mtab{62}{20}{Repair}{0}\mtab{83}{20}{Display}{0}
+ \group{11.5}{29}{101}{26}{Verdicts}
+ \switch{14}{33.5}{1}{Refuse a step before attempting repair}
+ \switch{14}{39.5}{1}{Append rejected steps to the log}
+ \switch{14}{45.5}{0}{Commit repairs without confirmation}
+ \group{11.5}{58}{101}{27}{Constraint set}
+ \node[anchor=west,font=\gfont{5.6}{6}] at (14,-65) {Preset};\dropdown{28}{63}{44}{C\_lab (strict)}
+ \node[anchor=west,font=\gfont{5.6}{6}] at (78,-65) {Name};\textfield{89}{63}{22}{C\_lab\textbar}
+ \node[anchor=west,font=\gfont{5.6}{6}] at (14,-73.5) {Max repairs};\textfield{40}{71.4}{14}{3}
+ \fill[black!45] (51,-73.7)--(53.2,-73.7)--(52.1,-72.4)--cycle;\fill[black!45] (51,-74.5)--(53.2,-74.5)--(52.1,-75.8)--cycle;
+ \slider{14}{77}{70}{.4}{tolerance $\varepsilon$}
+ \group{11.5}{88}{101}{12}{Layer shown}
+ \radio{14}{92.5}{0}{history}\radio{46}{92.5}{1}{state}\radio{74}{92.5}{0}{appearance}
+ \btn{10}{105}{34}{Restore Defaults}\btn{72}{105}{20}{Cancel}
+ \btn[top color=acc!65,bottom color=acc,text=white,draw=acc!60!black,font=\bfseries\gfont{5.8}{6}]{94}{105}{20}{Apply}
+ %% ---- keyboard
+ \gwin{wkbd}{6}{124}{112}{34}{Keyboard \textperiodcentered\ eight columns}{}
+ \foreach \kr [count=\kri from 0] in {{Q/1,W/2,E/3,R/4,T/4,Y/5,U/5,I/6,O/7,P/8},{A/1,S/2,D/3,F/4,G/4,H/5,J/5,K/6,L/7,{;}/8},{Z/1,X/2,C/3,V/4,B/4,N/5,M/5,{,}/6,{.}/7,{/}/8}}{%
+   \foreach \kc/\kf [count=\kci from 0] in \kr {%
+     \pgfmathsetmacro\kxx{9+\kci*10.2+\kri*3}\pgfmathsetmacro\kyy{133+\kri*7.6}
+     \shadedraw[rounded corners=.9mm,top color=fc\kf!25,bottom color=fc\kf!55,draw=fc\kf!80!black,line width=.3pt] (\kxx,-\kyy) rectangle ++(9.4,-6.8);
+     \node[font=\bfseries\gfont{6}{6}] at ({\kxx+4.7},{-\kyy-3.4}) {\kc};}}
+ %% ---- preview (miniature of screen one)
+ \gwin{wprev}{124}{10}{110}{70}{Screen Preview \textperiodcentered\ scr1}{}
+ \begin{scope}[shift={(126,-19)},scale=.32,every node/.append style={transform shape}]
+  \minitrue\clip (0,0) rectangle (320,-180);\DesktopOne\minifalse
+ \end{scope}
+ \draw[black!40,line width=.3pt] (126,-19) rectangle (228.4,-76.6);
+ %% ---- chart
+ \gwin{wchart}{240}{10}{74}{58}{Verdicts per epoch}{%
+  \vspace{-1mm}\begin{tikzpicture}\begin{axis}[width=70mm,height=42mm,ybar stacked,bar width=5pt,ymin=0,ymax=34,xtick=data,
+   tick label style={font=\tiny},ylabel={events},ylabel style={font=\tiny,yshift=-4pt},
+   legend style={font=\tiny,at={(0.02,0.98)},anchor=north west,legend columns=-1,draw=none,fill=none},
+   enlarge x limits=.12,ymajorgrids,grid style={black!10}]
+   \addplot[fill=okc,draw=none] coordinates{(1,12)(2,15)(3,14)(4,18)(5,21)(6,20)};
+   \addplot[fill=rejc,draw=none] coordinates{(1,4)(2,3)(3,5)(4,2)(5,3)(6,2)};
+   \addplot[fill=repc,draw=none] coordinates{(1,1)(2,2)(3,2)(4,3)(5,4)(6,5)};
+   \legend{Admitted,Rejected,Repaired}\end{axis}\end{tikzpicture}}
+ %% ---- notifications
+ \toast{72}{okc}{\ding{51}}{Ledger sealed}{Epoch 12 closed with 16 events. Chain intact.}{1}
+ \toast{88}{rejc}{\ding{55}}{Refusal recorded}{Collapse of 0007 was declined under constraint C.}{.92}
+ \toast{104}{repc}{\ding{72}}{Repair available}{One repair restores admissibility. Review before commit.}{.84}
+ %% ---- colour picker
+ \gwin{wcol}{124}{86}{60}{60}{Colours}{}
+ \begin{scope}[shift={(154,-115)}]
+  \foreach \rh in {0,10,...,350}{\pgfmathsetmacro\hh{\rh/360}\pgfmathsetmacro\he{\rh+10.6}
+   \foreach \rr/\rs in {6/.3,9.5/.55,13/.8,16.5/1}{\pgfmathsetmacro\rb{\rr+3.5}
+     \definecolor{wheel}{hsb}{\hh,\rs,1}
+     \fill[wheel] (\rh:\rr)--(\rh:\rb) arc(\rh:\he:\rb)--(\he:\rr)--cycle;}}
+  \definecolor{pick}{HTML}{5A3A93}\fill[pick] (0,0) circle (4.6);\draw[white,line width=.8pt] (0,0) circle (4.6);
+  \draw[white,line width=.6pt] (250:13.2) circle (1.3);
+ \end{scope}
+ \textfield{132}{138}{44}{\#5A3A93}
+ %% ---- about
+ \gwin[retro]{wabout}{190}{124}{124}{34}{About this document}{%
+  \bfseries How it is built.\ \normalfont Ledger digests are MD5 chain values computed at compile time (\texttt{\textbackslash pdf@mdfivesum}); events come from an
+  expl3 linear congruential generator. Window chrome dispatches through \texttt{\textbackslash csname}; the bubble text is set with a computed
+  \texttt{\textbackslash parshape}; the ring text follows an arc; the dock icons are hyperlinks; every page carries a PDF transition.}
+ %% ---- context menu (drawn last)
+ \node[anchor=north west,inner sep=0,minimum width=\cmw mm,minimum height=58mm,rounded corners=1.6mm,fill=white,fill opacity=.94,draw=black!25,line width=.3pt,
+   blur shadow={shadow blur steps=7,shadow blur extra rounding=1.6mm,shadow yshift=-1mm,shadow opacity=45}] at (\cmx,-\cmy) {};
+ \mi{3}{Pop}{Ctrl P}{0}\mi{9}{Refuse}{Ctrl R}{4}\mi{15}{Bind}{Ctrl B}{0}\mi{21}{Collapse}{Ctrl K}{2}
+ \draw[black!18,line width=.25pt] ({\cmx+2},-\cmy-27.6)--({\cmx+\cmw-2},-\cmy-27.6)
+   ({\cmx+2},-\cmy-46.4)--({\cmx+\cmw-2},-\cmy-46.4);
+ \mi{28.5}{Repair}{Ctrl Y}{0}\mi{34.5}{Show trace}{}{1}\mi{40.5}{Layers}{}{3}\mi{47.5}{Properties}{Ctrl I}{0}
+ \menubar\dock}
+
+% ===================================================== screen four: text mode
+\newcommand\cellbg[4]{\fill[#4] ({#1*4},{-#2*7.2}) rectangle ({(#1+#3)*4},{-(#2+1)*7.2});}
+\newcommand\cellt[4][ncw]{\node[anchor=base west,inner sep=0,outer sep=0,text=#1,font=\fontsize{18.98}{24}\selectfont\bfseries\ttfamily]
+  at ({#2*4},{-(#3+1)*7.2+1.9}) {#4};}
+\newcommand\tuipanel[4]{\draw[ncw,double=nc,double distance=.7mm,line width=.35pt]
+  ({#1*4+2},{-#2*7.2-3.6}) rectangle ({(#1+#3)*4-2},{-(#2+#4)*7.2+3.6});}
+\def\flxnc@Admitted{ncw}\def\flxnc@Rejected{tred}\def\flxnc@Repaired{yellow}
+\newcommand\flxnccol[1]{\csname flxnc@\flxf{st}{#1}\endcsname}
+\newcommand\tuirow[3]{\ifnum#3=1 \cellbg{1}{#1}{38}{ncy}\def\tc{black}\else\def\tc{ncw}\fi
+  \cellt[\tc]{1}{#1}{00\two{#2}}%
+  \cellt[\tc]{6}{#1}{\flxf{op}{#2}}%
+  \ifnum#3=1 \cellt[black]{15}{#1}{\flxf{st}{#2}}\else\cellt[\flxnccol{#2}]{15}{#1}{\flxf{st}{#2}}\fi
+  \cellt[\tc]{24}{#1}{\flxf{h}{#2}}}
+\newcommand\asciirow[1]{\foreach \ax in {0,...,35}{%
+  \pgfmathtruncatemacro\ai{max(0,min(8,4.5+4.2*sin(\ax*11+#1*29)*cos(\ax*7-#1*23)))}%
+  \ifcase\ai .\or :\or -\or =\or +\or *\or \#\or \%\or @\fi}}
+\newcommand\ScreenFour{%
+ \fill[nc] (0,0) rectangle (320,-180);
+ \cellbg{0}{0}{80}{ncy}
+ \foreach \mt/\mc in {Left/1,Files/8,Commands/16,Options/27,Right/37}{\cellt[black]{\mc}{0}{\mt}}
+ \cellt[black]{62}{0}{Sun 20 Sep 14:07}
+ \tuipanel{0}{1}{40}{21}\tuipanel{40}{1}{40}{21}
+ \cellbg{16}{1}{8}{nc}\cellt[yellow]{17}{1}{Ledger}\cellbg{55}{1}{10}{nc}\cellt[yellow]{56}{1}{Field S}
+ \cellt[yellow]{1}{2}{Seq  Operator Verdict  Digest}
+ \draw[ncw,line width=.4pt] (6,-21.6)--(154,-21.6);
+ \tuirow{3}{1}{0}\tuirow{4}{2}{0}\tuirow{5}{3}{0}\tuirow{6}{4}{1}\tuirow{7}{5}{0}\tuirow{8}{6}{0}
+ \tuirow{9}{7}{0}\tuirow{10}{8}{0}\tuirow{11}{9}{0}\tuirow{12}{10}{0}
+ \draw[ncw,line width=.4pt] (6,-93.6)--(154,-93.6);
+ \cellt[yellow]{1}{13}{Selected}\cellt[ncw]{10}{13}{0004 \flxf{op}{4}}
+ \cellt[ncw]{1}{14}{Verdict}\cellt[ncw]{10}{14}{\flxf{st}{4}}
+ \cellt[ncw]{1}{15}{Digest}\cellt[ncw]{10}{15}{\flxf{h}{4}}
+ \cellt[ncw]{1}{16}{Parent}\cellt[ncw]{10}{16}{\flxf{p}{4}}
+ \cellt[yellow]{1}{18}{Totals}\cellt[ncw]{10}{18}{\flxadm\ admitted}
+ \cellt[ncw]{10}{19}{\flxrej\ rejected}\cellt[ncw]{10}{20}{\flxrep\ repaired}
+ \foreach \aj in {0,...,11}{\cellt[ncw]{42}{\the\numexpr\aj+2\relax}{\asciirow{\aj}}}
+ \draw[ncw,line width=.4pt] (166,-108)--(314,-108);
+ \cellt[yellow]{42}{15}{Phi   -1.42 ... 1.98}
+ \cellt[ncw]{42}{16}{Descent [\foreach \b in {1,...,20}{\ifnum\b<13 \#\else .\fi}]}
+ \cellt[ncw]{42}{17}{Chain   intact}
+ \cellt[ncw]{42}{18}{Repairs queued: 3}
+ \cellt[ncw]{42}{19}{Step    0384}
+ \cellbg{0}{22}{80}{ncy}
+ \cellt[black]{1}{22}{16 events  A\flxadm\ R\flxrej\ P\flxrep\ head \flxf{h}{16}}
+ \cellt[white]{0}{23}{C:\textbackslash SPHEREPOP\textgreater}\cellt[white]{14}{23}{sp repair 0007}\cellbg{28}{23}{1}{white}
+ \foreach \fk/\fl [count=\fnq from 0] in {1/Pop,2/Refus,3/Bind,4/Fold,5/Admit,6/Repair,7/Log,8/Diff,9/Hash,10/Exit}{%
+   \pgfmathtruncatemacro\fxc{\fnq*8}\pgfmathtruncatemacro\fxd{\fnq*8+2}%
+   \cellbg{\fxc}{24}{2}{black}\cellt[white]{\fxc}{24}{\fk}%
+   \cellbg{\fxd}{24}{6}{ncy}\cellt[black]{\fxd}{24}{\fl}}
+ \node[anchor=north west,inner sep=0] at (288,-172.8) {\hyperlink{scr1}{\rule{0pt}{7.2mm}\rule{32mm}{0pt}}};
+ %% refusal dialog
+ \fill[black] (80,-64.8) rectangle (256,-129.6);
+ \fill[red!65!black] (72,-57.6) rectangle (248,-122.4);
+ \draw[white,double=red!65!black,double distance=.6mm,line width=.35pt] (75,-61.2) rectangle (245,-118.8);
+ \cellt[white]{29}{8}{ Refusal }
+ \cellt[white]{20}{10}{Collapse 0007 refused by constraint C.}
+ \cellt[white]{20}{11}{Nothing was written to the log.}
+ \cellt[yellow]{20}{12}{A repair is available.}
+ \cellbg{21}{14}{10}{ncg}\cellt[black]{22}{14}{[Repair]}
+ \cellt[white]{33}{14}{[ Reject ]}\cellt[white]{44}{14}{[ Cancel ]}}
+
+\makeatother
+%% ============================================================ DOCUMENT
+\begin{document}
+\hypertarget{scr1}{}\pdfpageattr{/Trans <</S /Glitter /D 1>>}
+\begin{tikzpicture}[scr]\begin{scope}[shift={(current page.north west)}]
+ \DesktopOne
+\end{scope}\end{tikzpicture}
+\null\newpage
+
+\hypertarget{scr2}{}\pdfpageattr{/Trans <</S /Fly /D 1>>}
+\begin{tikzpicture}[scr]\begin{scope}[shift={(current page.north west)}]
+ \DesktopTwo
+\end{scope}\end{tikzpicture}
+\null\newpage
+\hypertarget{scr3}{}\pdfpageattr{/Trans <</S /Wipe /D 1>>}
+\begin{tikzpicture}[scr]\begin{scope}[shift={(current page.north west)}]
+ \DesktopThree
+\end{scope}\end{tikzpicture}
+\null\newpage
+\hypertarget{scr4}{}\pdfpageattr{/Trans <</S /Dissolve /D 1>>}
+\begin{tikzpicture}[scr]\begin{scope}[shift={(current page.north west)}]
+ \ScreenFour
+\end{scope}\end{tikzpicture}
+\null
+\end{document}
+
