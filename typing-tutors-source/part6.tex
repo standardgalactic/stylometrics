@@ -1,0 +1,203 @@
+\part{The DOS Era}
+
+\chapter{Legibility}
+
+The tutors of the DOS period are treated here as a class, because their interfaces made the instructional machinery visible. Statements about individual programs are to be filled from emulated sessions, manuals, and screenshots and are flagged until then. \needs{a list of programs to be documented, with edition, publisher, and source}
+
+\section{What Legibility Means}
+
+A tutor is \emph{legible} if a learner or observer can recover its pedagogical rule from the interface. The features to look for are these.
+
+\begin{itemize}
+\item A visible lesson menu that reveals the curriculum order.
+\item Explicit speed or accuracy thresholds for advancement.
+\item A keyboard diagram highlighting the finger and key.
+\item Audible or visible error signals.
+\item A local score table.
+\item Games whose rules can be understood at a glance.
+\end{itemize}
+
+\section{Legibility and Graphics}
+
+Limited graphics forced the instructional model into view. When a tutor can draw only blocks and characters, the mapping from performance to consequence must be simple, and the rule is visible in the display. Later interfaces may look smoother while concealing whether adaptation is meaningful or merely cosmetic. This is a hypothesis to be tested against the documented programs, not a finding.
+
+\section{Documented Screens}
+
+Five screenshots are available. Four are now attributed, on the strength of their own title screens and the owner's account of where each was obtained; one (S4) is not yet identified, and the book does not attribute it.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.6cm}p{5.4cm}p{5.8cm}@{}}
+\toprule
+& Screen & Status \\
+\midrule
+S1 & \emph{Typing Tutor III with Letter Invaders}, menu with two options, copyright Kriya Systems, Inc., 1984, published by Simon \& Schuster, black and white & identified by its own title screen; obtained as Typing Tutor III (1984), per the owner; the catalog of Subsection~\ref{sec:catalog} lists that title for IBM PC compatibles \\
+S2 & \emph{Typing Tutor IV with Letter Invaders}, title screen, copyright 1983 and 1987, Kriya Systems, Sterling, Virginia, published by Simon \& Schuster Software, ``Press any key to begin'' & identified by its own title screen; obtained as v1.0 (1987) from an Internet Archive disk-image item (single 720K disk, DOS) \\
+S3 & lesson screen with a practice line, an on-screen keyboard with drawn hands, gauges, a clock, a metronome, and a help box & same color scheme and origin as S2; attributed to Typing Tutor IV v1.0 \inferred{the owner identified the multicolor screens as this program; S3 has no title of its own} \\
+S4 & a falling-\emph{words} game over a city skyline; typed prefix shown in red & program not identified \\
+S5 & a green-on-black falling-\emph{letters} game with counters and a key-order strip & Typing Tutor III (1984), per the owner; the green monochrome display fits the catalog's monochrome screenshot set \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{S1 and S2: the packaging}
+
+The two title screens show that a falling-letter game was distributed \emph{with} a lesson-based tutor, not separately, and that the pairing survived a revision: the menu of S1 offers to run the tutor or to play the game, and S2 keeps the pairing under a new number. In the taxonomy of Chapter~16 the bundle is a lesson-based (copying and generative) tutor paired with a gamified one.
+
+\subsection{S3: the lesson screen}
+
+The lesson screen of S3 is unusually legible. It shows a practice line (a trivia-flavored sentence) printed twice, one copy above the other, with a cursor after the lower copy, which suggests a model line and the learner's echo of it. \inferred{model and echo} Beside the text are three vertical gauges with a numeral above them, an analog clock, and a metronome drawn as a pendulum. Below is a keyboard diagram with hands, and a help box explains that the clock is useful for timed exercises and that the metronome is on the right. The screen therefore presents together the model (copying), a running record (gauges), a clock (timed writing), and a pacing signal (metronome). It is the workbook's cassette tape, timed writings, and printed drill lines collapsed onto one screen. The gauge labels are too small to read reliably and are not transcribed. \needs{manual text naming the gauges}
+
+\subsection{Catalog evidence for Typing Tutor III}
+\label{sec:catalog}
+
+An online software catalog (PixelatedArcade) lists \emph{Typing Tutor III} for IBM PC compatibles, released in 1984 in the United States, developed by Kriya Systems, Inc.\ and published by Simon \& Schuster, Inc., with screenshot sets for a CGA color display and for a monochrome display. This book uses only the catalog's captions, which describe the following screens: title; several introduction screens; setting up a new user, and selecting an existing user or creating one; a main menu; practice typing letters; a typing status report, a status report menu, and several graphs charting progress; and, for the game, an overview, letters to be typed before they reach the bottom, a letter being ``zapped'', words mixed in as the game progresses, and a summary of successes and failures. \needs{view the screenshots themselves and the manual; the captions are a secondary description}
+
+Three consequences for the book, each resting on captions only. First, the tutor keeps \emph{per-user records}, since users are created and selected, and it reports on them through status reports and graphs. It is a step toward the ledger of Chapter~27, though whether the underlying data are keystroke-level or session summaries is not known. Second, the game is not restricted to single letters: words are mixed in later, which means that the letters-to-words transition of S4 is a feature of at least this program's game as well. Third, the game ends with a summary of successes and failures, so its counters (compare S5) feed a report.
+
+\subsection{Descriptive record for Typing Tutor IV}
+
+Library and retail records describe Typing Tutor IV in terms that bear directly on the taxonomy of Chapter~16. They are secondary descriptions, drawn from catalog entries and a product listing, and are to be checked against the running program and the manual.
+
+\begin{itemize}
+\item On first use the program asks the learner to register a name and choose a proficiency level (beginner, two-finger typist, or touch typist), and up to eight people can register. \needs{manual confirmation of the level names and the limit of eight}
+\item The program tracks each person's progress and offers lessons and tests at an appropriate level. Tests gauge proficiency and identify weak points, and the program then offers lessons that concentrate on those weaknesses. If accurate, this places it among the \emph{diagnostic} and \emph{corrective} tutors of Chapter~16, and not among the fixed-lesson tutors.
+\item An IBM PC edition is described as adding an instructor's mode, more lessons, improved menus, and multiple speed tests, and its game as offering play at the learner's current level or with the full keyboard. \needs{which edition and version this description belongs to}
+\item Editions exist for several platforms, among them the IBM PC family, Apple IIgs, Macintosh, and Commodore 64 and 128.
+\end{itemize}
+
+The disk-image item from which S2 and S3 were obtained is a single 720K disk with the start file \texttt{tt.exe}, and its description notes that the program has trouble with recent dates and should be given a date from the 1980s or 1990s when it asks. That the program asks for a date at all is consistent with dated per-user records, which is the mechanism a progress report needs.
+
+Because the program is reported to select lessons from a learner's weak points, it is a test case for the definition of Chapter~17. If its selection depends on error and hesitation data and not merely on speed, it is fully adaptive in that sense; if it only raises the level after success, it is $V$-adaptive. A recorded emulated session, logged with the ledger schema of Chapter~27, can settle which.
+
+\section{Evidence Schedule}
+
+Primary evidence for each program should include screenshots or reconstructed layouts, manual text, the exercise corpus, scoring rules, and a recorded emulated session. Appendix~A specifies the record for each.
+
+\chapter{Lesson-Based DOS Tutors}
+
+\section{Continuity with the Paper Tutor}
+
+A lesson-based tutor on a computer can be compared with the paper sources of Chapter~8 dimension by dimension. The features that the paper tutor supplied by people are now supplied by software.
+
+\begin{center}
+\begin{tabular}{@{}p{4cm}p{3.5cm}p{4.5cm}@{}}
+\toprule
+Function & Paper tutor & Software tutor \\
+\midrule
+Presenting the model & printed page & screen text \\
+Checking correctness & learner, supervisor & comparison routine \\
+Timing & stopwatch, tape & system clock \\
+Advancing & supervisor, completion sheet & threshold on speed and accuracy \\
+Record & typed page, stored & score file or nothing \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{What Automation Changed and What It Kept}
+
+Automation kept the graded key order, per-lesson vocabulary, and repetition of short units. It changed the observability of the learner: timing became available at the level of the keystroke, so the state $S$ of Chapter~17 becomes measurable, though tutors differ in whether they use it. The paper tutor's page, which contained every uncorrected error, was typically replaced by a summary.
+
+\section{The Pacing Signal in Software}
+
+The workbook's pacing is a cassette running at a stated rate. In S3 the same function is a metronome drawn on the lesson screen, and the learner can see the beat while typing the model line. The transformation preserves the idea, an external signal for a rate the learner does not yet control, and changes two things: the rate can now be adjusted by the program, and the signal is visible instead of audible. Whether the metronome could be set to the stepped rates of the workbook (25, 30, 35 and 40 words per minute) cannot be decided from the screenshot. \needs{manual for Typing Tutor IV}
+
+\section{Threshold Rules}
+
+A common software advancement rule is a conjunction of thresholds,
+\[
+J(S)=\mathbf 1\bigl[\wpm_{\text{net}}\ge v^{*}\ \wedge\ \text{errors}\le e^{*}\bigr].
+\]
+Such a rule is $V$-adaptive only in a weak sense: it gates but does not select. Chapter~26 contrasts it with selection by expected improvement.
+
+\chapter{Letter Invaders}
+
+Falling-letter games convert latency into space. The vertical position of a character is the time remaining in which the learner may respond.
+
+\section{A Formal Model}
+
+Let a letter appear at the top of a screen of height $H$ (in rows) and fall at a speed $v$ rows per second. The learner must strike the correct key before the letter reaches the bottom. The available response time is
+\[
+\tau=\frac{H}{v}.
+\]
+A hit occurs if the response latency $\ell$ satisfies $\ell<\tau$ and the key is correct. If letters appear at rate $\rho$ per second and $v$ increases with level, then the difficulty is a function of $(\rho,v)$, and the tutor's whole pedagogy lies in how that function is chosen.
+
+\section{A Worked Example}
+
+Take a screen of $H=24$ rows. At level~1 letters fall at $v=6$ rows per second, so $\tau=4$ seconds; at level~5 the speed is $v=12$, so $\tau=2$ seconds. A learner whose median latency on a home-row key is 0.6 seconds hits nearly every letter at both levels. A learner whose latency on the transition from an outer key to the opposite hand is 2.4 seconds will pass at level~1 and miss at level~5, though the same learner's average speed may be unremarkable. The game exposes exactly the tail of the latency distribution that a words-per-minute score averages away, which is the component $H$ of the learner state.
+
+\section{The Speed Curve}
+
+The speed curve $v(n)$ over levels $n$ determines the tutor's theory. A linear curve treats difficulty as uniform. A curve that accelerates late treats early levels as consolidation. A curve that depends on the learner's recent hit rate is $V$-adaptive in the sense of Chapter~17. \needs{documented speed curve and level structure for a specific Letter Invaders program}
+
+\section{Two Documented Screens}
+
+S1 and S2 establish that \emph{Letter Invaders} was the game bundled with Typing Tutor III (1984) and IV (1983 and 1987 on its title screen). S5, from Typing Tutor III, shows the parameters of the model above on a single screen.
+
+\begin{itemize}
+\item \textbf{Counters.} The header reads ``Letters: 12'' and ``Hits: 8'', so the game reports letters released and letters struck, from which a hit rate is directly readable.
+\item \textbf{Free-falling letters.} Three letters (A, A, S) are shown at three heights in different columns, so the fall is spatial and the columns are arbitrary.
+\item \textbf{A floor.} A dithered bar at the bottom marks the boundary at which a letter counts as missed.
+\item \textbf{A key-order strip.} Along the top runs the sequence \texttt{ASDFJKL;HEITC.ORNZUWB,YXVPQMG?/4738295610}, with the first four keys, ASDF, highlighted. The strip is a curriculum: it lists the order in which the game admits keys, and the highlight marks the current set. \inferred{that the highlight marks the admitted set, and that the step is four keys}
+\end{itemize}
+
+\subsection{The key order as a curriculum}
+
+The strip is a key-introduction order $\Kset_0\subset\Kset_1\subset\cdots$ in exactly the sense of Chapter~8, with a striking difference. The home row (ASDF, then JKL;) is followed by H, E, I and T, then C, the period, O and R, then N, Z, U and W, and so on, with the digits last in a scrambled order. Geometry governs the first eight keys. Frequency appears to govern what follows, since E, T, I, O, R and N arrive within the first twenty, but not perfectly: Z arrives before B, Y and G. Measured against the word list of Chapter~22, taking prefixes of the strip four keys at a time, the effect is large.
+
+\begin{center}
+\begin{tabular}{@{}rlrrr@{}}
+\toprule
+Keys admitted & Last four added & Letters & $|\Vocab_i|$ & cov.\ \% \\
+\midrule
+4 & A S D F & 4 & 11 & 0.6 \\
+8 & J K L ; & 7 & 21 & 1.1 \\
+12 & H E I T & 11 & 373 & 20.5 \\
+16 & C . O R & 14 & 1\,380 & 38.6 \\
+20 & N Z U W & 18 & 3\,309 & 62.6 \\
+24 & B , Y X & 21 & 4\,494 & 72.6 \\
+28 & V P Q M & 25 & 7\,922 & 92.6 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+With eleven letters admitted, the strip's order captures about 20.5\% of rank-weighted frequency, against 3.3\% for the geometry-first design order of Chapter~23 at the same eleven letters (Exercise~3). The letters chosen matter more than the position of the keys, at least for the size of the available vocabulary. The comparison is cautious: the strip is a single unattributed screenshot, and the design order was not built to maximize vocabulary. It nevertheless shows that a tutor can choose between a geometric order and a frequency order, and that the choice changes what lessons can say. \needs{confirm in the running program that the strip is the level order and that the step is four keys}
+
+\section{Errors as Visible Threat}
+
+A delayed or missed keystroke has a spatial consequence: the letter reaches the bottom. Error is thereby made a visible threat and not a count. Wrong keys may do nothing, may cost points, or may reset progress, and each choice encodes a view of what an error is. \needs{scoring and penalty rules for specific programs}
+
+\section{Key Selection}
+
+The set of letters that may appear is a key set $\Kset$, exactly as in Chapter~8. A game that draws only from the home row is the paced, spatialized counterpart of the first lesson, and a game that draws from the whole alphabet corresponds to the coverage exercises. The random draw distribution is a further choice: uniform draws teach positions, while draws from an English digraph distribution teach transitions.
+
+\chapter{Racing, Shooting, and Adventure Tutors}
+
+\section{Words per Minute as Locomotion}
+
+In racing tutors the learner's speed becomes the speed of a vehicle. If the vehicle's position $x$ advances by each correct character, $x(t)=\alpha\,c(t)$ where $c(t)$ is the number of correct characters and $\alpha$ a scale, then the slope of the trajectory is proportional to instantaneous speed, and the race is a plot of $\wpm$ against time in physical form.
+
+\section{Recognition as Targeting}
+
+Shooting tutors turn recognition and key selection into targeting: the letter to be typed is the target, and the key is the trigger. The interesting design question is what happens on a wrong key, since a wrong key can be a miss, a wasted shot, or an ignored input.
+
+\section{Progress as Geography}
+
+Adventure tutors distribute exercises across a map, so curricular advancement becomes geographic access. The lesson order is then a graph whose edges are gated by performance thresholds. This makes the curriculum visible as terrain, and it also permits non-linear paths, a feature that paper tutors did not have.
+
+\section{From Letters to Words}
+
+Screenshot S4 shows a variant in which whole words fall toward a city skyline, with two counters at the top. The words vary in length and difficulty (for example \texttt{Sharp}, \texttt{Zodiac}, \texttt{Yellows}, \texttt{abstractors}), several are capitalized, and the word being typed shows its correct prefix in red. The design raises three points. The unit of practice is the word, so the game exercises sequences and not isolated keys. Feedback is per prefix, which makes the partially typed word a visible state. And the vocabulary is broad, so the game is a coverage exercise in the sense of Chapter~16 and not a restricted-alphabet one. The program is not identified. \needs{title, publisher, and platform for S4}
+
+\section{What Each Game Spatializes}
+
+In each case the game spatializes some component of the state $S$: falling games spatialize latency, racing games spatialize velocity, shooting games spatialize discrimination, and adventure games spatialize progress. The taxonomy of Chapter~16 places them together as gamified tutors, but the component of $S$ that they expose distinguishes them. \needs{documented examples of each type}
+
+\chapter*{Study Questions, Part VI}
+\addcontentsline{toc}{chapter}{Study Questions, Part VI}
+\begin{enumerate}
+\item Choose a DOS-era tutor and fill the evidence record of Appendix~A for it.
+\item For a falling-letter game with $H=20$ rows and $\tau=2.5$ seconds, what is $v$? What happens to $\tau$ if $v$ doubles?
+\item Which component of $S$ does each of the four game types expose?
+\item Write a threshold rule $J(S)$ that is not $V$-adaptive.
+\end{enumerate}
