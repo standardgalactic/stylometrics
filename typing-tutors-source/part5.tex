@@ -1,0 +1,169 @@
+\part{A Theory of the Tutor}
+
+\chapter{Implicit Theories of Skill}
+
+Every tutor embodies a view of what skill is. This chapter lists the commitments that recur and shows how to read them from exercises.
+
+\section{Five Questions}
+
+A tutor answers each of the following, usually without saying so.
+
+\begin{enumerate}
+\item \textbf{What is the unit of practice?} An isolated key, a transition, a word, a phrase, or continuous prose.
+\item \textbf{What comes first, speed or accuracy?}
+\item \textbf{What is an error?} Something to be prevented, corrected, counted, or ignored.
+\item \textbf{Where should attention be?} On the keys, on the hands, on the printed model, or on the meaning.
+\item \textbf{What signal governs pace?} The learner, a supervisor, a metronome, a tape, or a machine.
+\end{enumerate}
+
+\section{Reading the Two Paper Sources}
+
+The sources of Chapter~8 answer these questions in different ways, and the workbook answers some questions twice.
+
+\begin{center}
+\begin{tabular}{@{}p{3.1cm}p{4.2cm}p{4.6cm}@{}}
+\toprule
+Question & Academy pages & Workbook \\
+\midrule
+Unit of practice & new key in a chain, then words spellable from the key set, then sentences & sandwich transitions, word families, phrases, sentences \\
+Speed or accuracy & no speed stated on the pages available & accuracy scored on drill lines; pace prioritized on tape; speed recorded in timed writings \\
+Error & implicitly a mismatch with a repeated model & marked, counted, never corrected \\
+Attention & on the printed model and the keys & on the printed lines while listening to the tape; slashes chunk phrases \\
+Pace signal & the learner and a supervisor & a cassette at a stepped rate \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{The Workbook's Double Theory}
+
+The workbook instructs the learner both to keep errors low on drill lines and, on tape practice, not to worry about errors while keeping up with the tape. These are not contradictory once seen as two phases of one theory: accuracy is established in a slow, self-paced phase and speed is then developed under an external pace at which some errors are tolerated. The tutor thereby encodes a sequential model in which accuracy precedes speed and speed is then imposed. \inferred{the printed instructions state each policy separately; the sequential reading is an interpretation}
+
+\section{Chunking by Typography}
+
+The slash marks in the phrase lines are the first explicit instruction about an attention unit. The learner is told not to type the slashes and that they are there to prompt thinking and typing in groups of words. This is a chunking device that moves the unit of practice from the word to the phrase without changing the text typed.
+
+\section{The Home Position as Theory}
+
+Both paper sources begin with home-row keys and treat later keys as excursions. The theory is that a stable resting position is the frame of reference for all movement. A tutor that instead began with the most frequent letters regardless of position would hold a different theory, in which language distribution, not hand geometry, sets the order.
+
+\chapter{A Taxonomy of Tutors}
+
+The taxonomy classifies tutors by what they take learning to consist of. The categories overlap, and a tutor may occupy several.
+
+\section{Definitions}
+
+\begin{description}
+\item[Copying tutor.] Presents a model string and measures conformity.
+\item[Generative tutor.] Constructs exercises from a restricted set of known keys, so the exercise is a function of the learner's position in the curriculum.
+\item[Diagnostic tutor.] Infers weaknesses from errors, hesitations, or finger transitions.
+\item[Rhythmic tutor.] Regulates cadence, by metronome, music, or a paced recording.
+\item[Transcription tutor.] Introduces reading, memory, punctuation, formatting, or dictation.
+\item[Gamified tutor.] Embeds the same gestures in a simulated emergency or contest.
+\item[Vocational tutor.] Reproduces forms, correspondence, numerical entry, or typesetting work.
+\item[Corrective tutor.] Concentrates practice on the learner's empirical error distribution.
+\end{description}
+
+\section{Classifying the Paper Sources}
+
+\begin{center}
+\begin{tabular}{@{}p{3.2cm}p{9cm}@{}}
+\toprule
+Source & Classification \\
+\midrule
+Academy pages & copying, with a generative layer (vocabulary constrained by $\Kset_i$) and a vocational layer (page format and margins) \\
+Workbook, drill sections & copying, with a corrective element, since the learner counts errors and is told to practice further above a threshold \\
+Workbook, tape practice & rhythmic, by an external pacer at a stated rate \\
+Workbook, timed writings & transcription and vocational, since scoring depends on line endings and paragraph indentation \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The workbook's corrective element is coarse. The learner is directed to extra practice when errors are numerous, but the page does not tell the learner which keys or transitions were at fault. A diagnostic tutor would; the paper tutor leaves that to the supervisor.
+
+\section{A Test Case}
+
+Typing Tutor IV, discussed in Chapter~18, is described in catalog and retail records as testing a learner, identifying weak points, and then concentrating lessons on them. That is the definition of a corrective tutor, and it would place a commercial DOS-era program in the same class as the ledger-driven tutor proposed in Chapter~26. Whether the program in fact does so is an empirical question about its lesson-selection rule, answerable only from the running software.
+
+\section{A Category Not on the Original List}
+
+The workbook's alphabet sentences, in the later lessons, are sentences designed to contain every letter. They are constrained not by a restricted alphabet but by a completeness requirement, and they form a category of their own: the \emph{coverage exercise}. The full-alphabet sentence in Lesson~1 (\texttt{Only a few quite exceptional people do realize that there is very little value in just talking without being able to say something worthwhile.}) contains all twenty-six letters. Coverage exercises are the dual of the restricted-alphabet exercise: one bounds the alphabet from above, the other requires it from below.
+
+\chapter{Learner State and Lesson Selection}
+
+\section{Observables}
+
+For a prompted character sequence $x_1,\dots,x_n$, a tutor may observe response times $t_i$, correctness indicators $c_i$, correction actions $r_i$, and, if the layout is known, the finger $f_i$ assigned to each key. What a tutor can observe depends on the medium. The paper tutor observes only the final page, so it sees the uncorrected errors that remain and nothing about timing or corrections. A software tutor can observe all of the above.
+
+\section{Speed and Error Rates}
+
+Gross speed under the five-character convention is
+\[
+\wpm_{\text{gross}}=\frac{c/5}{t},
+\]
+with $c$ characters typed in $t$ minutes. If $e$ is the number of uncorrected errors, a common net measure is
+\[
+\wpm_{\text{net}}=\wpm_{\text{gross}}-\frac{e}{t}.
+\]
+Two error rates must be distinguished. The \emph{uncorrected} rate is the fraction of final characters that are wrong. The \emph{corrected} rate is the fraction of keystrokes that were errors, whether or not later repaired. A tutor that forbids correction, as the workbook does, measures only the first. A tutor that allows backspacing can measure both, and the difference between them describes the learner's correction behavior.
+
+\section{A Worked Example}
+
+Suppose a learner types 1\,500 characters in a five-minute timing and the final page contains 10 wrong characters. Then $c/5=300$ words, so $\wpm_{\text{gross}}=300/5=60$. The uncorrected errors number $e=10$, so $\wpm_{\text{net}}=60-10/5=58$, and the uncorrected error rate is $10/1500\approx 0.67\%$. If the same learner also made and repaired 40 further errors, a ledger would show 50 erroneous keystrokes out of 1\,540 character keystrokes (backspaces excluded), a rate of about $3.2\%$ that the page alone could never reveal. The paper tutor of Chapter~8, which forbids correction, would report only the first figure.
+
+\section{Learner State}
+
+Crude words per minute collapses these observables into one number. A richer learner state is the tuple
+\[
+S=(A,V,H,E,T,R),
+\]
+where $A$ is accuracy, $V$ is velocity, $H$ is hesitation structure, $E$ is the error distribution, $T$ is transition competence, and $R$ is correction behavior. Operational definitions follow.
+
+\begin{itemize}
+\item $A$: uncorrected and corrected error rates.
+\item $V$: gross and net words per minute.
+\item $H$: the distribution of inter-key intervals, for example its spread and the frequency of intervals much longer than the median.
+\item $E$: the confusion matrix, with rows for intended keys and columns for struck keys.
+\item $T$: a matrix $T_{ab}$ of mean latency for the transition from key $a$ to key $b$, normalized by the latency expected from hand and finger alone.
+\item $R$: the rate of corrections and the delay before correcting.
+\end{itemize}
+
+\section{Why Equal Speeds Are Not Equal Typists}
+
+Three typists with the same net speed can be pedagogically distinct.
+
+\begin{center}
+\begin{tabular}{@{}lp{3.2cm}p{3.6cm}p{3.2cm}@{}}
+\toprule
+Typist & Hesitation $H$ & Correction $R$ & Suggested emphasis \\
+\midrule
+A & even intervals, slow & few corrections & pace training \\
+B & bursts separated by long searches & few corrections & transition drills on the searched keys \\
+C & fast, even & frequent backspacing & accuracy work at reduced pace \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+A sophisticated tutor ought to assign them different exercises.
+
+\section{Lesson Selection}
+
+Lesson selection can be stated as an optimization. If $L$ is a candidate lesson and $S$ the current state, the tutor selects
+\[
+L^{*}=\argmax_{L}\Bigl[\E\bigl(\Delta S\mid L,S\bigr)-\lambda\Fatigue(L)-\mu\Frustration(L,S)+\nu\Transfer(L)\Bigr],
+\]
+where $\lambda,\mu,\nu\ge 0$ weight fatigue, frustration, and transfer. The expected-improvement term is the substantive one; the others are regularizers. The formula is a specification, not a claim that any historical tutor computed it.
+
+\begin{definition}
+A tutor is \emph{$V$-adaptive} if its lesson choice depends on the learner state only through the velocity component $V$. It is \emph{fully adaptive} if the choice depends on other components of $S$.
+\end{definition}
+
+Under this definition a game that raises falling speed after each success is $V$-adaptive, while a tutor that assigns transition drills for the keys on which latency is high is not. ``Adaptive'' ceases to mean merely ``gets faster when you succeed''. A fixed-lesson paper tutor is not adaptive at all; whatever adaptation occurs happens in the supervisor.
+
+\chapter*{Study Questions, Part V}
+\addcontentsline{toc}{chapter}{Study Questions, Part V}
+\begin{enumerate}
+\item For each of the five questions of Chapter~15, answer for a tutor you have used.
+\item Give an example of two typists with the same net speed but different states $S$, and say which component differs.
+\item Show that a tutor whose lesson choice depends only on words per minute is $V$-adaptive but not fully adaptive.
+\item Why can a no-correction policy measure only the uncorrected error rate?
+\end{enumerate}
