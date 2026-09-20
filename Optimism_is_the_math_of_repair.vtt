@@ -1,0 +1,1727 @@
+WEBVTT
+
+00:00.000 --> 00:04.160
+you know um usually when we talk about getting a medical diagnosis there is this
+
+00:04.160 --> 00:10.720
+this profound expectation of absolute clarity like engineering almost right like if you fall
+
+00:10.720 --> 00:14.000
+off a ladder and you think you might have broken your arm you go to the hospital and they put you
+
+00:14.000 --> 00:21.600
+in that uh that cold humming x-ray machine yeah and the x-ray prints out and there is this stark
+
+00:21.600 --> 00:26.800
+jagged white line across the humerus and the doctor just points a pen at the screen and says
+
+00:26.800 --> 00:32.960
+you know there it is that is your problem it's entirely binary i mean you leave the room
+
+00:32.960 --> 00:38.720
+knowing an objective fact about the state of your skeleton broken or not broken it's just a clean
+
+00:38.720 --> 00:46.080
+undeniable reality and honestly even if the news is bad there is something deeply uh comforting about
+
+00:46.080 --> 00:51.360
+that we just we desperately like things to be visible we want our problems categorized and
+
+00:51.360 --> 00:56.080
+neatly labeled so we know exactly what we're dealing with which is i think why we struggle so much when
+
+00:56.080 --> 01:00.240
+the problem is the physical when you step out of the orthopedics ward and into the realm of
+
+01:00.960 --> 01:08.720
+psychology or you know trauma suddenly that pristine x-ray machine is completely useless the diagnostic
+
+01:08.720 --> 01:15.440
+landscape just becomes incredibly murky we have to rely on self-reported feelings behavioral observations
+
+01:16.080 --> 01:23.120
+and uh totally subjective interpretations it is the absolute definition of diagnostic muddy waters
+
+01:23.120 --> 01:26.960
+and i bring this up at the start of our deep dive today because we are going to look
+
+01:26.960 --> 01:31.600
+at something that falls right into that murky category something we all you know casually talk
+
+01:31.600 --> 01:36.480
+about and think we understand perfectly which is optimism yeah we really treat optimism like we
+
+01:36.480 --> 01:44.000
+treat that clean x-ray exactly society categorizes you you are either a glass half full person just
+
+01:44.000 --> 01:49.120
+bounding out of bed ready to seize the day or you are a glass half empty person always waiting for the
+
+01:49.120 --> 01:55.680
+other shoe to drop we fundamentally think of optimism as a mood it's a personality trait right or or worse
+
+01:55.680 --> 02:01.840
+a cognitive bias right the rose-colored glasses the rose-colored glasses it's artificially overestimating
+
+02:01.840 --> 02:05.920
+your chances of success or just blindly stubbornly believing that things are going to work out better
+
+02:05.920 --> 02:12.800
+than the cold hard reality actually supports and that is the standard definition across almost every
+
+02:12.800 --> 02:19.600
+single discipline i mean economists psychologists everyday people chatting in a coffee shop we almost
+
+02:19.600 --> 02:26.000
+always model optimism as a distortion of probability right the assumption is that the optimist looks at the
+
+02:26.000 --> 02:32.160
+objective evidence sees that they have say a 10 chance of just succeeding and then their brain just sort
+
+02:32.160 --> 02:38.800
+of arbitrarily bumps up that likelihood to 50 so they can feel good about themselves the classic toxic positivity
+
+02:38.800 --> 02:44.800
+trap but here's the massive question we are tackling in this deep dive what if true optimism isn't about
+
+02:44.800 --> 02:51.680
+distorted beliefs at all what if genuine optimism has absolutely nothing to do with feeling lucky or
+
+02:51.680 --> 02:57.680
+ignoring the odds or manifesting good vibes which is a huge pivot it's a massive pivot our mission today is
+
+02:57.680 --> 03:02.880
+to completely dismantle your conventional understanding of what it means to be an optimist because we are
+
+03:02.880 --> 03:08.720
+looking at a truly groundbreaking incredibly rigorous mathematical paper published in september 2020
+
+03:09.440 --> 03:15.360
+by an independent researcher named fliction it is simply titled the roots of optimism and this
+
+03:15.360 --> 03:21.920
+paper does something i have genuinely never seen before it redefines optimism not as a feeling in your head
+
+03:21.920 --> 03:26.560
+but as an objective structural property of the physical world and the choices you make within it
+
+03:27.120 --> 03:32.800
+i promise you by the end of this conversation you are going to have a completely revolutionized mental model
+
+03:32.800 --> 03:39.040
+for evaluating your own resilience your persistence and your hope when you are facing incredibly complex
+
+03:39.040 --> 03:45.040
+messy real world problems the shift in perspective this paper demands is just immense to move away from
+
+03:45.040 --> 03:51.920
+optimism as just a rosy unjustified belief fliction introduces this foundational concept called transformability
+
+03:51.920 --> 03:57.280
+transformability okay break that down for us so the thesis here is that true optimism is the conviction that
+
+03:57.280 --> 04:03.440
+actions exist to convert a damaged or incomplete state into a viable one it's not about walking into a
+
+04:03.440 --> 04:09.760
+casino and being absolutely certain that you will win big it is about knowing that a next move is available
+
+04:09.760 --> 04:17.280
+to you when things are broken so in the language of the paper an agent which could be you a corporation
+
+04:17.280 --> 04:24.880
+a biological organism literally any entity taking action an optimistic agent doesn't necessarily
+
+04:24.880 --> 04:31.440
+believe that their next specific repair will work perfectly okay what they believe is that repair pathways
+
+04:31.440 --> 04:36.640
+remain open to them let me see if i can translate this because this is the fundamental pivot of the whole
+
+04:36.640 --> 04:42.240
+deep dive and we really need to nail this before we get into the heavy math please do compare the standard
+
+04:42.240 --> 04:48.080
+old school definition of optimism to someone buying a lottery ticket the lottery ticket buyer sits on
+
+04:48.080 --> 04:53.360
+their couch clutching the ticket feeling lucky they are distorting the probability of winning in their
+
+04:53.360 --> 05:00.480
+head that's epistemic delusion exactly but this new view this structural optimism from the paper is more
+
+05:00.480 --> 05:06.560
+like a master mechanic looking at a completely rusted out broken down car engine sitting in a jump yard that's
+
+05:06.560 --> 05:11.600
+a great analogy the mechanic isn't delusional right they aren't looking at a rusted piston and
+
+05:11.600 --> 05:17.760
+hallucinating that it's pristine chrome they see the rust but they also see a clear sequential chain
+
+05:17.760 --> 05:24.320
+of repair actions that you and i simply do not see they know that if they apply a solvent to this bolt
+
+05:24.320 --> 05:30.240
+and heat this joint with a torch and machine this specific gasket the engine might actually turn over
+
+05:30.240 --> 05:36.240
+they see the next move that captures the essence beautifully because to the untrained eye of a layperson
+
+05:36.240 --> 05:41.360
+that rusted engine is a terminal state it's garbage it's over yeah i just walk right past it
+
+05:41.600 --> 05:46.560
+right but to the mechanic equipped with tools and knowledge it is simply a damaged state that
+
+05:46.560 --> 05:52.160
+possesses high transformability flixima sets out to take this exact disposition the mechanics view of
+
+05:52.160 --> 05:58.080
+the world and formalize it mathematically how do we rigorously describe the state of being able to fix
+
+05:58.080 --> 06:04.080
+broken things and the math goes so deep on this it really does the framework organizes this disposition
+
+06:04.080 --> 06:09.520
+into three auditable logical questions that we're going to explore in depth today first does a worthwhile
+
+06:09.520 --> 06:15.760
+move exist that is a dividing line between hope and despair okay does a move exist second can the
+
+06:15.760 --> 06:21.440
+failure of that move be survived that is the dividing line between rational experimentation and
+
+06:21.440 --> 06:29.280
+total catastrophic ruin wow okay and third is your mental model correctable by reality that distinguishes
+
+06:29.280 --> 06:36.160
+genuine optimism from self-sealing delusional belief it takes these lofty poetic concepts that
+
+06:36.160 --> 06:42.240
+philosophers have argued about for centuries like hope despair resilience and just forces them through
+
+06:42.240 --> 06:47.920
+an absolute meat grinder of mathematical logic it's brilliant so let's look at the anatomy of this
+
+06:47.920 --> 06:53.200
+repairable world let's do it let's go back to our mechanic looking at the rusted engine or maybe something
+
+06:53.200 --> 06:59.120
+more relatable for the listener like a freelancer staring at a failing business how does the paper define
+
+06:59.120 --> 07:04.960
+the actual state that we are starting from it refuses to reduce your state to a single metric you cannot just
+
+07:04.960 --> 07:10.000
+look at a bank account and declare someone viable or ruined your state at any given moment is a
+
+07:10.000 --> 07:15.520
+multi-faceted ledger a ledger like an accounting ledger exactly it records five distinct components
+
+07:15.520 --> 07:22.000
+first your material resources the hard cash the equipment the tangible assets second your practical
+
+07:22.000 --> 07:28.400
+knowledge the actual skills and information you possess to manipulate the world okay third your social
+
+07:28.400 --> 07:34.400
+support the network of people willing to assist or vouch for you fourth your accumulated obligations the
+
+07:34.400 --> 07:40.560
+debts the promises the active dangers you are fending off and fifth your baseline health and labor
+
+07:40.560 --> 07:46.640
+capacity your physical and mental ability to do work so it is a very holistic accounting of everything
+
+07:46.640 --> 07:52.720
+you bring to the battlefield like i could have a massive bank account high material resources but if i
+
+07:52.720 --> 07:58.720
+am chronically ill totally isolated with absolutely no friends and fending off three lawsuits my overall state
+
+07:58.720 --> 08:04.240
+is wildly different than someone who has zero dollars but is young healthy and has 20 friends willing to
+
+08:04.240 --> 08:10.240
+let them sleep on their couch and within that fast multi-dimensional space of possible human states the
+
+08:10.240 --> 08:16.480
+framework draws a very sharp binary distinction every state is either viable or damaged viable or damaged
+
+08:16.480 --> 08:22.640
+yeah a viable state means you can function you can meet your obligations and you can maintain your existence
+
+08:22.640 --> 08:28.880
+without outside intervention a damaged state means something in that five-part ledger is broken
+
+08:28.880 --> 08:34.880
+incomplete or fundamentally unsustainable your business is losing money or your health is failing
+
+08:34.880 --> 08:40.720
+or your social network has collapsed right which let's be honest most of us spend a good chunk of
+
+08:40.720 --> 08:47.200
+our lives dipping into damaged states oh constantly but here is where the math really kicks in if i am in a damaged
+
+08:47.200 --> 08:53.200
+state how do i know if the world around me is actually repairable so the paper provides a stripped
+
+08:53.200 --> 09:00.080
+definition for a mathematically repairable world it states that a world is repairable if starting from
+
+09:00.080 --> 09:06.160
+a damaged state there exists a feasible policy a sequence of actions that reaches a viable state within
+
+09:06.160 --> 09:12.160
+a certain number of steps and the probability of that entire sequence failing is no greater than the
+
+09:12.160 --> 09:16.720
+specific threshold okay let's bring that down to earth and get away from the abstract variables
+
+09:16.720 --> 09:22.000
+let's use my failing freelance graphic design business as the damaged state my client base is
+
+09:22.000 --> 09:28.000
+dried up and my bank account is draining to be in a repairable world means there has to be a specific
+
+09:28.000 --> 09:34.480
+sequence of actions let's say it's a 10-step plan step one fire my expensive accountant step two
+
+09:34.480 --> 09:42.320
+redesign my portfolio step three cold call 50 local businesses step four run a targeted ad campaign and so
+
+09:42.320 --> 09:48.800
+on 10 steps right and the math says there is a cap on the acceptable failure rate for this whole 10-step
+
+09:48.800 --> 09:54.480
+plan let's call that acceptable failure rate our margin of error does that sound right that is a solid
+
+09:54.480 --> 09:59.600
+operational translation yes and what is crucial to understand is that this margin of error the overall
+
+09:59.600 --> 10:05.120
+chance that your 10-step plan to save the business totally fails can actually be quite substantial the
+
+10:05.120 --> 10:11.040
+mathematics do not demand guaranteed success they don't know not at all the framework explicitly states that
+
+10:11.040 --> 10:16.800
+your acceptable failure rate might be 20 or 40 or even 60 percent a world is still mathematically
+
+10:16.800 --> 10:22.240
+repairable even if the repair is risky it just requires that a pathway actually exists and the
+
+10:22.240 --> 10:29.760
+failure rate isn't 100 percent in a repairable world a damaged condition is rarely treated as a terminal
+
+10:29.760 --> 10:34.880
+fatal diagnosis this is the part that hit me the hardest when i was reading the source material the paper
+
+10:34.880 --> 10:41.920
+draws an incredibly aggressive line between epistemic optimism and structural optimism and i think this
+
+10:41.920 --> 10:47.600
+distinction is the exact trap almost every single one of us falls into when we try to force ourselves
+
+10:47.600 --> 10:53.520
+to be positive during a crisis it is the ultimate trap structural optimism refers to the actual objective
+
+10:53.520 --> 11:00.160
+physical and social reality of those viable repair paths it is a fact about the universe you either
+
+11:00.160 --> 11:05.840
+genuinely possess the money the network and the skills to execute that 10-step business pivot or you
+
+11:05.840 --> 11:11.040
+do not right the universe does not care if i have a vision board the structural reality absolutely does
+
+11:11.040 --> 11:17.040
+not care about your feelings epistemic optimism conversely is solely your internal belief that those
+
+11:17.040 --> 11:23.760
+paths exist and will work out you can be highly epistemically optimistic while being structurally doomed i can
+
+11:23.760 --> 11:29.440
+sit in my office visualizing success deeply believing i can save my graphic design business
+
+11:29.440 --> 11:34.560
+but i fundamentally lack the actual skills to redesign my portfolio to modern standards
+
+11:35.360 --> 11:40.560
+i have the epistemic belief but i lack the structural reality i think i can fix the engine
+
+11:40.560 --> 11:46.640
+but i just don't own a wrench which leads directly into one of the most sobering proofs in the entire paper
+
+11:46.640 --> 11:52.560
+it outlines the catastrophic danger of calibration error what actually happens to a person when their
+
+11:52.560 --> 11:59.200
+perceived probability of a successful repair differs from the cold structural reality of their situation
+
+11:59.440 --> 12:04.880
+well i mean nobody is a perfect calculating machine we are all miscalibrated to some degree
+
+12:04.880 --> 12:09.760
+like if you ask a room full of drivers 90 of them will say they are above average drivers it's just
+
+12:09.760 --> 12:16.640
+human nature to overestimate our ability is just a tiny bit it is but the math reveals the terrifying physics of that
+
+12:16.640 --> 12:23.520
+tiny everyday miscalibration let's say the gap between how capable you think you are and how capable you actually are
+
+12:23.520 --> 12:30.000
+is just five percent you think you have a 95 chance of succeeding at a task but the structural reality
+
+12:30.000 --> 12:35.840
+is only ninety percent okay five percent gap the paper proves that this error does not stay static
+
+12:35.840 --> 12:41.200
+it grows linearly with the length of your repair chain well if your plan requires multiple dependent
+
+12:41.200 --> 12:46.400
+steps you multiply your miscalibration by the number of steps okay we need to camp out here and
+
+12:46.400 --> 12:52.400
+really unpack this compounding error because it completely blew my mind let me try an everyday analogy go for it
+
+12:52.400 --> 12:58.640
+let's say i am doing some home renovation i am putting up drywall in a kitchen and i am just
+
+12:58.640 --> 13:05.200
+five percent too confident about my ability to measure score and snap a single piece of drywall
+
+13:05.200 --> 13:11.120
+perfectly my error margin is just 0.05 if i only have to cut one single piece of drywall to finish
+
+13:11.120 --> 13:16.320
+the entire pitch in just a one-step plan then my total error is just that five percent i think i have
+
+13:16.320 --> 13:22.160
+a 95 chance of a perfect wall but actually it's 90 no big deal if i mess it up i go to the store i
+
+13:22.160 --> 13:28.000
+buy one more piece i can survive that reality gap the problem is that meaningful repairs in life are
+
+13:28.000 --> 13:34.560
+rarely a single isolated step exactly real life isn't one piece of drywall let's say i am trying
+
+13:34.560 --> 13:41.120
+to execute a 10-step plan to save a failing software project at my company step one relies entirely on
+
+13:41.120 --> 13:47.280
+step two being completed which relies on step three all the way down if i am just five percent miscalibrated
+
+13:47.280 --> 13:52.400
+on my ability to execute every single dependent step that area doesn't just sit politely at five
+
+13:52.400 --> 13:58.240
+percent no it doesn't it compounds with every link in the chain by the time i am visualizing step eight
+
+13:58.240 --> 14:04.320
+or nine my perceived chance of saving the project is wildly dangerously disconnected from reality
+
+14:04.320 --> 14:08.400
+i might walk into the boardroom and confidently declare i have an 80 chance of pulling off this
+
+14:08.400 --> 14:14.240
+miracle when objectively structurally my chances of chaining 10 successful steps together are closer to
+
+14:14.240 --> 14:20.080
+30 percent it's a massive delusion yeah so how on earth does an optimist survive living so close to
+
+14:20.080 --> 14:25.920
+the margins when the fundamental math of compounding error is actively working to blind them to reality
+
+14:25.920 --> 14:31.760
+you've identified the existential threat of optimism right there a mental miscalibration that is
+
+14:31.760 --> 14:38.960
+completely harmless for a simple one-step repair accumulates into a fatal blinding overestimate
+
+14:38.960 --> 14:44.640
+for any repair requiring a long sequence of dependent actions and an agent who is already living close
+
+14:44.640 --> 14:49.920
+to their limits someone with a drained bank account or failing health trying to pull off a complex
+
+14:49.920 --> 14:56.080
+multi-stage recovery is massively exposed to this compounding blindness because they have no room for
+
+14:56.080 --> 15:03.200
+error exactly this is why true structural optimism demands a hyper awareness of the complexity of your plans
+
+15:03.200 --> 15:08.400
+the longer the sequence of actions required to save yourself the more perfectly brutally calibrated your
+
+15:08.400 --> 15:14.800
+beliefs must be to reality this raises a huge question for me if navigating repairs is so inherently
+
+15:14.800 --> 15:20.560
+dangerous and the math proves that complex plans compound our natural human errors until we are
+
+15:20.560 --> 15:25.520
+basically hallucinating our chances of success why do we do it that's the million dollar question
+
+15:25.520 --> 15:33.280
+why do humans actively seek out broken things why do people buy messy fixer upper houses instead of clean
+
+15:33.280 --> 15:39.120
+move-and-ready condos why do we start businesses from scratch instead of just taking a safe corporate
+
+15:39.120 --> 15:45.200
+salary this feels like a good place to pivot into the value of unfinished things and what the paper calls
+
+15:45.200 --> 15:50.640
+the agency surface it's a vital pivot because it explains the evolutionary and mathematical drive
+
+15:50.640 --> 15:56.880
+behind all this risk-taking to understand why we are drawn to the unfinished we have to look at the concept
+
+15:56.880 --> 16:03.280
+of the agency surface agency surface imagine your life and your future as a sprawling topographical map
+
+16:03.840 --> 16:10.000
+the agency surface is the total set of all possible states all possible destinations on that map that
+
+16:10.000 --> 16:15.280
+you mathematically have access to and your access is determined by two things your available budget
+
+16:15.280 --> 16:20.800
+which includes your money your physical energy and your time and your reliability level in executing
+
+16:20.800 --> 16:26.240
+actions so my agency surface is basically the menu of possible futures i can afford to order from
+
+16:26.240 --> 16:32.000
+that's a really good way to look at it and the paper provides a formal proof for why we inherently value
+
+16:32.000 --> 16:37.680
+a large menu it demonstrates mathematically that enlarging the set of feasible actions available to
+
+16:37.680 --> 16:44.000
+you at any given moment strictly raises your ceiling for optimal value okay walk me through that if you
+
+16:44.000 --> 16:50.160
+are standing in a state that offers you five possible next moves and you compare that to a state that offers
+
+16:50.160 --> 16:57.520
+you 50 possible next moves the state with 50 moves has a fundamentally higher optimal value potential
+
+16:58.240 --> 17:03.680
+provided of course the cost of exploring those moves doesn't immediately bankrupt your budget right
+
+17:03.680 --> 17:09.520
+this provides a rigorous mathematical explanation for the classic human craving for flexibility and open
+
+17:09.520 --> 17:16.080
+doors this crystallized for me when i read the example in the text about finish versus unfinished objects
+
+17:16.080 --> 17:21.120
+think about a highly finished consumer product let's say you spend a fortune on a heavily locked down
+
+17:21.120 --> 17:27.520
+proprietary smartphone or a business signs a very rigid finalized vendor contract yes the finished state
+
+17:27.520 --> 17:32.880
+the finished object offers a lot of immediate comfort the phone works flawlessly right out of the box
+
+17:33.520 --> 17:40.160
+but its agency surface is microscopic you can only use the phone exactly as the manufacturer intended
+
+17:40.160 --> 17:45.680
+you can't tinker with the hardware you can't install a custom operating system you can't easily
+
+17:45.680 --> 17:50.800
+repurpose its microchips if you need them for something else you are essentially trading away
+
+17:50.800 --> 17:57.600
+your future moves for present convenience now contrast that finished state with an unfinished property
+
+17:57.600 --> 18:03.040
+or a disassembled machine or even an untrained puppy oh the puppy analogy is so good the immediate
+
+18:03.040 --> 18:09.600
+present utility of an untrained puppy or a gutted stripped down house is terribly low in fact the present utility
+
+18:09.600 --> 18:15.440
+is often negative it causes you stress it drains your wallet and you definitely can't live in the gutted house yet
+
+18:16.160 --> 18:22.080
+but the agency surface of that gutted house is massive you can move the walls upgrade the plumbing
+
+18:22.080 --> 18:27.120
+turn it into a duplex or make it a commercial studio let me push back on this a little bit or at least ask
+
+18:27.120 --> 18:32.880
+for clarification on the math because the paper talks about the let me get the quote right the discounted
+
+18:32.880 --> 18:38.960
+gain from the reachable future outweighing present sacrifice right does this mean that mathematically
+
+18:38.960 --> 18:46.480
+speaking a chaotic messy sandbox where i can build absolutely anything meaning i have a huge agency
+
+18:46.480 --> 18:52.320
+surface holds objectively higher value than a beautiful pristine museum room where everything is
+
+18:52.320 --> 18:58.480
+perfect but i am not allowed to touch or change a single thing as long as playing in the sandbox doesn't
+
+18:58.480 --> 19:05.440
+totally ruin me yes exactly a state with lower present comfort is mathematically preferable when the discounted value of all the
+
+19:05.440 --> 19:11.200
+potential futures you can reach from that state outweighs your present suffering and the energetic cost of taking action
+
+19:11.200 --> 19:16.400
+action it's a very cold equation you are actively trading present comfort for future optionality
+
+19:16.400 --> 19:20.480
+but wait humans just naturally feel good when we have options right like we get a little
+
+19:20.480 --> 19:24.800
+psychological dopamine hit when we feel like our weekend schedule is wide open or when we walk into a
+
+19:24.800 --> 19:30.480
+massive hardware store and see a huge wall of tools does the math in this paper just
+
+19:30.480 --> 19:35.120
+staple a fake bonus feeling onto states with lots of options to make the equations work
+
+19:35.120 --> 19:40.640
+like add 10 points for the feeling of freedom what makes this framework so robust is that it
+
+19:40.640 --> 19:46.720
+absolutely refuses to do that it doesn't rely on some ad hoc psychological bonus for having options
+
+19:46.720 --> 19:51.200
+the rigorous math of the optimal value function proves that reachable states are only counted to
+
+19:51.200 --> 19:57.600
+the extent that they're actually worth reaching okay so it's not just a feeling no the math does not
+
+19:57.600 --> 20:03.200
+say having options is magical and makes humans happy the math dictates that having more feasible actions
+
+20:03.200 --> 20:08.480
+mathematically guarantees that your ceiling for expected value is higher simply because the
+
+20:08.480 --> 20:13.920
+highest possible outcome is being pulled from a much larger pool of possibility that makes total sense
+
+20:13.920 --> 20:20.320
+but here's the catch you only value that messy sandbox more if you genuinely possess the
+
+20:20.320 --> 20:27.600
+skills and resources to build something valuable inside it if you lack the skills the massive agency surface
+
+20:27.600 --> 20:32.960
+is worthless to you okay so true optimism isn't just staring at a broken messy thing and smiling
+
+20:33.440 --> 20:37.600
+it's recognizing that the broken thing has a massive agency surface and knowing you
+
+20:37.600 --> 20:43.520
+actually have the tools to navigate that surface precisely but navigating that surface is incredibly
+
+20:43.520 --> 20:49.680
+dangerous as we learned with the compounding errors every single step carries the risk of failure
+
+20:50.480 --> 20:57.520
+so if we are going to dive into the messy sandbox how do we survive the journey without blowing up our lives
+
+20:57.520 --> 21:02.960
+this brings us to the physics of resilience if you're going to take on unfinished things if you're
+
+21:02.960 --> 21:10.480
+going to aggressively exercise your agency you absolutely must maintain what the framework calls a repair
+
+21:10.480 --> 21:14.960
+reserve we touched on this earlier when we talked about the state space ledger but let's really drill
+
+21:14.960 --> 21:19.520
+down into the reserve imagine i'm the listener and i'm trying to figure out how much risk i can take
+
+21:19.520 --> 21:26.080
+right now what actually is my reserve your repair reserve is a constantly fluctuating weighted combination of
+
+21:26.080 --> 21:32.160
+those key resources we mentioned earlier your capital your practical skills your social safety net and
+
+21:32.160 --> 21:37.280
+your physical health and there is an absolute unbreakable rule governing this reserve which
+
+21:37.280 --> 21:42.880
+an agent remains viable only as long as this aggregate reserve stays above a specific threshold of
+
+21:42.880 --> 21:49.600
+commitments think of this threshold as your baseline burn rate or your non-negotiable obligations
+
+21:49.600 --> 21:55.920
+if your reserve drops below this threshold you are ruined you are no longer viable the game is
+
+21:55.920 --> 22:03.200
+basically over i'm trying to picture this dynamically so my reserve is like a battery or maybe a massive
+
+22:03.200 --> 22:08.320
+reservoir of water and my baseline threshold my obligations is a huge leak at the bottom of the
+
+22:08.320 --> 22:13.440
+reservoir i like that visual as long as the water level stays above the leak i have pressure i can keep
+
+22:13.440 --> 22:18.560
+splashing around trying to fix my car trying to launch my startup trying to repair my relationships but the
+
+22:18.560 --> 22:24.960
+moment the water level drops below that leak i lose all pressure i am done that's a strong visual and
+
+22:24.960 --> 22:29.840
+that reservoir is never static you are constantly gaining resources through learning new skills earning
+
+22:29.840 --> 22:34.640
+a paycheck getting a favor from a friend and you are constantly losing resources through unexpected
+
+22:34.640 --> 22:41.360
+emergencies illness and just the daily energetic cost of maintaining your life this continuous push and
+
+22:41.360 --> 22:46.560
+pull introduces the concept of the adjustment coefficient i found the math behind the adjustment
+
+22:46.560 --> 22:51.360
+coefficient to be profoundly moving actually particularly when applied to how we interact with the
+
+22:51.360 --> 22:57.040
+people we care about can you explain what this coefficient is doing in the simplest terms the
+
+22:57.040 --> 23:03.920
+adjustment coefficient is a mathematical measure of your upward drift versus your daily fluctuations
+
+23:03.920 --> 23:08.960
+upward drift yeah if you are generally accumulating slightly more resources than you are bleeding out
+
+23:08.960 --> 23:15.120
+and your daily losses aren't wildly erratic or unpredictable you have a strong positive adjustment
+
+23:15.120 --> 23:21.840
+coefficient the higher this coefficient is the mathematically lower your probability of ever hitting that threshold
+
+23:21.840 --> 23:29.360
+of total ruin so how does outside help factor into this physics equation because nobody survives the messy sandbox
+
+23:29.360 --> 23:35.520
+entirely alone we all need help when we are trying to do hard things the math reveals a stark structural
+
+23:35.520 --> 23:40.800
+difference between two distinct types of help let's look at the first type one-time injection of support
+
+23:40.800 --> 23:46.320
+let's say you're trying to start a business you're completely out of cash and you're about to hit your
+
+23:46.320 --> 23:53.760
+ruin threshold a good friend writes you a check for five thousand dollars a lifesaver it is mathematically
+
+23:53.760 --> 24:00.160
+this raises your current reservoir level it multiplies your ruin bound by an exponential factor
+
+24:00.720 --> 24:06.160
+it physically pushes you further away from the danger zone for a brief moment it is very helpful but i hear a
+
+24:06.160 --> 24:13.200
+butt coming but a standing stream of regular reliable assistance does something fundamentally more
+
+24:13.200 --> 24:19.680
+powerful to your physics the framework proves that a reliable stream of help even if the dollar amount
+
+24:19.680 --> 24:26.640
+is incredibly small actually alters the adjustment coefficient itself it fundamentally lowers the probability
+
+24:26.640 --> 24:31.680
+of total ruin at every single level of your reservoir i want the listener to really hear this because
+
+24:31.680 --> 24:35.440
+it changes how we should think about supporting each other let's say you have a friend
+
+24:35.440 --> 24:40.400
+who is structurally optimistic they are grinding away at a new creative project they are working
+
+24:40.400 --> 24:45.840
+incredibly hard but the water level in their reservoir is getting dangerously low right they're
+
+24:45.840 --> 24:51.840
+struggling the natural human instinct is to wait until they are in a state of total screaming crisis
+
+24:51.840 --> 24:57.280
+and then swoop in and write a massive check or spend an entire weekend bailing them out of their mess
+
+24:57.840 --> 25:03.840
+but the math of the adjustment coefficient says that setting up a small boring but totally reliable
+
+25:03.840 --> 25:08.720
+system of support like committing to cooking them dinner every single tuesday night so they don't have
+
+25:08.720 --> 25:15.200
+to think about food or quietly putting their 50 internet bill on your auto pay does vastly more
+
+25:15.200 --> 25:21.040
+mathematical good for their survival than the dramatic one-time bailout it absolutely does the one-time
+
+25:21.040 --> 25:27.120
+bailout simply buys them time to continue bleeding the standing stream of support changes their underlying
+
+25:27.120 --> 25:32.560
+physics it permanently reduces the variance of their daily struggle by increasing their adjustment
+
+25:32.560 --> 25:37.520
+coefficient it means that every single risk they take on their agency surface from that day forward
+
+25:37.520 --> 25:42.240
+is mathematically safer than it was before you set up the auto pay that is incredible it completely
+
+25:42.240 --> 25:47.520
+reframes charity social safety nets and just basic friendship yeah it is not about the grand magnitude
+
+25:47.520 --> 25:53.120
+of the rescue it is entirely about the boring reliability of the baseline support and this mathematical
+
+25:53.120 --> 25:58.560
+focus on flow and structure leads to another deeply counterintuitive insight about resources
+
+25:59.200 --> 26:04.480
+when we think of resilience we usually think of hoarding we assume that the person with the biggest pile of
+
+26:04.480 --> 26:10.720
+stuff is the safest sure that's the default intuition a massive reservoir equals massive resilience if you
+
+26:10.720 --> 26:16.000
+have a billion dollars you can buy your way out of any problem but fliction shifts the focus entirely
+
+26:16.000 --> 26:23.200
+away from the static accumulation of resources and focuses on the conversion of resources the paper introduces a graph
+
+26:23.200 --> 26:28.880
+theory of resilience imagine your various capacities as nodes on a network map you have money you have
+
+26:28.880 --> 26:35.040
+physical equipment you have mobility and you have labor capacity to survive you must be able to convert
+
+26:35.040 --> 26:40.800
+money into equipment equipment into mobility and mobility into work okay so i am picturing a supply chain
+
+26:40.800 --> 26:47.600
+my life is a supply chain of my own abilities yes and the paper applies a principle called menger's theorem to
+
+26:47.600 --> 26:53.600
+this personal supply chain menger's theorem proves that your true resilience is not determined by the
+
+26:53.600 --> 26:58.640
+total volume of your resources nor is it determined by counting up all the possible paths you could
+
+26:58.640 --> 27:04.960
+theoretically take your objective resilience is defined entirely by what is called the minimum cut
+
+27:04.960 --> 27:08.480
+the minimum cut let's break that down what does that actually mean for the billionaire
+
+27:08.480 --> 27:14.880
+the minimum cut is the minimum number of independent completely non-overlapping conversion channels you possess
+
+27:15.520 --> 27:21.840
+if you have massive unfathomable wealth billions of dollars but the only way you can convert that
+
+27:21.840 --> 27:28.720
+wealth into actual food shelter and safety is through one single centralized banking system your resilience
+
+27:28.720 --> 27:34.240
+is exactly one wow because if that one note fails if that bank account is frozen or the grid goes down
+
+27:34.240 --> 27:39.280
+your massive pile of wealth is entirely disconnected from your viable state you cannot eat the digital numbers
+
+27:39.280 --> 27:45.600
+in the bank let me contrast that so let's say we have someone who has very little actual cash but they
+
+27:45.600 --> 27:51.920
+have three completely decoupled ways to feed themselves they have a small thriving vegetable garden in their
+
+27:51.920 --> 27:57.920
+yard they have a close friend who manages a local grocery store and would let them run a tab and they
+
+27:57.920 --> 28:03.440
+possess the practical knowledge to safely forage for wild edibles in the nearby woods that's a perfect
+
+28:03.440 --> 28:09.360
+example that person has a conversion resilience of three they are mathematically structurally more
+
+28:09.360 --> 28:14.080
+resilient against starvation than the billionaire whose wealth is locked behind a single digital
+
+28:14.080 --> 28:21.280
+bottleneck precisely resilience is about disjoint conversion routes it is about how many independent
+
+28:21.280 --> 28:26.800
+non-overlapping ways you can route around a failure in your system this framework completely decouples the
+
+28:26.800 --> 28:32.560
+concept of resilience from sheer net worth a truly optimistic agent isn't necessarily the richest person
+
+28:32.560 --> 28:37.120
+in the room they are the most highly networked in their conversion channels all right so let's summarize
+
+28:37.120 --> 28:43.200
+where we are if we want to be true structural optimists we need a healthy reservoir we need reliable
+
+28:43.200 --> 28:49.680
+boring streams of baseline support to improve our upward drift and we need multiple independent
+
+28:49.680 --> 28:55.600
+conversion channels so we don't get choked out by a single bottleneck that's the foundation yes but here is the
+
+28:55.600 --> 29:02.080
+thing i know people who have all of that i know incredibly smart well-resourced optimists and they
+
+29:02.080 --> 29:08.640
+still fail spectacularly all the time why what are the hidden bear traps in this repairable world the
+
+29:08.640 --> 29:15.840
+most fatal trap for the smart well-resourced optimist is the assumption of uncoupled hazards uncoupled hazards
+
+29:15.840 --> 29:22.800
+meaning treating risks like they exist in a vacuum exactly it is the error of calculating risks as if they have
+
+29:22.800 --> 29:27.120
+absolutely nothing to do with each other let's say you're managing a complex life transition you're
+
+29:27.120 --> 29:32.000
+moving to a new city starting a new job and renovating a house all the same time sounds stressful
+
+29:32.000 --> 29:40.240
+very so you calculate the risks task a the move has a 10 chance of going totally wrong task b the new job
+
+29:40.240 --> 29:48.320
+transition has a 10 chance of failing task c the renovation has a 10 chance of disaster the standard
+
+29:48.320 --> 29:53.360
+independent way of thinking the way we are all taught probability in high school says well the odds
+
+29:53.360 --> 29:59.120
+of all three of these independent things failing at the exact same time is 10 times 10 times 10
+
+29:59.760 --> 30:06.160
+which is 0.1 right a tenth of a percent i am totally safe you multiply the independent probabilities
+
+30:06.160 --> 30:12.560
+and it makes you feel incredibly secure to look at a spreadsheet and see a 0.1 chance of total failure
+
+30:12.560 --> 30:17.360
+but the real world doesn't work like a spreadsheet no it doesn't and the framework introduces the
+
+30:17.360 --> 30:23.200
+mixture model of latent stress to prove why this spreadsheet math is disastrously wrong when applied
+
+30:23.200 --> 30:29.520
+to human reality in the real world hazards are not independent they are deeply coupled through common
+
+30:29.520 --> 30:34.800
+underlying causes think back to your state space ledger your physical health your mental energy your
+
+30:34.800 --> 30:41.120
+social support okay i'm tracked if a latent stressor hits you let's say you contract a nasty flu virus
+
+30:41.760 --> 30:46.240
+which significantly drops your physical labor capacity that doesn't just make you cough
+
+30:46.800 --> 30:54.000
+it delays your ability to pack boxes for task a that delay forces you to start your new job exhausted
+
+30:54.000 --> 30:59.920
+for task b which causes you to make a mistake that puts financial stress on the renovation budget for
+
+30:59.920 --> 31:08.000
+task c ah it's the mathematical proof of the old saying when it rains it pours yes and the math behind
+
+31:08.000 --> 31:13.840
+this clustering of failures proves something incredibly counterintuitive assuming that your hazards are
+
+31:13.840 --> 31:18.960
+independent actually tricks you into thinking a perfectly clean outcome a month where absolutely
+
+31:18.960 --> 31:24.000
+nothing goes wrong is less likely than it actually is wait you're losing me assuming my risks are
+
+31:24.000 --> 31:28.560
+independent makes me pessimistic about having a perfect day yes think about the math if you have
+
+31:28.560 --> 31:34.160
+50 moving parts in your life and they are all truly independent pulling their own random numbers every day
+
+31:34.160 --> 31:39.360
+the sheer volume of moving parts practically guarantees that at least one little thing will break every single
+
+31:39.360 --> 31:45.440
+day but when those parts are actually coupled by a latent variable like your overall stress level or
+
+31:45.440 --> 31:51.120
+your sleep quality you might actually experience long beautiful stretches of perfect success
+
+31:51.120 --> 31:56.000
+simply because your latent stress happens to be very low that month everything runs smoothly because
+
+31:56.000 --> 32:01.280
+the underlying engine is well oiled the dependent map makes a hundred percent clean run more likely
+
+32:01.280 --> 32:06.720
+okay i follow that but why is that a trap if the math gives me more perfect days isn't that a good
+
+32:06.720 --> 32:12.880
+thing for my mental health it is a lethal trap because while it gives you more perfect sunny days
+
+32:12.880 --> 32:18.720
+it dangerously catastrophically understates how often everything will collapse simultaneously if you build
+
+32:18.720 --> 32:24.560
+your reservoir to handle the average number of independent failures let's say you expect one or two
+
+32:24.560 --> 32:29.440
+minor things to break a month so you keep a little bit of extra cash on hand your reservoir is going
+
+32:29.440 --> 32:34.640
+to be instantly violently wiped out by a coupled cluster where seven major things fail on the exact
+
+32:34.640 --> 32:40.400
+same tuesday because you got the flu and your latent stress spiked oh man i feel this in my bones
+
+32:40.400 --> 32:46.480
+so the smart optimist looks at their track record over the last six months and says look at this i've had
+
+32:46.480 --> 32:52.480
+20 perfect weeks in a row my system is bulletproof right but they are totally ignoring the fact that when
+
+32:52.480 --> 32:58.320
+the system finally fails it won't fail nicely sequentially one little manageable piece at a
+
+32:58.320 --> 33:05.120
+time it will cascade it will cluster and if their reservoir isn't built to absorb a simultaneous seven
+
+33:05.120 --> 33:11.600
+point catastrophic impact their threshold gets breached and they are ruined that is the exact
+
+33:11.600 --> 33:17.280
+unforgiving mathematical reality and the paper expands on this by analyzing the burden of concurrent
+
+33:17.280 --> 33:22.240
+commitments as you take on more and more projects the burden on your reservoir does not grow linearly
+
+33:22.480 --> 33:27.600
+you don't just add one unit of stress for every one project the burden grows quadratically
+
+33:27.600 --> 33:33.040
+quadratically meaning the line on the graph curves upwards aggressively yes because of the interaction
+
+33:33.040 --> 33:38.720
+friction if you have two spinning plates they interact with each other if you add a third plate it doesn't
+
+33:38.720 --> 33:45.360
+just add its own weight it introduces potential friction with plate one a and d plate two adding a fifth
+
+33:45.360 --> 33:51.760
+plate creates a massive tangled web of potential collisions with the other four the math dictates there is a
+
+33:51.760 --> 33:57.440
+strict burden threshold once you pass a certain number of concurrent commitments the interaction
+
+33:57.440 --> 34:03.760
+terms completely overwhelm your baseline capacity so the hustle culture myth of endless multitasking
+
+34:03.760 --> 34:10.080
+isn't just inefficient mathematically it is a rapid guaranteed path to structural ruin if you aren't
+
+34:10.080 --> 34:15.760
+scaling your reservoir quadratically to match it which nobody does correct but internal traps like
+
+34:15.760 --> 34:21.680
+clustering and spinning too many plates aren't the only dangers affliction also models external traps
+
+34:21.680 --> 34:26.560
+this brings us to a concept called institutional permeability i found this concept fascinating because
+
+34:26.560 --> 34:32.000
+it speaks directly to how we try to navigate modern careers and systems break down institutional
+
+34:32.000 --> 34:40.240
+permeability for us permeability is the probability that a rigid institution a mega corporation a prestigious
+
+34:40.240 --> 34:47.200
+university a government agency will actually recognize and reward a competence or a need that is
+
+34:47.200 --> 34:53.600
+demonstrated outside of their formal officially sanctioned pathways let me try a real world tech
+
+34:53.600 --> 34:59.280
+industry analogy here to see if i'm tracking the math of this trap this sounds exactly like the classic
+
+34:59.280 --> 35:05.120
+dropping out of college to build a killer app narrative let's hear it how you map it so you have a formal
+
+35:05.120 --> 35:10.720
+institutional path go to a four-year university get a traditional computer science degree apply for an
+
+35:10.720 --> 35:17.040
+internship get hired by google that path has a known heavy cost tuition four years of your life and a
+
+35:17.040 --> 35:23.680
+known reward but you the ambitious structurally optimistic 19 year old see an informal path you say
+
+35:23.680 --> 35:29.120
+i'm going to drop out teach myself to code in my basement for six months and build a brilliant undeniable
+
+35:29.120 --> 35:34.160
+portfolio right you assume that if you just show up at google store with your brilliant code they will
+
+35:34.160 --> 35:38.720
+instantly recognize your genius and hire you you assume the permeability of the institution is 100
+
+35:38.720 --> 35:43.920
+percent you assume merit always wins you map the math perfectly you believe the true probability of
+
+35:43.920 --> 35:50.480
+recognition is very high your perceived permeability is nearly a hundred percent but the harsh reality is
+
+35:50.480 --> 35:56.320
+the hr algorithms filtering the resumes don't care about your brilliant code they are literally programmed
+
+35:56.320 --> 36:02.880
+to auto reject any application that lacks the exact text string bs and computer science the true
+
+36:02.880 --> 36:08.960
+permeability is actually close to zero so what does the framework say happens to the optimist who makes
+
+36:08.960 --> 36:15.200
+this miscalculation it proves there is an exact measurable regret that is paid directly out of your
+
+36:15.200 --> 36:20.960
+life's reservoir when you miscalculate institutional permeability the formula literally subtracts your
+
+36:20.960 --> 36:26.320
+expected net value from the optimal safer choice you should have made if you had known the true
+
+36:26.320 --> 36:32.480
+rigid nature of the institution that is brutal it is you assume the informal basement coding path had a
+
+36:32.480 --> 36:38.240
+high reward but you vastly overestimated the corporation's willingness to accept non-traditional
+
+36:38.240 --> 36:44.960
+credentials this regret isn't just a sad emotional feeling of oh i wish i hadn't wasted that year
+
+36:44.960 --> 36:51.840
+it is a mathematical tax levied on your reservoir if you repeatedly misallocate your energy in years
+
+36:51.840 --> 36:57.120
+because you romantically overestimate how permeable the world is you permanently decrease your adjustment
+
+36:57.120 --> 37:02.400
+drift you drain your battery you push yourself steadily closer to ruin man this is a heavy
+
+37:02.400 --> 37:06.800
+realization we've learned that smart people fail because they think hazards are independent they
+
+37:06.800 --> 37:11.760
+take on too many interacting commitments and they naively assume the world will recognize their
+
+37:11.760 --> 37:17.600
+unconventional brilliance hearing all this it feels like the math is screaming at us to just stay inside
+
+37:17.600 --> 37:23.440
+do one safe thing at a time and follow the rigid corporate rules but that cannot be what true optimism is
+
+37:23.440 --> 37:28.480
+about exactly which brings us to the philosophical core of the entire paper the anatomy of hope and
+
+37:28.480 --> 37:36.240
+the threshold for persistence yes despite all the traps in the math of ruin flexion defines what it
+
+37:36.240 --> 37:43.360
+actually means to mathematically possess hope practical hope is defined simply as the non-emptiness of your
+
+37:43.360 --> 37:48.400
+viable action set the non-emptiness of the viable action set meaning when you look at the menu of your
+
+37:48.400 --> 37:55.280
+life there is at least one item left to order that is it if there is even one single action available
+
+37:55.280 --> 38:01.360
+to you that has an expected value greater than the cost it takes to execute it you mathematically possess
+
+38:01.360 --> 38:08.000
+practical hope and what is profoundly crucial here is that this mathematical hope does not require a high
+
+38:08.000 --> 38:12.880
+probability of success let me push back on that because society tells us that hoping for something with
+
+38:12.880 --> 38:18.320
+terrible odds is just foolish gambling why doesn't hope require good odds because the math balance
+
+38:18.320 --> 38:23.280
+is probability against the ultimate value of the outcome if an action costs you ten dollars in
+
+38:23.280 --> 38:28.400
+energy to attempt but the successful outcome would bring ten thousand dollars of value to your life
+
+38:28.400 --> 38:33.520
+you only need a microscopic fraction of a percent chance of success for that action to technically
+
+38:33.520 --> 38:39.520
+belong in your viable action set you could be persisting through repeated crushing failures facing
+
+38:39.520 --> 38:45.920
+laughably low odds on every single attempt and still be acting completely rationally as long as the
+
+38:45.920 --> 38:53.440
+massive reward outweighs the tiny cost of the attempt so on the flip side despair is the cold mathematical
+
+38:53.440 --> 38:59.520
+conclusion that the viable action set is completely empty there are literally zero moves left on the
+
+38:59.520 --> 39:04.720
+board where the potential reward outweighs the energy it would cost to make the move right but this
+
+39:04.720 --> 39:10.720
+dynamic raises one of the most profound behavioral questions we face why do some people persist when everyone
+
+39:10.720 --> 39:16.000
+observing them thinks they should clearly give up we see this constantly an entrepreneur pours seven
+
+39:16.000 --> 39:20.960
+years of their life into a failing startup that keeps pivoting or someone stays in a deeply struggling
+
+39:20.960 --> 39:25.520
+relationship long after all their friends have staged an intervention and told them to walk away
+
+39:26.400 --> 39:32.080
+are these people just delusional are they ignoring the math of their own ruin i really want to know how
+
+39:32.080 --> 39:37.600
+the paper answers this because our culture aggressively labels those people as crazy we have an obsession with
+
+39:37.600 --> 39:42.080
+cutting your losses if you try something and it fails a few times society says read the room give up
+
+39:42.080 --> 39:48.240
+move on flixen answers this by introducing the bay's threshold for abandonment it frames the agonizing
+
+39:48.240 --> 39:56.240
+decision of when to finally quit as a clash between two very specific competing types of loss first there's
+
+39:56.240 --> 40:03.120
+the loss of a false terminal this is the profound tragedy of abandoning a state that actually could have
+
+40:03.120 --> 40:07.440
+been repaired if you had just tried one more time you give up too early okay the false
+
+40:07.440 --> 40:13.600
+terminal and the second second there is the loss of a false repairable this is the agonizing pain of
+
+40:13.600 --> 40:20.240
+continuing to pour your finite time money and emotional energy into a state that is objectively
+
+40:20.240 --> 40:26.080
+structurally doomed okay let's map this to the real world the false terminal is giving up on your startup
+
+40:26.080 --> 40:30.560
+liquidating the assets and then realizing later that your final prototype would have worked
+
+40:30.560 --> 40:36.320
+perfectly it's the tragedy of the premature exit the false repairable is wasting five more years of
+
+40:36.320 --> 40:41.040
+your prime earning potential burning through your savings on a startup that was fundamentally
+
+40:41.040 --> 40:48.240
+guaranteed to go bankrupt no matter what you did exactly the mathematically optimal rule for living
+
+40:48.240 --> 40:54.240
+says you should only classify a state as terminal you should only finally give up when your internal
+
+40:54.240 --> 41:00.800
+probability of successful repair drops below a specific ratio of those two distinct losses wait hold on so
+
+41:00.800 --> 41:05.360
+when we sit around and call someone delusional for not giving up on their failing business or their messy
+
+41:05.360 --> 41:11.360
+relationship it might not be a failure of logic or a distortion of probability on their part at all
+
+41:11.360 --> 41:16.560
+they might see the exact same one percent chance of success that all their friends see but they just
+
+41:16.560 --> 41:22.880
+internally wait the profound tragedy of giving up too early much much higher than the pain of wasting a few
+
+41:22.880 --> 41:28.080
+more years you've hit the absolute core of the argument persistence is frequently a matter of loss
+
+41:28.080 --> 41:34.400
+asymmetry not epistemic delusion if a person considers the loss of an abandoned repairable state to be
+
+41:34.400 --> 41:39.440
+infinitely tragic say a parent refusing to give up on finding a cure for a sick child
+
+41:39.440 --> 41:44.480
+or an artist refusing to abandon their life's magnum opus they will logically continue to invest
+
+41:44.480 --> 41:49.360
+effort even when the probability of success is microscopically small to an outside observer who
+
+41:49.360 --> 41:55.200
+values time and money very highly and therefore weights the wasted effort more heavily this persistence
+
+41:55.200 --> 42:02.560
+looks like pure madness but mathematically if you respect the agent's internal valuation of tragedy
+
+42:02.560 --> 42:08.080
+their refusal to quit is a perfectly rational threshold that is incredibly validating for anyone
+
+42:08.080 --> 42:13.200
+listening to this who has ever been told they are trying too hard or holding on too long it is not
+
+42:13.200 --> 42:19.200
+always delusion it is just a different calculation of tragedy but surely there has to be a limit right
+
+42:19.200 --> 42:24.240
+people do make catastrophic mistakes they do stay way too long in abusive situations or doomed
+
+42:24.240 --> 42:30.480
+financial ventures how does the paper account for actual damaging naivete if everyone's internal map
+
+42:30.480 --> 42:36.000
+is technically rational the framework is very clear about what actual naivete is naivete is not simply
+
+42:36.000 --> 42:41.600
+having a high tolerance for tragedy true naivete is specifically an underestimate of the continuation
+
+42:41.600 --> 42:48.000
+cost an underestimate of the continuation cost yes it is a failure to accurately price in your own
+
+42:48.000 --> 42:53.920
+physical exhaustion the irreversible loss of your prime years or the daily psychological toll the
+
+42:53.920 --> 42:59.760
+stress is taking on your body you are fatally miscalibrated on how much it is actually costing you to
+
+42:59.760 --> 43:04.880
+stay in the game you think staying in the bad relationship is costing you ten dollars a day in
+
+43:04.880 --> 43:09.840
+emotional energy but the hidden cost to your health and future is actually a hundred dollars a day
+
+43:10.480 --> 43:15.440
+because you vastly underestimate the burn rate your threshold for finally walking away
+
+43:15.440 --> 43:21.680
+sits artificially dangerously low you don't realize how fast the water is draining out of your reservoir
+
+43:21.680 --> 43:26.400
+because you refuse to look at the size of the hole and that failure to look at reality brings
+
+43:26.400 --> 43:31.760
+us to the darkest section of the paper we sit this whole time talking about how miscalibration hurts
+
+43:31.760 --> 43:37.600
+the individual but how does false optimism sustain itself over long periods of time and worse how does
+
+43:37.600 --> 43:43.280
+it infect entire networks of other people yeah the paper talks about private miscalibration versus
+
+43:43.280 --> 43:48.560
+publicly preserved miscalibration walk us through the difference private miscalibration is when your
+
+43:48.560 --> 43:54.560
+internal beliefs are entirely protected from external evidence the framework models this by looking at how
+
+43:54.560 --> 44:01.600
+an agent updates their beliefs normally a rational healthy mind updates its understanding of the world
+
+44:01.600 --> 44:09.120
+based on every single success and every single failure but a privately miscalibrated mind applies a severe
+
+44:09.120 --> 44:15.680
+discount to disconfirming outcomes this is what the paper calls blocked updating let me guess they
+
+44:15.680 --> 44:21.360
+count the hits and completely ignore the misses that is the mechanism they systematically discount your
+
+44:21.360 --> 44:27.760
+failures if their startup strategy succeeds they say see my internal genius is validated my system works
+
+44:27.760 --> 44:33.520
+flawlessly if the exact same strategy fails spectacularly the next month they say well the macroeconomic
+
+44:33.520 --> 44:38.800
+conditions shifted unexpectedly that wasn't my fault that failure doesn't count against my system it's always
+
+44:38.800 --> 44:44.160
+someone else's fault the mathematics of this are brutal if you discount your failures by even a fraction
+
+44:44.160 --> 44:48.480
+your calibration error will never go to zero no matter how many decades of evidence accumulate
+
+44:48.480 --> 44:54.000
+you become permanently mathematically incorrigible you cannot learn okay that's the private delusion
+
+44:54.000 --> 44:59.920
+of an individual but how does that poison the well publicly how does that infect a whole company
+
+44:59.920 --> 45:06.000
+through an incredibly common structural dynamic called ratchet reporting let's apply this to a corporate
+
+45:06.000 --> 45:12.960
+environment imagine you are a startup ceo reporting to a board of investors a ratchet reporting rule
+
+45:12.960 --> 45:19.280
+means you are incentivized to report your absolute highest perceived probability of success to the board
+
+45:19.280 --> 45:24.640
+and you are structurally punished if you ever revise that number downward even if you privately learned
+
+45:24.640 --> 45:29.920
+that the initial number was a fantasy oh this is the classic silicon valley fake it till you make it trap
+
+45:29.920 --> 45:36.320
+let's trace the math on this because this happens every day imagine that ceo launches a new ai product
+
+45:36.320 --> 45:43.520
+privately looking at the buggy code the ceo believes it has an 80 chance of succeeding they go into the boardroom and
+
+45:43.520 --> 45:51.360
+confidently pitch 80 the board loves it next month the user data comes back and it is a disaster the code is broken
+
+45:51.360 --> 45:57.680
+nobody's buying it the ceo sits in their office and privately updates their belief they know the true
+
+45:57.680 --> 46:02.880
+chance of success is now 40 but under ratchet reporting they cannot walk into the boardroom and
+
+46:02.880 --> 46:08.160
+say hey guys it's actually 40 they would look weak the stock would tank they might lose their funding
+
+46:08.160 --> 46:14.400
+entirely so what do they do they stay at 80 or to project even more confidence and hide the panic
+
+46:14.400 --> 46:21.760
+they ratchet it up to 85 exactly even if the ceo is perfectly rational and correctable in their private
+
+46:21.760 --> 46:29.200
+office even if they know the truth is 40 their public reports to the world are permanently miscalibrated
+
+46:29.200 --> 46:35.920
+by at least their initial overly optimistic estimate and this leads to the compounding of misreports
+
+46:35.920 --> 46:41.120
+which highlights the truly terrifying math for the observer the people who are forced to listen to and rely
+
+46:41.120 --> 46:45.920
+on that report right because the board of investors doesn't just sit there twiddling their thumbs they
+
+46:45.920 --> 46:52.080
+take that fake 85 number as gospel and they build a massive five-stage strategic corporate plan around
+
+46:52.080 --> 46:59.040
+it and we know exactly what happens to complex plans based on miscalibrated numbers if the board believes
+
+46:59.040 --> 47:06.640
+each of their five strategic stages has an 85 chance of success based on the ceo's ratchet report but the true
+
+47:06.640 --> 47:11.840
+underlying probability of the tech working is only 40 percent the observer's overestimate grows
+
+47:11.840 --> 47:17.280
+exponentially with the length of the plan the ratio of what the board believes will happen compared
+
+47:17.280 --> 47:22.640
+to what will actually happen absolutely explodes into fantasy the board is looking at a spreadsheet
+
+47:22.640 --> 47:27.600
+thinking they are mathematically guaranteed to make billions of dollars and in structural reality
+
+47:27.600 --> 47:32.640
+they are mathematically guaranteed to drive the entire company off a cliff at 100 miles an hour
+
+47:32.640 --> 47:37.920
+and it is all because the public reporting structure of the corporate culture punished the admission of
+
+47:37.920 --> 47:44.080
+error the initial error was transmitted forced to remain high and then exponentiated by the network
+
+47:44.080 --> 47:51.520
+it is a devastating mathematically proven critique of how toxic optimism is socially maintained in systems
+
+47:51.520 --> 47:58.720
+that demand relentless positivity but the paper goes even further it tackles the illusion of experience
+
+47:58.720 --> 48:05.040
+let's say you aren't relying on a lying ceo let's say you are relying entirely on your own personal
+
+48:05.040 --> 48:12.400
+lived unimpeachable experience you have performed a specific dangerous task 30 times in a row and you
+
+48:12.400 --> 48:18.240
+have never failed once you have a perfectly clean record your brain naturally assumes you must be safe
+
+48:18.240 --> 48:23.200
+right if i have driven the exact same icy canyon route to work for 30 days straight and i haven't crashed
+
+48:23.200 --> 48:28.240
+my car my brain strongly tells me that my personal risk of crashing on that route is effectively zero
+
+48:28.240 --> 48:33.600
+i know what i'm doing the framework proves why our human intuition is mathematically completely wrong
+
+48:33.600 --> 48:38.720
+here it introduces the rule of three if you have a completely clean record of 30 successful attempts
+
+48:38.720 --> 48:43.360
+without experiencing ruin the rigid laws of statistics dictate that your true underlying
+
+48:43.360 --> 48:48.640
+probability of hitting ruin on your 31st attempt could still easily be as high as 10 percent
+
+48:48.640 --> 48:55.760
+wait i need to process that 30 perfect flawless successes in a row and i could still be operating a
+
+48:55.760 --> 49:00.800
+system that has a one in 10 chance of completely destroying me every single time i turn the key
+
+49:01.360 --> 49:07.760
+yes because distinguishing a rare catastrophic ruin probability from absolute zero requires an
+
+49:07.760 --> 49:13.280
+incredibly long record it requires a sample size on the order of the inverse of the risk when risks
+
+49:13.280 --> 49:19.760
+are small but fatal evidence accumulates agonizingly slowly your 30 days of lived experience which feels so
+
+49:19.760 --> 49:25.520
+concrete and validating to your ego is a statistically tissue paper weak shield against rare ruin that
+
+49:25.520 --> 49:29.840
+is deeply unsettling i hate that but it gets even worse when we look at other people's experience right
+
+49:29.840 --> 49:34.080
+this might be my favorite most mind-bending part of the entire paper walk us through the mathematical
+
+49:34.080 --> 49:40.080
+proof of survivor bias we live in a culture that constantly reads biographies and listens to three-hour
+
+49:40.080 --> 49:45.360
+interviews with highly successful billionaires athletes and artists desperately trying to learn how they
+
+49:45.360 --> 49:52.080
+navigate at extreme risk yeah but the math delivers the hardest coldest truth of the entire deep dive
+
+49:53.040 --> 49:59.120
+observing only the agents who successfully survived an undertaking provides absolutely zero mathematical
+
+49:59.120 --> 50:04.480
+information about the actual underlying probability of ruin i want to make sure i am fully grasping the
+
+50:04.480 --> 50:09.360
+magnitude of this every single time i go to the bookstore and buy an autobiography of a billionaire to learn
+
+50:09.360 --> 50:14.960
+how they risked their life savings on a crazy contrarian strategy the very fact that they are sitting
+
+50:14.960 --> 50:19.440
+there writing the book the fact that they survived the strategy tells me literally nothing about how
+
+50:19.440 --> 50:24.880
+statistically dangerous their strategy actually was literally nothing the mathematical proof is
+
+50:24.880 --> 50:30.960
+undeniable if your data sample only includes people who successfully survived the gauntlet the likelihood
+
+50:30.960 --> 50:35.840
+of the observed data is mathematically constant regardless of whether the true probability of ruin in
+
+50:35.840 --> 50:41.440
+that gauntlet was one percent or ninety-nine percent the empirical frequency of ruin in a room full
+
+50:41.440 --> 50:48.960
+of survivors is always by definition zero you simply cannot learn how deadly the minefield is by only
+
+50:48.960 --> 50:53.840
+interviewing the people who successfully walked across it you don't see the ones who blew up my mind
+
+50:53.840 --> 51:00.000
+is completely blown by the scale of this illusion we have based entire global industries entire self-help
+
+51:00.000 --> 51:05.440
+empires millions of articles on the fundamental premise of interviewing survivors and asking them for the
+
+51:05.440 --> 51:11.200
+the secret to their success infliction's math just clinically coldly proves that their survival record
+
+51:11.200 --> 51:16.560
+is statistically void of any usable information regarding risk they might have excellent advice
+
+51:16.560 --> 51:21.360
+on minor tactics or how to organize your calendar or what diet they eat but their survival cannot
+
+51:21.360 --> 51:25.600
+mathematically be used to estimate the safety or structural viability of their chosen path
+
+51:26.240 --> 51:31.840
+to believe otherwise is to fall for the ultimate epistemic delusion okay we have covered an immense amount of
+
+51:31.840 --> 51:36.800
+ground today we have deconstructed the mood of optimism we've looked at the terrifying compounding
+
+51:36.800 --> 51:43.920
+math of failure the quadratic weight of our commitments and the absolute mirage of survivor bias but i want
+
+51:43.920 --> 51:49.680
+to make sure we don't leave the listener feeling like this paper is anti-optimism it isn't the entire goal
+
+51:49.680 --> 51:56.240
+of the framework is to define what sustained optimism actually looks like in the real world so practically
+
+51:56.240 --> 52:01.360
+speaking how do we achieve it the paper synthesizes the entire mathematical framework into three
+
+52:01.840 --> 52:08.320
+independent non-negotiable pillars of sustained optimism first agency a worthwhile structurally
+
+52:08.320 --> 52:14.320
+sound move must actually exist in your environment you must have a non-empty action set second reserve
+
+52:15.120 --> 52:19.680
+your risk war must possess enough buffer to absorb the inevitable shocks and survive the mathematical
+
+52:19.680 --> 52:25.120
+ruin bound of the actions you are taking and third calibration you must maintain ruthlessly accurate
+
+52:25.120 --> 52:30.160
+beliefs about your environment the rigidity of the institutions around you and your own physical exhaustion
+
+52:30.160 --> 52:36.720
+agency reserve calibration the three pillars of living a structurally optimistic life and here is the
+
+52:36.720 --> 52:42.720
+critical final takeaway regarding those pillars overestimating any single one of them degrades your
+
+52:42.720 --> 52:48.160
+chances of survival without touching the others they do not compensate for each other you could be
+
+52:48.160 --> 52:55.520
+perfectly calibrated a total realist and have a massive reservoir of wealth but if your agency is zero if no viable
+
+52:55.520 --> 53:01.360
+actions exist you're just comfortably realistically waiting for the end right you can have a million
+
+53:01.360 --> 53:06.160
+viable options and perfect realism but if your reservoir is completely drained the very first
+
+53:06.160 --> 53:12.000
+step you take into the sandbox will kill you and most dangerously you can have a full reservoir and a massive
+
+53:12.000 --> 53:18.000
+menu of great options but if you are miscalibrated and arrogantly take on a wildly complex 20-step plan
+
+53:18.000 --> 53:23.840
+assuming all your hazards are independent you will compound your errors straight into total ruin so to
+
+53:23.840 --> 53:29.840
+summarize all of this for you the listener true optimism is not a mood it is not a cute poster on
+
+53:29.840 --> 53:35.440
+a classroom wall with a cat hanging from a branch saying hang in there it is not a cognitive bias
+
+53:35.440 --> 53:40.320
+where you trick your brain into thinking the odds are better than they are true structural optimism is the
+
+53:40.320 --> 53:45.600
+exhausting rigorous maintenance of your action set it is constantly looking for new independent
+
+53:45.600 --> 53:50.560
+conversion channels so you don't get choked out by a single bottleneck is the humble work of setting up
+
+53:50.560 --> 53:57.040
+reliable boring streams of baseline support to lower your friends adjustment coefficients and it is an
+
+53:57.040 --> 54:01.840
+honest sometimes brutal accounting of your own limits and the limits of the world around you it is
+
+54:01.840 --> 54:07.760
+the daily physical work of maintaining transformability in a world that tends toward decay i want to leave
+
+54:07.760 --> 54:13.440
+you with one final provocative thought to mull over building on something from the paper regarding the two
+
+54:13.440 --> 54:19.840
+regimes of ruin constrained hope think deeply about this if an attempt you want to make has a high
+
+54:19.840 --> 54:24.720
+chance of failure and that failure will drop your reservoir below your baseline threshold meaning the
+
+54:24.720 --> 54:30.000
+failure will fundamentally destroy your life then no amount of potential reward makes that action
+
+54:30.000 --> 54:36.160
+logically admissible it does not matter if the payoff is a billion dollars or eternal fame if the failure
+
+54:36.160 --> 54:42.560
+ruins you the math dictates you do not take the bet the risk is mathematically forbidden the headroom in that
+
+54:42.560 --> 54:48.880
+scenario is negative the attempt is irrational exactly therefore the ultimate act of an optimist is not blindly
+
+54:48.880 --> 54:53.200
+taking a massive romantic leap of faith and hoping a net magically appears to catch you
+
+54:53.920 --> 55:00.880
+that is epistemic delusion disguised as bravery the ultimate act of a true optimist is doing the tedious
+
+55:00.880 --> 55:07.520
+unglamorous everyday work of building up enough headroom in your reserves saving that extra month of emergency money
+
+55:07.520 --> 55:12.720
+building that extra network of supportive friends stubbornly maintaining your physical health you build
+
+55:12.720 --> 55:18.160
+that headroom brick by boring brick so that when you finally do take that massive long shot leap on your
+
+55:18.160 --> 55:25.360
+agency surface the statistically inevitable failure is entirely survivable by staging your risks you transform
+
+55:25.360 --> 55:31.200
+a mathematically foolish gamble into a perfectly rational structurally sound act of hope you ensure that the
+
+55:31.200 --> 55:36.880
+failure simply lands you back on your agency surface a little bruised but entirely ready to make the next move
+
+55:36.880 --> 55:41.680
+let's bring it all the way back to our master mechanic looking at that rusted engine in the junkyard
+
+55:42.320 --> 55:47.680
+when we started this deep dive we said the mechanic isn't delusional they just see a sequence of
+
+55:47.680 --> 55:53.520
+repairs that we don't but now after exploring the map we know the whole truth the mechanic isn't just
+
+55:53.520 --> 55:58.560
+looking at the engine they are looking at their own toolbox they are looking at the clock on the wall
+
+55:58.560 --> 56:03.680
+they are measuring their own physical energy and frustration levels they know that if they strip the very
+
+56:03.680 --> 56:10.080
+first rusted bolt they already have three completely independent ways to drill it out they have built
+
+56:10.080 --> 56:15.120
+the reserve they have mapped the agency surface and they are perfectly calibrated to the exact density of
+
+56:15.120 --> 56:25.120
+the rust that is why they can stand in a junkyard and smile at a broken thing that is the true root of optimism
+
