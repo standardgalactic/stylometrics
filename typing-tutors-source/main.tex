@@ -1,0 +1,65 @@
+\documentclass[11pt,openany]{book}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+\setlist{itemsep=0.2em,topsep=0.4em}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{observation}{Observation}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% evidence flags
+\newcommand{\needs}[1]{\textbf{[Source needed: #1]}}
+\newcommand{\inferred}[1]{\textit{(Inference: #1)}}
+\newcommand{\design}[1]{\textit{(Design, not history: #1)}}
+
+% notation
+\newcommand{\Kset}{K}
+\newcommand{\Newk}{N}
+\newcommand{\Vocab}{V}
+\newcommand{\Sig}{\Sigma}
+\newcommand{\E}{\mathbb{E}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator{\Fatigue}{Fatigue}
+\DeclareMathOperator{\Frustration}{Frustration}
+\DeclareMathOperator{\Transfer}{Transfer}
+\DeclareMathOperator{\wpm}{WPM}
+
+\fvset{fontsize=\small,frame=single,framesep=2mm}
+
+\title{\Huge\textbf{An Introduction to Typing Tutors}\\[0.6em]
+\Large From Shorthand to Letter Invaders:\\
+The Machines, Exercises, and Games That Taught Us to Type}
+\author{Flyxion\\ \small Independent Researcher}
+\date{September 2026\\ \small Working draft}
+
+\begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
+
+\input{preface}
+
+\mainmatter
+\input{part1}
+\input{part2}
+\input{part3}
+\input{part4}
+\input{part5}
+\input{part6}
+\input{part7}
+\input{part8}
+
+\appendix
+\input{appendices}
+
+\end{document}
