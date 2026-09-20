@@ -1,0 +1,66 @@
+\part{Design}
+
+\chapter{Specification for an Ideal Tutor}
+
+The specification that follows collects the findings of the book into requirements. It is a design and makes no claim that any historical tutor met it.
+
+\section{Requirements}
+
+\begin{enumerate}
+\item \textbf{Historical exercise modes.} The tutor supports the restricted-alphabet ladder of Chapter~8, the full-alphabet lesson template of the workbook (speed drill, keyboard drill, alphabet drill, feature drill, paced practice, timed writing), and coverage exercises.
+\item \textbf{Both layouts.} The tutor accepts a layout as a parameter and regenerates the curriculum from the template of Chapter~23, offering position matching and letter matching as options (Chapter~24).
+\item \textbf{Two error rates.} The tutor reports the uncorrected and the corrected error rates separately (Chapter~17), and offers a no-correction mode that reproduces the workbook's policy.
+\item \textbf{Transition-specific hesitation.} The tutor maintains the matrix $T_{ab}$ and selects transition drills for cells whose normalized latency is high.
+\item \textbf{Rhythm without forced uniformity.} A pacing signal supplies a target band for inter-key intervals, not a single tempo, so that natural variation in the intervals of hard transitions is not penalized.
+\item \textbf{A configurable falling-letter game.} A Letter Invaders descendant exposes its key set $\Kset$, draw distribution, speed curve $v(n)$, and penalty policy as parameters (Chapter~20).
+\item \textbf{Transfer support.} For a retraining learner the tutor begins with keys whose positions are unchanged, shows displaced keys explicitly, and accepts learner-authored mnemonics for regions of the keyboard.
+\item \textbf{A complete ledger.} Everything above is recorded in the practice ledger of Chapter~27.
+\end{enumerate}
+
+\section{Selection}
+
+Lesson selection follows the optimization of Chapter~17. A tutor conforming to this specification is fully adaptive in the sense of that chapter: its selection depends on $H$, $E$, $T$ and $R$ and not only on $V$.
+
+\section{Threshold Rules Reconsidered}
+
+The workbook advances a learner by a fixed sequence with tests every fifth lesson. A software tutor can retain the tests but should not treat a threshold as the only signal. A test result is one entry in the ledger, and the learner's history of transitions and corrections is available to whoever, human or program, decides on advancement.
+
+\chapter{The Practice Ledger}
+
+The paper tutor's typed page contains every uncorrected error, and most software tutors replace it with a number. Some kept more: the catalog description of Typing Tutor III (Chapter~18) mentions per-user records, status reports, and progress graphs, so the idea of a durable record was present in the DOS era in summary form. The ledger restores the page and adds what the page lacked: time.
+
+\section{Requirements}
+
+\begin{itemize}
+\item \textbf{Append-only.} Entries are added and never altered.
+\item \textbf{Complete.} Every keystroke is recorded with the prompt position, the key struck, and a timestamp, including corrections.
+\item \textbf{Derivable.} Every summary, such as words per minute or an error rate, can be recomputed from the ledger, so that improvement can be inspected and not merely announced by a badge.
+\item \textbf{Renderable as a page.} The final text of any session can be printed as a typed page, so that a supervisor or the learner can read it as the paper tutor was read.
+\end{itemize}
+
+\section{A Schema}
+
+A session is a header followed by a sequence of events.
+
+\begin{Verbatim}
+{"session":"S0412","layout":"dvorak","lesson":"ex1","order":"position",
+ "mode":"no-correction","pace":null}
+{"t":0.000,"prompt_pos":0,"expected":"a","struck":"a"}
+{"t":0.412,"prompt_pos":1,"expected":"o","struck":"o"}
+{"t":0.981,"prompt_pos":2,"expected":"e","struck":"u"}
+{"t":1.377,"prompt_pos":3,"expected":"u","struck":"u"}
+\end{Verbatim}
+
+From this record the tutor derives $V$ (from counts and time), $H$ (from the differences of $t$), $E$ (from the pairs of expected and struck keys), $T$ (from the intervals grouped by consecutive expected keys), and $R$ (from correction events).
+
+\section{Ledger and Page}
+
+The ledger's page rendering is the direct descendant of the typed sheet filed behind a completion sheet. Where the sheet held every uncorrected error and no timing, the ledger holds both, so nothing that the paper tutor preserved is lost and the time dimension is added. The chapter therefore closes the argument of the book: the paper tutor was a program whose state was a stack of pages, and the ideal software tutor is one whose state is a complete, inspectable record.
+
+\chapter*{Study Questions, Part VIII}
+\addcontentsline{toc}{chapter}{Study Questions, Part VIII}
+\begin{enumerate}
+\item Specify a schema field that would let the ledger distinguish a corrected error from an uncorrected one.
+\item From the ledger schema, derive the matrix $T_{ab}$ for one session.
+\item Render a session as a page. What information does the page lose relative to the ledger?
+\end{enumerate}
