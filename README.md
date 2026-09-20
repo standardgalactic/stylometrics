@@ -108,3 +108,5 @@ theoretical formulations.
 
 The collection forms part of the broader Flyxion / Galactromeda research
 corpus.
+
+![](retro-illustration.png)
