@@ -1,0 +1,595 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Pagella}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1.1in}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\Pr}{\mathbb{P}}
+\newcommand{\tv}{\mathrm{TV}}
+\newcommand{\Xv}{X_{\mathrm{v}}}
+\newcommand{\Xd}{X_{\mathrm{d}}}
+
+\title{The Roots of Optimism}
+\author{Flyxion\\ \small Independent Researcher}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Optimism is usually modeled as a favorable distortion of probability. This essay proposes a structural alternative: optimism concerns \emph{transformability}, the availability of actions that can convert damaged states into viable ones. Agency is represented by the feasible action set, repair capacity by a stochastic reserve, and resilience by the minimum cut of a conversion network. The account distinguishes three questions: whether a worthwhile move exists, whether its failure can be survived, and whether beliefs about both remain corrigible. It shows that coupled hazards raise expected shortfall, that overestimated institutional permeability and underpriced continuation generate explicit regret, that failure to update or to report honestly transmits error to observers, and that clean experience constrains rare ruin only to order $1/k$. Hope requires neither certainty nor a high probability of success, but warranted and sustainable hope require actual transformability, adequate reserve, and calibration. The account is theoretical and makes no empirical claim.
+\end{abstract}
+
+\section{Introduction}
+
+The standard formalization of optimism places it in the prior.\footnote{``The prior'' is used loosely. The distortion may equally sit in the likelihood, in the loss function, or in the updating rule. The point is only that in these models the object being distorted is a probability or an expectation.} An optimist, on this view, assigns to favorable events a probability higher than the evidence warrants, or expects a better mean outcome than the frequency of outcomes supports. The literature on the planning fallacy and on unrealistic optimism\footnote{The two are related but not identical. The planning fallacy concerns forecasts of completion time for one's own projects, whereas unrealistic optimism concerns absolute or comparative estimates of risk. Neither is modeled here.} proceeds in these terms, and so do most economic models in which optimism enters as a distortion of beliefs.\footnote{In such models optimism is typically a parameter of a subjective distribution, for instance a shifted mean or a reweighted set of states, and the object of study is the decision that results.}
+
+That formalization captures one thing and misses another. It captures the possibility of miscalibration. It misses the case in which an agent remains optimistic while assigning modest probabilities to any particular success, because what sustains the optimism is not confidence in an outcome but confidence that a next move exists.\footnote{In the vocabulary of games, the agent is not asserting that it is winning but that it is not in a position with no legal moves.} An agent that repeatedly takes on unfinished, broken, or incomplete things and treats each defect as an occasion for action displays a disposition of this second kind. Its characteristic belief is not that repairs will succeed but that repairs remain \emph{available}.\footnote{Availability means feasibility given the agent's resources at the time, not logical possibility. A repair that would require a skill the agent could acquire only over years is possible in the second sense and unavailable in the first.}
+
+This essay formalizes that disposition.\footnote{``Disposition'' is used in its ordinary sense of a tendency to act or to judge in a certain way. The formalization concerns the structural preconditions of the disposition, not its psychology.} The central object is a state space with a set of locally feasible actions and a notion of viability, and optimism is located in the structure of what can be reached from damaged states. Sections 2 through 9 develop the components of the account and show that they are independent,\footnote{Each of Sections 2 through 9 can be read after Section 2 alone, except that Sections 8 and 9 use the value function of Section 3 and the reserve of Section 4.} Section 10 gives miscalibration its dynamics, Section 11 adds a ruin constraint and studies what records can certify, and Section 12 states the limits of the account.
+
+The account organizes optimism around three auditable questions. Does a worthwhile move exist? This distinguishes hope from despair.\footnote{Despair is used in the restricted sense of Section 8, the conclusion that the viable action set is empty. It is not a claim about affect.} Can failure be survived? This distinguishes experimentation from ruin.\footnote{The distinction is drawn formally in Proposition 19.} Is the agent's model corrigible? This distinguishes optimism from self-sealing belief.\footnote{A belief is self-sealing here if the agent's processing of evidence prevents the evidence from reaching it. The formalization is the updating weight $w$ of Section 10.} The first is a property of the viable action set, the second of the reserve relative to the shock, and the third of how evidence is processed over time.
+
+Two senses of optimism should be kept apart. \emph{Structural} optimism is actual viable transformability, a property of the agent and its world that may be true or false.\footnote{``True or false'' should be read as holding or failing to hold in the actual dynamics $P$, as opposed to the perceived dynamics $\hat P$.} \emph{Epistemic} optimism is belief in viable transformability, which may be calibrated or miscalibrated.\footnote{Calibration is understood as proximity of the perceived kernel to the actual kernel in total variation, made precise in Proposition 1 and in condition (c) of Definition 4.} Correspondingly, hope concerns the nonemptiness of the perceived viable action set $\hat{\mathcal A}_{\mathrm v}(x)$; \emph{warranted} hope concerns the nonemptiness of $\mathcal A_{\mathrm v}(x)$ under the actual dynamics; and \emph{sustainable} hope adds a reserve sufficient to survive acting on it, that is, $\mathcal A^\varepsilon_{\mathrm v}(x)\neq\varnothing$.
+
+\section{Setting: viability, repair, and perceived transformability}
+
+Let $(X,\mathcal X)$ be a measurable state space. An agent's state at time $t$ is $x_t\in X$; in the applications below it is a tuple
+\[
+x_t=(r_t,k_t,s_t,d_t,h_t),
+\]
+recording material resources, practical knowledge, social support, accumulated obligations or danger, and health and labor capacity.\footnote{The five components are illustrative. Nothing below depends on their number, and the reserve of Section 4 is a scalar summary of them.} A measurable set $\Xv\subseteq X$ of \emph{viable} states is given, with complement $\Xd=X\setminus\Xv$ of \emph{damaged} states.\footnote{Viability is taken as primitive. In applications it would be defined by thresholds on the components of the state, for instance a minimum of health and labor capacity together with a bound on obligations, but the results below use only the measurability of $\Xv$.} In each state $x$ a set $\mathcal A(x)$ of locally feasible actions is available,\footnote{``Locally'' signals that the actions are those available from the agent's present position and resources, in contrast to actions that would first require a different state.} each action $a$ having a cost $c(x,a)\ge 0$. An action transforms the state according to
+\[
+x_{t+1}=F(x_t,a_t,\xi_t),
+\]
+where the disturbance $\xi_t$ collects weather, illness, mechanical failure, institutional decisions, animal behavior, and other exogenous events.\footnote{Exogeneity is an assumption: disturbances are taken not to depend on the agent's action except through the state. Where an action changes the distribution of disturbances, the change is absorbed into the kernel $P(x,a,\cdot)$.} Write $P(x,a,\cdot)$ for the law of $F(x,a,\xi)$, assumed to be a measurable kernel in $(x,a)$.\footnote{That is, $(x,a)\mapsto P(x,a,B)$ is measurable for every measurable $B$, the standard requirement for a controlled Markov kernel.} A \emph{feasible policy} is a rule that chooses at each time an action in $\mathcal A(x_t)$ as a measurable function of the history observed so far.\footnote{History-dependent policies are allowed so that repair may adapt to what has already been tried. For the value function of Section 3, Markov policies would suffice by the standard reduction for discounted problems.}
+
+\begin{definition}[Repairable world]
+Fix a horizon $n\ge1$ and a tolerance $\varepsilon\in[0,1)$.\footnote{The exclusion of $\varepsilon=1$ avoids the trivial case in which every world is repairable.} The world is \emph{$(n,\varepsilon)$-repairable} if for every $x\in\Xd$ there is a feasible policy that, started at $x$, reaches $\Xv$ within $n$ steps with probability at least $1-\varepsilon$.\footnote{The quantifier is uniform over damaged states. A pointwise variant, in which $n$ and $\varepsilon$ may depend on $x$, is implied by the uniform one and is what the later sections actually use.}
+\end{definition}
+
+This is the mathematical form of the assumption that a broken or incomplete condition is rarely treated as terminal.\footnote{``Rarely'' corresponds to $\varepsilon<1$ being small. If $\varepsilon$ is close to $1$ the definition is nearly vacuous.} It does not say that repair is certain: $\varepsilon$ may be substantial. It says that for damaged states a repairing policy exists.\footnote{A repairing policy is required to exist, not to be known. Whether the agent knows it is the subject of the discussion of perceived kernels that follows.}
+
+The agent's belief about the dynamics need not agree with the actual dynamics. Let $\hat P$ denote the kernel the agent believes, and write $\hat\Pr^\pi_x$ and $\Pr^\pi_x$ for the path laws of a policy $\pi$ under the perceived and actual kernels. An agent is \emph{perceptually} $(n,\varepsilon)$-repairable if the condition of Definition 1 holds under $\hat P$. The gap between perceived and actual repairability is controlled by the calibration error of the kernel.\footnote{Total variation is chosen because it bounds the difference in probability of every event, which is what a repair guarantee requires. Weaker divergences would give weaker conclusions on individual events.}
+
+\begin{proposition}[Calibration]
+Suppose $\sup_{x,a}\tv\bigl(P(x,a,\cdot),\hat P(x,a,\cdot)\bigr)\le\eta$. Then for every policy $\pi$, every starting state $x$, and every measurable event $E$ of the first $n$ steps of the path,\footnote{The total variation distance between probability measures $\mu$ and $\nu$ is $\sup_E|\mu(E)-\nu(E)|$.}
+\[
+\bigl|\Pr^\pi_x(E)-\hat\Pr^\pi_x(E)\bigr|\le\min\{1,n\eta\} .
+\]
+Consequently, if $\varepsilon+n\eta<1$, a perceptually $(n,\varepsilon)$-repairable world is actually $(n,\varepsilon+n\eta)$-repairable. When $\varepsilon+n\eta\ge1$ the estimate remains valid but yields no nontrivial repairability guarantee.
+\end{proposition}
+
+\begin{proof}
+Let $\mu_k,\hat\mu_k$ be the laws under $\Pr^\pi_x$ and $\hat\Pr^\pi_x$ of the history up to step $k$. Then $\mu_{k+1}=\mu_k\otimes\pi\otimes P$ and $\hat\mu_{k+1}=\hat\mu_k\otimes\pi\otimes\hat P$, where the policy kernel $\pi$ is common. By the triangle inequality for total variation,
+\[
+\tv(\mu_{k+1},\hat\mu_{k+1})\le\tv(\mu_k\otimes\pi\otimes P,\ \hat\mu_k\otimes\pi\otimes P)+\tv(\hat\mu_k\otimes\pi\otimes P,\ \hat\mu_k\otimes\pi\otimes\hat P)\le\tv(\mu_k,\hat\mu_k)+\eta ,
+\]
+where the first term is at most $\tv(\mu_k,\hat\mu_k)$ because applying the same kernel $\pi\otimes P$ to two measures cannot increase their total variation.
+Since $\mu_0=\hat\mu_0$, induction gives $\tv(\mu_n,\hat\mu_n)\le n\eta$, and $|\mu_n(E)-\hat\mu_n(E)|\le\tv(\mu_n,\hat\mu_n)$ \cite{levin}.
+\end{proof}
+
+The bound grows linearly with the length of the repair chain.\footnote{The bound is a worst case over policies and events. To first order it is attained, for instance, for the event that all $n$ independent trials succeed when the success probability is near $1$, since $(\theta+\eta)^n-\theta^n\approx n\eta\theta^{n-1}$. For large $n$ the truncation at one dominates.} Miscalibration that is harmless for a one-step repair can therefore accumulate into a serious overestimate for a repair requiring many dependent steps, which is where an agent living close to its limits is most exposed.
+
+\section{The agency surface and the value of flexibility}
+
+The set of states an agent believes it can reach depends on its resources, skills, relationships, and endurance.\footnote{Endurance is included because repair is extended in time, and a capacity that depletes with use constrains what can be reached even when material resources are ample.} For a budget $B\ge0$ and a reliability level $\rho\in(0,1]$, let $\mathcal R_{B,\rho}(x)$ be the set of states $y$ for which there are a feasible policy $\pi$ and a stopping time $\tau$ with $\Pr^\pi_x(x_\tau=y,\ \tau<\infty)\ge\rho$ and $\sum_{t<\tau}c(x_t,a_t)\le B$ almost surely on $\{x_\tau=y,\ \tau<\infty\}$ (in the perceived model, when the perceived agency surface is intended). For a countable state space this is well defined; for a continuous one, exact arrival at $y$ may have probability zero, and $\{x_\tau=y\}$ should be replaced by arrival in a neighborhood of $y$. Then $\mathcal R_{B,\rho}(x)$ is nondecreasing in $B$ and nonincreasing in $\rho$.\footnote{Monotonicity in $B$ holds because a policy of cost at most $B$ also has cost at most $B'$ for $B'\ge B$, and monotonicity in $\rho$ because a policy achieving reliability $\rho$ achieves every smaller level.} If $\varrho(x)$ denotes the repair reserve of an agent in state $x$ (defined in Section 4),\footnote{The reliability level $\rho$ and the reserve $\varrho$ are distinct quantities, and the similarity of the symbols is unfortunate. The reserve supplies the budget, while $\rho$ is a fixed parameter of the surface.} the \emph{agency surface} is
+\[
+\mathcal S(x)=\mathcal R_{\varrho(x),\rho}(x).
+\]
+A finished consumer object may offer comfort with a small agency surface, since it can be used only as designed.\footnote{``Only as designed'' is a claim about the feasible action set, not about the object: an object designed with many uses in mind has a larger action set than one designed for a single use.} An unfinished property, a broken machine, or an untrained animal may offer little immediate utility with a large one.\footnote{The claim concerns the size of $\mathcal S$ relative to $U$. Unfinished things are not always better: the surface must be reachable within the reserve, and the proposition below gives the exact sense in which flexibility is valuable.}
+
+The systematic preference for such states admits a formal explanation that does not rely on an ad hoc bonus for reachability. Let $U:X\to\R$ be bounded present utility, $\gamma\in(0,1)$ a discount factor,\footnote{Discounting is used for convenience. An undiscounted problem with an absorbing set of terminal states would give the same monotonicity result, since the proof uses only inclusion of feasible policy sets.} and for an action correspondence $\mathcal A$ define the optimal value
+\[
+V^\ast_{\mathcal A}(x)=\sup_{\pi\ \mathcal A\text{-feasible}}\ \E^\pi_x\Bigl[\sum_{t\ge0}\gamma^t\bigl(U(x_t)-c(x_t,a_t)\bigr)\Bigr].
+\]
+
+\begin{proposition}[Value of flexibility]
+If $\mathcal A(x)\subseteq\mathcal A'(x)$ for every $x$, then $V^\ast_{\mathcal A}(x)\le V^\ast_{\mathcal A'}(x)$ for every $x$.\footnote{The value functions are compared pointwise in $x$. Nothing is asserted about how the two optimal policies differ.}
+\end{proposition}
+
+\begin{proof}
+Every $\mathcal A$-feasible policy is $\mathcal A'$-feasible, so the supremum defining $V^\ast_{\mathcal A'}$ is taken over a larger set.\footnote{The inequality can be strict or an equality. It is an equality when no optimal policy of the larger problem uses an action outside $\mathcal A$, which is why flexibility has value only where some option would actually be exercised.}
+\end{proof}
+
+This is the formal content of the classical result that preferences over sets of future options exhibit a taste for flexibility \cite{koopmans,kreps}, and of the real-options view that the ability to defer and choose has value \cite{dixit}.\footnote{The real-options literature concerns irreversible investment under uncertainty, where the option to wait has value. The present setting is broader in one respect (options need not be timing options) and narrower in another (no market prices are assumed).} It shows that enlarging the feasible actions at a given state can only raise its optimal value. Comparing different states is a further step: a state with more available actions can be worth more than one with higher present utility when the added actions compensate for the difference, as in the example below.
+
+\begin{example}[An unfinished state can outvalue a finished one]
+Let $x_{\mathrm f}$ be a finished state that is absorbing with no useful actions\footnote{``No useful actions'' means that any available action leaves the state unchanged at nonnegative cost, so the optimal value is that of remaining in place.} and constant utility $u_{\mathrm f}$, so $V^\ast(x_{\mathrm f})=u_{\mathrm f}/(1-\gamma)$. Let $x_{\mathrm u}$ be an unfinished state with present utility $u_{\mathrm u}<u_{\mathrm f}$ from which a single action of cost $c$ leads deterministically to an absorbing state of constant utility $u_\ast$.\footnote{Deterministic transitions and absorbing endpoints are chosen to make the algebra transparent. With stochastic transitions the same comparison holds in expectation.} Then
+\[
+V^\ast(x_{\mathrm u})\ \ge\ u_{\mathrm u}-c+\gamma\,\frac{u_\ast}{1-\gamma},
+\]
+which exceeds $V^\ast(x_{\mathrm f})$ whenever (this requires $u_\ast>u_{\mathrm f}$)
+\[
+\gamma\,\frac{u_\ast-u_{\mathrm f}}{1-\gamma}\ >\ (u_{\mathrm f}-u_{\mathrm u})+c .
+\]
+A state with lower present utility is preferable exactly when the discounted gain from the reachable future outweighs the present sacrifice and the cost of the action.\footnote{``Preferable'' here means strictly larger optimal value, using the lower bound for the unfinished state. The condition is therefore sufficient, and necessary only if the displayed action is optimal at $x_{\mathrm u}$.}
+\end{example}
+
+\begin{remark}
+A simple surrogate is $V(x)=U(x)+\lambda\,\mu(\mathcal S(x))$, with $\mu$ a measure of the size of the agency surface and $\lambda>0$ the weight placed on transformability. It expresses the right qualitative idea but has no derivation.\footnote{The surrogate is monotone in the size of the surface but does not depend on which states the surface contains, so two surfaces of equal measure are scored equally regardless of what they offer.} The optimal value $V^\ast$ is the derived quantity, and $\mu(\mathcal S(x))$ is best understood as a proxy for it. Unlike the surrogate, $V^\ast$ counts a reachable state only to the extent that it is worth reaching.\footnote{This is also why $\lambda$ cannot be read as a price of flexibility in general: the value of the reachable set depends on the utility landscape, not only on its size.}
+\end{remark}
+
+
+\section{Repair capacity as a reserve}
+
+The agent remains viable only while it retains enough capacity to repair the damage it receives.\footnote{``Viable'' in this section is used in the reserve sense, that the reserve stays above a threshold. It is related to, but not identical with, membership in $\Xv$.} Let the \emph{repair reserve} be a weighted combination of its resources,\footnote{The word ``reserve'' is chosen over ``capital'' to stress that the quantity is held against shocks and not invested for return.}
+\[
+\varrho_t=\omega_k k_t+\omega_s s_t+\omega_r r_t+\omega_h h_t,
+\]
+with nonnegative weights recording how much each form of capacity contributes to repair,\footnote{The weights are not determined by the framework. They are the place where the relative importance of skill, support, money, and health for repair enters, and different repair tasks would have different weights.} and let
+\[
+\varrho_{t+1}=\varrho_t+Y_t,\qquad Y_t=L_t-D_t-M_t,
+\]
+where $L_t$ collects learning, earnings, recovered health, and assistance;\footnote{Including learning among the increments reflects that skill accumulation raises repair capacity. In the state it corresponds to growth in $k_t$.} $D_t$ is incoming damage; and $M_t$ is unavoidable maintenance.\footnote{Maintenance is a recurring drain independent of any particular shock. Separating it from damage $D_t$ is a bookkeeping convenience that does not affect the results, since only the sum $L_t-D_t-M_t$ enters.} The linear aggregation is a modeling choice.\footnote{A nonlinear aggregate, for instance one exhibiting complementarity between skill and material, would change the increments but not the structure of the ruin bound, provided the reserve remains a scalar with independent increments.} The agent is viable while $\varrho_t>\Theta$, where $\Theta$ is the repair requirement generated by its current commitments; for tractability $\Theta$ is treated here as a constant, or as an upper bound of a state-dependent requirement.\footnote{If $\Theta$ depends on the state, replacing it by its supremum is conservative: the reserve then stays above every state-dependent threshold whenever it stays above the supremum.}
+
+Assume the increments $Y_t$ are independent, identically distributed, bounded,\footnote{Boundedness is used only to ensure that the moment function is finite for every $s\ge0$. A light left tail would suffice.} with $\E Y>0$ and $\Pr(Y<0)>0$. This treats increments as uncoupled; Section 5 treats the coupling of hazards separately, and Section 12 notes how the two could be combined. The function $\varphi(\kappa)=\E e^{-\kappa Y}$ is convex on $[0,\infty)$ with $\varphi(0)=1$ and $\varphi'(0)=-\E Y<0$, and $\varphi(\kappa)\to\infty$ as $\kappa\to\infty$,\footnote{The divergence uses $\Pr(Y<0)>0$: on the event $\{Y<-\delta\}$ the integrand exceeds $e^{\kappa\delta}$.} so there is a unique $\kappa>0$ with
+\[
+\E\,e^{-\kappa Y}=1 .
+\]
+This $\kappa$ is the \emph{adjustment coefficient}; it is larger when the drift is larger and the fluctuations smaller \cite{asmussen}.\footnote{In the ruin literature it is also called the Lundberg exponent or Lundberg coefficient, and the associated inequality is the Lundberg inequality. For Gaussian increments with mean $m$ and variance $v$ it equals $2m/v$.}
+
+\begin{proposition}[Ruin bound]
+For a starting reserve $u>\Theta$,\footnote{The condition $u>\Theta$ excludes the case in which the agent is already at or below the threshold.}
+\[
+\Pr\bigl(\exists\,t\ge 0:\ \varrho_t\le\Theta\ \big|\ \varrho_0=u\bigr)\ \le\ e^{-\kappa(u-\Theta)} .
+\]
+\end{proposition}
+
+\begin{proof}
+Let $W_t=\exp\{-\kappa(\varrho_t-\Theta)\}$. Then $\E[W_{t+1}\mid\mathcal F_t]=W_t\,\E e^{-\kappa Y}=W_t$, so $W_t$ is a martingale.\footnote{It is a martingale with respect to the natural filtration of the increments. The choice of $\kappa$ is exactly what makes the conditional expectation of the exponential equal to one.} Let $\tau=\inf\{t:\varrho_t\le\Theta\}$. On $\{\tau<\infty\}$, $W_\tau\ge1$. Optional stopping at the bounded time $\tau\wedge n$ gives
+\[
+e^{-\kappa(u-\Theta)}=W_0=\E\,W_{\tau\wedge n}\ \ge\ \Pr(\tau\le n).
+\]
+Letting $n\to\infty$ proves the claim.\footnote{The passage to the limit uses continuity of measure from below: the events $\{\tau\le n\}$ increase to $\{\tau<\infty\}$.}
+\end{proof}
+
+The bound makes precise the role of assistance from outside the agent.\footnote{Assistance is used in the broad sense of any positive contribution to the increments that does not originate in the agent's own repair activity, including gifts, shared labor, and forbearance.} A one-time injection $\Delta$ raises the starting reserve and multiplies the ruin bound by $e^{-\kappa\Delta}$.\footnote{This is a statement about the bound. The actual ruin probability need not scale in exactly this way.} A standing stream of assistance does more.
+
+\begin{proposition}[Support is monotone]
+Let $Z\ge0$ be an assistance increment independent of $Y$, and let $\kappa,\kappa'$ be the adjustment coefficients of $Y$ and $Y+Z$. Then $\kappa'\ge\kappa$. Consequently the ruin bound $e^{-\kappa'(u-\Theta)}$ obtained with assistance is no larger than $e^{-\kappa(u-\Theta)}$.\footnote{The comparison is between bounds. The true ruin probabilities are also ordered, by a pathwise coupling, since adding a nonnegative increment at each step can only raise the reserve process.}
+\end{proposition}
+
+\begin{proof}
+Let $\psi(s)=\E e^{-s(Y+Z)}=\E e^{-sY}\,\E e^{-sZ}\le\E e^{-sY}$ for $s\ge0$, since $Z\ge0$. At $s=\kappa$ this gives $\psi(\kappa)\le1$. The function $\psi$ is convex with $\psi(0)=1$, so it is at most $1$ on $[0,\kappa]$, and its unique positive root $\kappa'$ therefore satisfies $\kappa'\ge\kappa$. (If $Y+Z\ge0$ almost surely, ruin is impossible.)
+\end{proof}
+
+The proposition and its converse are what one would expect: assistance that arrives regularly lowers the ruin bound at every reserve level, and the burden of unproductive expenditure raises it. Conversely, suppose $Y'\le Y$ almost surely and that $\E Y'>0$ and $\Pr(Y'<0)>0$, so that both adjustment coefficients exist. Then $\E e^{-sY'}\ge\E e^{-sY}$, so the moment function of $Y'$ is at least $1$ at $s=\kappa$, and by convexity its positive root $\kappa'$ satisfies $\kappa'\le\kappa$. If instead $\E Y'\le0$, no positive adjustment coefficient exists and, under the usual nondegeneracy conditions, ultimate ruin occurs with probability one. Excess burden can therefore do more than worsen the bound: it can remove the positive-drift regime on which the bound depends.
+
+
+\section{Coupled hazards}
+
+An agent evaluating a single hazard may judge it competently. A subtler error is to treat separate hazards as independent when they are coupled through common causes,\footnote{Coupling through a common cause is the simplest form of dependence and is what the mixture model captures. Other forms, such as sequential dependence in which one failure changes the probability of the next, would require a different construction.} as when a reduction in labor capacity delays repairs and delayed repairs produce new failures.
+
+The error needs to be stated with some care. Let $X_i\in\{0,1\}$ indicate failure of the $i$-th of $n$ obligations, with $\Pr(X_i=1)=p$, and let $N=\sum_iX_i$. Coupling of the kind described gives positive dependence among failures. A common representation is a mixture:\footnote{By de Finetti's theorem an infinite exchangeable sequence of Bernoulli variables is a mixture of independent sequences, which motivates the representation. For finite $n$ the mixture is a modeling assumption, not a theorem.} conditionally on a latent stress level $\Lambda\in[0,1]$ with $\E\Lambda=p$, the $X_i$ are independent Bernoulli$(\Lambda)$. The independent case is $\Lambda\equiv p$.\footnote{Any nondegenerate $\Lambda$ with mean $p$ gives a strictly positive pairwise correlation, equal to $\mathrm{Var}(\Lambda)/(p(1-p))$.}
+
+\begin{lemma}[Convexity of binomial expectations]
+Let $\phi:\{0,1,\dots,n\}\to\R$ have nonnegative second differences. Then $g(\theta)=\E\,\phi(\mathrm{Bin}(n,\theta))$ is convex on $[0,1]$.
+\end{lemma}
+
+\begin{proof}
+Differentiating the binomial probabilities gives
+\[
+g''(\theta)=n(n-1)\,\E\bigl[\phi(B+2)-2\phi(B+1)+\phi(B)\bigr],\qquad B\sim\mathrm{Bin}(n-2,\theta),
+\]
+which is nonnegative when the second differences of $\phi$ are nonnegative \cite{lorentz}.\footnote{The identity is the standard derivative formula for Bernstein polynomials, $\frac{d}{d\theta}\E\phi(\mathrm{Bin}(n,\theta))=n\,\E[\phi(B+1)-\phi(B)]$ with $B\sim\mathrm{Bin}(n-1,\theta)$, applied twice.}
+\end{proof}
+
+\begin{proposition}[Clustering of failures]
+Under the mixture model,
+\begin{enumerate}[label=(\roman*),nosep]
+\item $\mathrm{Var}(N)=np(1-p)+n(n-1)\,\mathrm{Var}(\Lambda)$, at least the independent value;\footnote{The excess variance $n(n-1)\mathrm{Var}(\Lambda)$ is quadratic in $n$, so it dominates the binomial variance once $n$ is large, whatever the size of $\mathrm{Var}(\Lambda)>0$.}
+\item $\Pr(N=0)=\E(1-\Lambda)^n\ge(1-p)^n$;
+\item for every reserve level $k$, $\E[(N-k)^+]\ \ge\ \E_{\mathrm{indep}}[(N-k)^+]$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) By the law of total variance, $\mathrm{Var}(N)=n\,\E[\Lambda(1-\Lambda)]+n^2\mathrm{Var}(\Lambda)$, and $\E[\Lambda(1-\Lambda)]=p-p^2-\mathrm{Var}(\Lambda)$. (ii) $\theta\mapsto(1-\theta)^n$ is convex, so Jensen's inequality gives the bound.\footnote{Jensen's inequality for the convex function $\theta\mapsto(1-\theta)^n$ gives $\E(1-\Lambda)^n\ge(1-\E\Lambda)^n$.} (iii) $j\mapsto(j-k)^+$ has nonnegative second differences, so by the Lemma $g$ is convex, and Jensen's inequality gives $\E g(\Lambda)\ge g(\E\Lambda)=g(p)$.
+\end{proof}
+
+Part (ii) shows that dependence makes the event ``nothing fails'' more likely than independence predicts, so an agent relying on a product of individual success probabilities underestimates the chance of a clean outcome.\footnote{Equivalently, the probability that at least one hazard materializes is smaller under dependence than under independence, while the probability of many simultaneous failures is larger.} Part (iii) shows that the same dependence raises the expected excess of failures over any reserve $k$. The error is therefore not that the independent calculation overstates the probability of complete success. It is that the independent calculation understates how often many things fail together, and a finite reserve is set against precisely that event. A reserve calibrated to the mean number of failures is undersized against clusters.\footnote{The mean number of failures is $np$ in both models, so a rule that sizes the reserve by the mean cannot distinguish them.}
+
+A second nonlinearity concerns the burden of concurrent commitments. Suppose $n$ activities each impose a burden $b$\footnote{The homogeneity of burdens and interaction strengths is a simplification. With heterogeneous $b_i$ and $\gamma_{ij}$ the same argument applies to the quadratic form $\sum_ib_i+\sum_{i<j}\gamma_{ij}b_ib_j$.} and each pair interacts with strength $\gamma>0$, so that
+\[
+B(n)=nb+\binom n2\gamma b^2 .
+\]
+
+\begin{proposition}[Burden threshold]
+The interaction terms exceed the linear terms exactly when $n>1+2/(\gamma b)$. If the reserve is $\varrho$ and viability requires $B(n)\le\varrho$, then the number of sustainable commitments satisfies
+\[
+n\ \le\ \frac{-(2b-\gamma b^2)+\sqrt{(2b-\gamma b^2)^2+8\gamma b^2\varrho}}{2\gamma b^2},
+\]
+and in particular
+\[
+n\ \le\ \tfrac12+\sqrt{\tfrac14+\frac{2\varrho}{\gamma b^2}}\ ,
+\]
+which grows like $\sqrt{\varrho}$, not linearly, once $\varrho$ is large compared with $1/(\gamma b^2)$. The sustainable integer number is the floor of the first bound.\footnote{Since $B(n+1)-B(n)=b+\gamma b^2n>0$, the feasible integers are exactly those up to the floor of the larger root, so the first bound is attained.}
+\end{proposition}
+
+\begin{proof}
+The interaction term exceeds the linear term when $\binom n2\gamma b^2>nb$, that is $(n-1)\gamma b/2>1$. The condition $B(n)\le\varrho$ is equivalent to $\gamma b^2n^2+(2b-\gamma b^2)n-2\varrho\le0$. The quadratic has one negative and one positive root, since the product of the roots is $-2\varrho/(\gamma b^2)<0$, so its solutions with $n\ge0$ lie below the larger root, which is the first bound. The simpler bound follows from $\binom n2\gamma b^2\le B(n)\le\varrho$, which gives $n(n-1)\le 2\varrho/(\gamma b^2)$.
+\end{proof}
+
+
+\section{Conversion rather than accumulation}
+
+An agent need not principally accumulate stable stocks. It may convert one form of capacity into another: money into equipment, equipment into mobility, mobility into work, work into property, property into income or experience. This can be represented as a directed graph $G=(V,E)$ whose vertices are forms of capacity and whose edges are feasible conversions.\footnote{Edges may carry conversion rates, costs, or probabilities of success. The unweighted version used here counts a conversion as available or not, and capacitated versions are mentioned below.}
+
+Let $S\subseteq V$ be a set of critical stocks and $T\subseteq V$ a set of essential outcomes. A count of all $S$--$T$ paths is a poor measure of resilience,\footnote{The number of paths can grow exponentially in the size of the graph even when a single edge carries all of them.} since paths sharing an edge fail together and the count can be inflated by repeated use of one channel. The appropriate quantity is the number of independent channels.
+
+\begin{definition}[Conversion resilience]
+The \emph{conversion resilience} $\lambda_G(S,T)$ is the maximum number of pairwise edge-disjoint directed paths from $S$ to $T$.\footnote{Edge-disjointness is the appropriate notion when conversions are the objects that can fail. When the vertices (forms of capacity) can fail, as when a single vehicle underlies several conversions, vertex-disjointness is the relevant notion, and the two can differ.}
+\end{definition}
+
+\begin{proposition}[Resilience is a minimum cut]
+$\lambda_G(S,T)$ equals the minimum number of edges whose removal leaves no directed path from $S$ to $T$. In particular the agent retains $S$--$T$ connectivity after the failure of any $\lambda_G(S,T)-1$ conversion channels, and $\lambda_G(S,T)$ is the largest number with that property.
+\end{proposition}
+
+\begin{proof}
+This is Menger's theorem for directed graphs \cite{menger,diestel}.\footnote{For sets $S$ and $T$ rather than single vertices, one adds a super-source joined to $S$ and a super-sink joined from $T$ and applies the theorem to the augmented graph.} Edge failures of fewer than the minimum cut cannot disconnect $S$ from $T$, and a set of edges of minimum-cut size does.
+\end{proof}
+
+Vertex-disjoint and capacitated versions follow from the vertex form of Menger's theorem and from the max-flow min-cut theorem. The formulation has the property that resilience is decoupled from the sheer number of resources held. An agent may hold many resources arranged so that every route to an essential outcome passes through a single conversion, and its resilience is then $1$.\footnote{Such a vertex is a cut vertex, and its failure disconnects $S$ from $T$.} Conversely an agent with few resources but several disjoint conversion routes is resilient in the sense defined.
+
+The repurposing of a failed structure is the smallest instance. If a failed investment leaves a state $x$ from which repurposing actions $\mathcal A_{\mathrm{rep}}(x)\subseteq\mathcal A(x)$ are available, its retained repurposing value is
+\[
+V_{\mathrm{rep}}(x)=U(x)+\sup_{a\in\mathcal A_{\mathrm{rep}}(x)}\Bigl\{-c(x,a)+\gamma\,\E\bigl[V^\ast(F(x,a,\xi))\bigr]\Bigr\}.
+\]
+Since the unrestricted policy set contains the policies that begin with a repurposing action, $V^\ast(x)\ge V_{\mathrm{rep}}(x)$; this is Proposition 2 applied at $x$ with the action set restricted to $\mathcal A_{\mathrm{rep}}(x)$. Failure therefore need not reduce the state to zero continuation value.\footnote{The inequality $V^\ast(x)\ge V_{\mathrm{rep}}(x)$ holds because policies that begin with a repurposing action and continue optimally are feasible. It can be strict when a non-repurposing action is better.}
+
+\section{Institutional permeability}
+
+An agent's plans may assume that institutions will translate demonstrated competence, need, or effort into recognition: that a capability demonstrated outside a formal path will be accepted as a credential, that a supported claim will be treated as an entitlement, that need will be met before payment is produced. Such plans presuppose a high \emph{permeability} of institutions.\footnote{Permeability is borrowed from the vocabulary of membranes and is meant to suggest selective passage: some capabilities cross the institutional boundary and others do not.}
+
+Let $K$ be the set of capabilities an agent can demonstrate, with a measure $\nu$ on the space of capabilities, and let $C$ be the set an institution actually recognizes, its admissibility filter, which need not be contained in $K$.\footnote{If $C$ contains capabilities the agent lacks, those simply do not enter the ratio, since only $C\cap K$ is counted.} Define the permeability
+\[
+p_I=\nu(C\cap K)/\nu(K)=\Pr(\text{recognition}\mid\text{demonstrated competence}).
+\]
+Recognized competence is actual competence intersected with the filter: $C\cap K$. Capability acquired outside a recognized path, or need without payment, may lie outside $C$. The agent holds a belief $\hat p_I$ that may differ from $p_I$, and the characteristic naive error is $\hat p_I\gg p_I$.\footnote{Overestimation is singled out because it favors continued reliance on the institutional path. Underestimation produces the opposite misallocation, with regret of the mirror-image form.}
+
+Consider a choice between an institutional path with reward $R_I$ and cost $c_I$\footnote{Two paths are the minimal setting in which permeability matters. With more paths the threshold becomes a comparison of the institutional path against the best alternative.} and an informal path with success probability $q$, reward $R_F$, and cost $c_F$. The institutional path is optimal exactly when $pR_I-c_I\ge qR_F-c_F$, that is, when $p\ge p^\ast$ with $p^\ast=(qR_F-c_F+c_I)/R_I$.
+
+\begin{proposition}[Regret from overestimated permeability]
+Suppose $R_I>0$ and $\hat p_I\ge p_I$. An agent with belief $\hat p_I$ chooses the institutional path exactly when $\hat p_I\ge p^\ast$. Its regret relative to an agent who knows $p_I$ is
+\[
+\mathrm{Reg}=(p^\ast-p_I)\,R_I\ \mathbf 1\{p_I<p^\ast\le\hat p_I\},
+\]
+and in every case $\mathrm{Reg}\le(\hat p_I-p_I)R_I$. The formula covers the boundary cases: if $p^\ast\le0$ the institutional path is optimal for every $p_I\ge0$ and the regret is zero, and if $p^\ast>1$ neither agent chooses it.
+\end{proposition}
+
+\begin{proof}
+When $p_I<p^\ast\le\hat p_I$ the agent chooses the institutional path although the informal path is better, and the loss is the difference of expected net values, $(qR_F-c_F)-(p_IR_I-c_I)=(p^\ast-p_I)R_I$. In every other case the agent's choice coincides with the optimal one: if $p^\ast\le p_I$ both choose the institutional path when $\hat p_I\ge p^\ast$, and if $p^\ast>\hat p_I\ge p_I$ both choose the informal path. The upper bound follows because $p^\ast\le\hat p_I$ on the event where regret is positive.\footnote{The regret is a difference of expected net values under the true $p_I$. It is not a realized loss, and a single attempt on the institutional path may succeed even when $p_I$ is small.}
+\end{proof}
+
+Regret of this kind is paid out of the reserve. A repeated pattern of misallocated effort reduces the drift of the increments $Y_t$ of Section 4 and, by the same convexity argument as in Proposition 4, decreases the adjustment coefficient while the drift remains positive, raising the ruin bound. Overestimated permeability is thus not an isolated error of belief but a leak in the mechanism that keeps the agent viable.\footnote{The leak is quantitative: each period of misallocation lowers $\E Y$ by the expected regret, and the adjustment coefficient falls with the drift.}
+
+\section{Hope and the persistence of effort}
+
+The abstraction of hope that follows from the preceding sections is austere. It does not require a high probability of success. It requires that the set of viable actions has not become empty.
+
+For $a\in\mathcal A(x)$ write $p_a=P(x,a,\Xv)$ for the probability that the action yields a viable state, and
+\[
+Q_a=\E\bigl[V^\ast(F(x,a,\xi))\,\mathbf 1_{\Xv}(F(x,a,\xi))\bigr]
+\]
+for its expected viable value, with $V^\ast\ge0$ on $\Xv$.\footnote{Nonnegativity is a normalization: value in viable states is measured relative to a baseline at which a viable state is worth nothing.} When $p_a>0$ let $\bar V_a=Q_a/p_a$ be the expected value given viability; when $p_a=0$, $Q_a=0$ and no conditional expectation is needed.\footnote{Conditioning on an event of probability zero is undefined without a regular version, and none is needed since the numerator $Q_a$ is already defined.} Define the \emph{practical hope} at $x$ and the \emph{viable action set} by\footnote{The name ``practical hope'' is chosen to distinguish the quantity from the everyday sense of hope, which includes affect that is not modeled here.}
+\[
+H(x)=\sup_{a\in\mathcal A(x)}\bigl\{Q_a-c(x,a)\bigr\},\qquad
+\mathcal A_{\mathrm{v}}(x)=\bigl\{a\in\mathcal A(x):\ Q_a>c(x,a)\bigr\}.
+\]
+Write $\hat Q_a$ for the same quantity computed under the perceived kernel $\hat P$, and $\hat{\mathcal A}_{\mathrm v}(x)=\{a:\hat Q_a>c(x,a)\}$ for the perceived viable action set. Practical hope is deliberately one-step: it asks only whether the very next state can be viable.\footnote{The one-step restriction makes hope a local property. A state from which repair requires two moves, neither of which yields a viable state by itself, can have $H(x)\le0$ in this sense while still being repairable in the sense of Definition 1.} A multistep analogue would take the supremum over repair policies and stopping times, matching the horizon of Definition 1.
+A supremum is used where a natural first formulation would sum over actions: an agent needs one action that is worth taking, not the aggregate of many, and a sum would reward the mere multiplicity of poor options.\footnote{A sum over actions would also depend on how actions are individuated: splitting one action into two identical ones would double its contribution.}
+
+\begin{proposition}[Hope is nonemptiness of the viable action set]
+$H(x)>0$ if and only if $\mathcal A_{\mathrm v}(x)\neq\varnothing$. Moreover an action with $p_a>0$ and $\bar V_a>0$ belongs to $\mathcal A_{\mathrm v}(x)$ exactly when $p_a>c(x,a)/\bar V_a$, so the probability of success required for hope can be arbitrarily small when the value of success is large relative to its cost.\footnote{The threshold $c/\bar V_a$ can be arbitrarily small, but hope is not thereby costless. An action with a small success probability and a large ratio of cost to value still fails the test.} An action with $p_a=0$ or $\bar V_a=0$ never belongs to $\mathcal A_{\mathrm v}(x)$, since then $Q_a=0$ and $c(x,a)\ge0$.
+\end{proposition}
+
+\begin{proof}
+By definition $H(x)>0$ if and only if some action has $Q_a-c(x,a)>0$. For $p_a>0$ we have $Q_a=p_a\bar V_a$, and rearranging gives the second statement.
+\end{proof}
+
+Despair, in this vocabulary, is the conclusion that $\mathcal A_{\mathrm v}(x)=\varnothing$.\footnote{The definition concerns the agent's conclusion. An agent may reach that conclusion falsely, in which case the error is one of belief and not of the world.} Persistence through repeated failure is compatible with low probabilities of success at every attempt, provided the ratio of cost to reward remains below the attempted probability. Section 11 shows that this holds only when failure is survivable.\footnote{More precisely, the low-probability conclusion of Proposition 9 is unrestricted only in regime (i) of Proposition 19.}
+
+The question of when to stop is a decision problem, and the account gives it a definite form. Let $\pi\in[0,1]$ be the posterior probability that a state is repairable\footnote{The symbol $\pi$ denotes a posterior probability here and a policy in Sections 2 and 3. The contexts do not overlap.}, that is, $\mathcal A_{\mathrm v}(x)\neq\varnothing$. Let the agent classify the state as terminal or repairable. Incur loss $L_{\mathrm{FT}}$ when a repairable state is abandoned (a \emph{false terminal}) and $L_{\mathrm{FR}}$ when continued investment is made in a terminal state (a \emph{false repairable}).
+
+\begin{proposition}[Bayes threshold for abandonment]
+The Bayes-optimal rule classifies the state as terminal if and only if
+\[
+\pi<\frac{L_{\mathrm{FR}}}{L_{\mathrm{FT}}+L_{\mathrm{FR}}}.
+\]
+\end{proposition}
+
+\begin{proof}
+Classifying as terminal has expected loss $\pi L_{\mathrm{FT}}$, and classifying as repairable has expected loss $(1-\pi)L_{\mathrm{FR}}$. The first is smaller exactly when $\pi L_{\mathrm{FT}}<(1-\pi)L_{\mathrm{FR}}$ \cite{berger}.
+\end{proof}
+
+Persistence is therefore a matter of loss asymmetry, not of belief.\footnote{The two can interact. The posterior $\pi$ is itself a belief, and the threshold rule takes it as given.} An agent with the same posterior $\pi$ as an observer will continue where the observer abandons when it weights the loss of an abandoned repairable state, $L_{\mathrm{FT}}$, heavily relative to the loss of wasted effort, $L_{\mathrm{FR}}$. The naive form of this disposition is an underestimate of $L_{\mathrm{FR}}$\footnote{An overestimate of $\pi$ has the same effect on the decision as an underestimate of $L_{\mathrm{FR}}$, since both move the agent across the threshold in the direction of continuing.}: a failure to price exhaustion, asymmetries of authority, and irreversible loss. This locates naivet\'e precisely. It need not consist in believing repair likelier than the evidence supports. It can consist in setting the cost of continued investment in an unrepairable state too low, so that the threshold for abandonment sits too low.
+
+\begin{proposition}[Regret from underpriced continuation]
+Let $\pi^\ast=L_{\mathrm{FR}}/(L_{\mathrm{FT}}+L_{\mathrm{FR}})$ be the Bayes threshold under the true losses and $\hat\pi^\ast=\hat L_{\mathrm{FR}}/(L_{\mathrm{FT}}+\hat L_{\mathrm{FR}})$ the threshold under an underpriced continuation loss $\hat L_{\mathrm{FR}}<L_{\mathrm{FR}}$, so that $\hat\pi^\ast<\pi^\ast$. An agent using $\hat\pi^\ast$ incurs excess expected loss
+\[
+\mathrm{Reg}(\pi)=(L_{\mathrm{FT}}+L_{\mathrm{FR}})\,(\pi^\ast-\pi)\ \mathbf 1\{\hat\pi^\ast\le\pi<\pi^\ast\},
+\]
+and in every case $\mathrm{Reg}(\pi)\le(L_{\mathrm{FT}}+L_{\mathrm{FR}})(\pi^\ast-\hat\pi^\ast)$.
+\end{proposition}
+
+\begin{proof}
+For $\pi<\hat\pi^\ast$ both rules classify the state as terminal, and for $\pi\ge\pi^\ast$ both classify it as repairable. For $\hat\pi^\ast\le\pi<\pi^\ast$ the agent continues, with expected loss $(1-\pi)L_{\mathrm{FR}}$, while the optimal rule abandons, with expected loss $\pi L_{\mathrm{FT}}$. The difference is $L_{\mathrm{FR}}-\pi(L_{\mathrm{FT}}+L_{\mathrm{FR}})=(L_{\mathrm{FT}}+L_{\mathrm{FR}})(\pi^\ast-\pi)$. The bound follows because $\pi\ge\hat\pi^\ast$ on that event.\footnote{The band $[\hat\pi^\ast,\pi^\ast)$ is the set of posteriors on which the agent and the optimal rule disagree, and its width is $\pi^\ast-\hat\pi^\ast$.}
+\end{proof}
+
+\section{Assembling the account}
+
+The three components developed above can now be stated as conditions with definite content.
+
+\begin{definition}[Sustained optimism]
+An agent in state $x$ exhibits \emph{sustained optimism} at tolerance $(\varepsilon,\boldsymbol\eta)$, with $\boldsymbol\eta=(\eta_\varrho,\eta_I,\eta_L,\eta_P)$, if
+\begin{enumerate}[label=(\alph*),nosep]
+\item (agency) $\mathcal A_{\mathrm v}(x)\neq\varnothing$, so $H(x)>0$;
+\item (reserve) $\varrho(x)\ge\Theta+\kappa^{-1}\log(1/\varepsilon)$, so that the ruin bound of Proposition 3 is at most $\varepsilon$;\footnote{This is a sufficient condition for the ruin probability to be at most $\varepsilon$, because Proposition 3 gives an upper bound.}
+\item (calibration) $|\hat\varrho-\varrho|\le\eta_\varrho$, $|\hat p_I-p_I|\le\eta_I$, $|\hat L_{\mathrm{FR}}-L_{\mathrm{FR}}|\le\eta_L$, and $\sup_{x,a}\tv(P,\hat P)\le\eta_P$, so that beliefs about the reserve, the permeability, the cost of continuation, and the dynamics of action are within tolerance of their true values. The last condition ties the definition to Proposition 1: it controls the perceived success probabilities and shock laws, and so guards against an agent that is well calibrated on the other three quantities while perceiving a repair action that does not exist.\footnote{The other three quantities are the reserve, the permeability, and the cost of continuation. An agent can be accurate about all three while being wrong about whether a particular action works.}
+\end{enumerate}
+\end{definition}
+
+This is a conjunction, and its value lies in showing that the components can fail independently.\footnote{A conjunction of conditions defines a joint property and does not by itself explain why the components should be studied together. The explanation offered in the introduction is that each corresponds to a separate question an observer can ask.}
+
+\begin{proposition}[Independence of the components]
+None of (a), (b), (c) implies another.
+\end{proposition}
+
+\begin{proof}
+Conditions (a), (b), and (c) depend respectively on action values, reserve adequacy, and belief accuracy. Choose accurate beliefs and an action of positive viable value, but set $\varrho<\Theta+\kappa^{-1}\log(1/\varepsilon)$. Then (a) and (c) hold and (b) fails, so neither (a) nor (c) implies (b). Choose accurate beliefs and an adequate reserve, but let every action have expected viable value no greater than its cost. Then (b) and (c) hold and (a) fails, so neither (b) nor (c) implies (a). Finally choose an adequate reserve and an action of positive viable value, but let the agent's beliefs about its reserve, the permeability, the cost of continuation, or the kernel differ from the true ones by more than the tolerance. Then (a) and (b) hold and (c) fails, so neither (a) nor (b) implies (c).\footnote{The constructions exhibit a model in each case. They show independence of the conditions as stated, not that no further relations hold in restricted classes of models, for instance those in which action values are computed from the reserve.}
+\end{proof}
+
+Failure corresponds to overestimating a component. If the agent believes its reserve is $\hat\varrho$ while it is actually $\varrho$, the ruin bound it perceives, $e^{-\kappa(\hat\varrho-\Theta)}$, understates the actual bound by the factor $e^{\kappa(\hat\varrho-\varrho)}$, so miscalibration in the reserve is amplified exponentially in the size of the error and the adjustment coefficient. Under condition (c) the factor is at most $e^{\kappa\eta_\varrho}$.\footnote{This follows directly from $|\hat\varrho-\varrho|\le\eta_\varrho$. The factor is a ratio of two bounds and is not itself a probability.} Overestimating any single component, whether the reserve, the permeability, or the availability of viable actions, degrades the corresponding condition while leaving the others intact.
+
+\begin{definition}[Na\"ivet\'e]
+An agent is \emph{naive} in a component when its belief errs, by more than the tolerance of condition (c), in the direction that favors continued action:\footnote{Favoring continued action is the sense of optimism relevant here. Miscalibration in the opposite direction would favor abandonment and is the subject of a mirror-image analysis not pursued.} it overestimates its reserve or the permeability, underestimates the continuation loss, or perceives some contemplated action as viable although it is not, that is, $\hat Q_a>c(x,a)\ge Q_a$.
+\end{definition}
+
+\begin{remark}
+Na\"ivet\'e is therefore not a fourth component beside agency, reserve, and calibration. It is failure of calibration in a specific direction, and it can coexist with condition (a). Conversely, an agent that satisfies (a) and (c) and persists where an observer abandons is neither naive nor miscalibrated: its persistence reflects a large $L_{\mathrm{FT}}$ relative to $L_{\mathrm{FR}}$. The continuation loss $L_{\mathrm{FR}}$ has a largely factual component (resources consumed, exhaustion, irreversible loss), which calibration can check. The loss $L_{\mathrm{FT}}$ of an abandoned repairable state weights a foregone possibility and is largely a matter of valuation, which calibration does not constrain: it is the value of a counterfactual that is not observed even in hindsight, whereas $L_{\mathrm{FR}}$ is the value of resources actually consumed. The loss ratio thus enters twice: once as a valuation, and once as a belief.\footnote{This is the reason a naive agent and a determined agent cannot be told apart by their persistence alone. One must also compare their loss pricing with the facts.}
+\end{remark}
+
+\section{Concealed miscalibration}
+
+The calibration error of Section 2 was treated as a fixed quantity. It has dynamics. An agent facing repeated outcomes can update, and whether its error shrinks depends on how evidence is processed. Whether others inherit the error depends on what the agent reports. Read against the rest of the account, optimism can be sustained by three distinct mechanisms: real transformability, so that the world supports the belief; private miscalibration, in which the belief is protected from evidence; and publicly preserved miscalibration, in which the error is transmitted to others. The earlier sections concern the first. This section separates the second and third, and shows that failure to admit error is the conjunction of a private and a public mechanism. It therefore supplies the test of whether apparent optimism is supported by the world, protected from evidence, or socially maintained.\footnote{The test is conceptual. It classifies mechanisms and does not offer a procedure for diagnosing which mechanism is operating in a given case.}
+
+Let $\theta\in(0,1)$ be the true success probability of a class of repair attempts, and let $o_1,o_2,\dots$ be independent Bernoulli$(\theta)$ outcomes. The agent's private belief after $t$ outcomes is
+\[
+m_t=\frac{\alpha_t}{\alpha_t+\beta_t},\qquad
+\alpha_t=\alpha_0+\sum_{s\le t}o_s,\qquad
+\beta_t=\beta_0+w\sum_{s\le t}(1-o_s),
+\]
+where $w\in[0,1]$ is the weight given to disconfirming outcomes.\footnote{The weight is applied to the pseudo-count of failures. Equivalent parameterizations, for instance weighting successes by $1/w$, give the same limit belief up to relabeling.} The case $w=1$ is Bayesian updating in the Beta--Bernoulli model, and $w<1$ is a pseudo-Bayesian rule that discounts failures, as in models of confirmatory bias \cite{rabin}.\footnote{In Rabin and Schrag's model the bias operates through misperception of disconfirming signals as confirming ones. The discounting used here is a different parameterization with a qualitatively similar consequence for long-run belief.}
+
+\begin{proposition}[Blocked updating]
+Almost surely $m_t\to\theta_w=\theta/(\theta+w(1-\theta))$. The limiting error is
+\[
+\theta_w-\theta=\frac{\theta(1-\theta)(1-w)}{\theta+w(1-\theta)}\ \ge0,
+\]
+which vanishes if and only if $w=1$, and equals $1-\theta$ when $w=0$.\footnote{For $w=0$ the agent ignores failures entirely and its belief converges to certainty of success, so the error is $1-\theta$.}
+\end{proposition}
+
+\begin{proof}
+By the strong law of large numbers\footnote{The prior pseudo-counts $\alpha_0,\beta_0$ are fixed and do not affect the limit, which is why the limit does not depend on the prior.} $\alpha_t/t\to\theta$ and $\beta_t/t\to w(1-\theta)$, so $m_t=(\alpha_t/t)/((\alpha_t+\beta_t)/t)\to\theta/(\theta+w(1-\theta))$. The expression for the error follows by direct computation.
+\end{proof}
+
+Call an agent \emph{corrigible} if\footnote{The term is used in its ordinary sense of being capable of correction. It is not used in the technical sense of corrigibility in the study of artificial agents.} its calibration error $|m_t-\theta|$ tends to zero under repeated evidence, and \emph{incorrigible} otherwise. Under this updating rule, and for $\theta\in(0,1)$, an agent is corrigible exactly when $w=1$; for such an agent the error has the usual sampling scale $O_P(t^{-1/2})$. An incorrigible agent has a calibration error bounded away from zero however much evidence accumulates.\footnote{For $w<1$ and $\theta\in(0,1)$ the limiting error is strictly positive. If $\theta\in\{0,1\}$ the observation stream is degenerate and the limiting belief equals $\theta$ for every $w$.}
+
+The public side is a reporting rule. Let $r_t\in[0,1]$ be the success probability the agent reports to others. It is \emph{candid} if $r_t=m_t$, and it is a \emph{ratchet} if
+\[
+r_t=\max_{s\le t}m_s,
+\]
+so that reports never revise downward.\footnote{The rule is a caricature of commitment to a public position. A softer version would allow downward revision at some cost, which would weaken the lower bound in the next proposition.}
+
+\begin{proposition}[Ratchet reporting]
+Under the ratchet rule, $r_t$ is nondecreasing and $r_t\ge m_t$. If the prior mean $m_0$ exceeds $\theta$, then $r_t-\theta\ge m_0-\theta>0$ for every $t$, whatever the updating weight $w$.\footnote{The bound uses only the prior mean. It does not depend on how much evidence the agent has accumulated.}
+\end{proposition}
+
+\begin{proof}
+The first two statements hold because a running maximum is nondecreasing and dominates each term. Since $r_t\ge m_0$ for all $t$, the last statement follows.
+\end{proof}
+
+Even a perfectly corrigible agent, one that privately learns $\theta$, therefore has permanently miscalibrated \emph{reports} under the ratchet rule, by at least its initial overestimate. The two mechanisms are independent, and crossing them gives four cases.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{2.8cm}p{5.3cm}p{5.3cm}@{}}
+\hline
+ & \textbf{Candid reports} & \textbf{Ratchet reports}\\
+\hline
+\textbf{Corrigible} ($w=1$) & \emph{naive}: error decays, reports follow & \emph{entrenched}: private error decays, public error persists\\
+\textbf{Incorrigible} ($w<1$) & \emph{self-deceived}: private and public error persist, candidly held & \emph{concealing}: persistent private error, reported without revision\\
+\hline
+\end{tabular}
+\end{center}
+
+The naive agent of the previous section, whose miscalibration is a matter of initial belief,\footnote{The previous section is Section 9, where naivet\'e is defined as directional miscalibration without reference to how it evolves.} is the corrigible and candid case: its error is correctable by evidence and by the agent itself. The case that combines refusal to update with refusal to revise a report is the fourth.
+
+\paragraph{Consequences for those who rely on the report.} An observer who treats a report $r$ as the success probability of each of $n$ independent attempts believes that all succeed with probability $r^n$, when the true probability is $\theta^n$.
+
+\begin{proposition}[Compounding of misreports]
+For $r\ge\theta$, the believed-to-true ratio is $(r/\theta)^n$, and the additive error satisfies $r^n-\theta^n\le n(r-\theta)$.
+\end{proposition}
+
+\begin{proof}
+The ratio is immediate. By the mean value theorem $r^n-\theta^n=n\xi^{n-1}(r-\theta)$ for some $\xi\in(\theta,r)$, and $\xi\le1$.
+\end{proof}
+
+The additive bound is the case of Proposition 1 with $\eta=\tv(\mathrm{Bern}(r),\mathrm{Bern}(\theta))=r-\theta$. The multiplicative form shows the exposure more sharply: the observer's overestimate of the chance that a long conjunctive plan with independently modeled stages succeeds grows exponentially in the length of the plan.\footnote{The exponential growth is in the ratio. The additive error is bounded by $n(r-\theta)$ and, being a difference of probabilities, by one.}
+
+\paragraph{Feedback through support.} Outside support depends on what observers believe. Let base increments $Y^0_t$ be i.i.d. and let support $Z_t\ge0$ be i.i.d. with law $\zeta_0$ while the misreport is undetected and law $\zeta_1$ afterward, where $\zeta_1$ is stochastically dominated by $\zeta_0$ (for instance $Z\equiv0$ after exposure).\footnote{Complete withdrawal of support is the extreme case. Partial withdrawal, for instance a smaller mean, is covered by the same argument.} Exposure occurs at a time $T$ at which, in each period, it happens independently with probability $q\in(0,1]$, so $T<\infty$ almost surely. Exposure is absorbing: once it has occurred, the law $\zeta_1$ applies in every later period.\footnote{Allowing support to return after exposure would make the regime a two-state Markov chain and require a Markov-modulated version of the argument.} Write $\kappa_0,\kappa_1$ for the adjustment coefficients of $Y^0+Z^{(0)}$ and $Y^0+Z^{(1)}$. Since $e^{-\kappa z}$ is decreasing in $z$, stochastic dominance gives $\E e^{-\kappa Z^{(0)}}\le\E e^{-\kappa Z^{(1)}}$ for $\kappa\ge0$, and the convexity argument of Proposition 4 gives $\kappa_1\le\kappa_0$.
+
+\begin{proposition}[Ruin under exposure risk]
+For a starting reserve $u>\Theta$,
+\[
+\Pr\bigl(\exists\,t:\ \varrho_t\le\Theta\ \big|\ \varrho_0=u\bigr)\ \le\ e^{-\kappa_1(u-\Theta)} .
+\]
+\end{proposition}
+
+\begin{proof}
+Let $W_t=\exp\{-\kappa_1(\varrho_t-\Theta)\}$. The regime in force at period $t$ is determined by the history up to $t-1$, so $\E[W_t\mid\mathcal F_{t-1}]=W_{t-1}\,\varphi_j(\kappa_1)$, where $\varphi_j$ is the moment function of the regime $j\in\{0,1\}$ in force. Since $\kappa_1\le\kappa_j$ and $\varphi_j\le1$ on $[0,\kappa_j]$ by convexity, $W_t$ is a supermartingale. Optional stopping at $\tau\wedge n$ gives $W_0\ge\Pr(\tau\le n)$, and letting $n\to\infty$ proves the bound.
+\end{proof}
+
+A uniform bound that remains valid both before and after exposure is determined by the weaker post-exposure coefficient $\kappa_1$. The bound is conservative: it does not credit reserve accumulated before exposure, and it consequently does not depend on the exposure rate $q$; a sharper bound would condition on the exposure time $T$. Support obtained under the misreport raises the reserve at the time of exposure but does not improve the coefficient that controls the uniform bound. If, in addition, acting on the inflated belief commits the agent to attempts of negative value under $\theta$, the drift of $Y^0$ falls by the expected loss per period, and both coefficients decrease so long as the drift remains positive; if it does not, the positive-drift regime on which the bound depends is lost. Concealment thus draws on the mechanism that keeps the agent viable.\footnote{The bound is an upper bound on ruin. The claim concerns what the available guarantee is governed by, not that concealment strictly increases the true ruin probability.}
+
+\section{Ruin constraints and the limits of experience}
+
+Proposition 9 is a test of expected value alone. It ignores that failure may consume the reserve, and hope defined that way can endorse an action whose failure is unrecoverable. This section adds a ruin constraint to hope and then asks what an agent's own record of attempts can and cannot say about ruin.
+
+\subsection{Ruin-constrained hope}
+
+Let $\varrho=\varrho(x)$ be the reserve in state $x$. Attempting an action $a$ consumes a random \emph{reserve shock} $S_a\ge0$ (its cost plus any loss it incurs), taken independent of the subsequent increments;\footnote{Independence is what allows the argument of Proposition 17 to condition on the shock and then apply Proposition 3 from the reduced reserve.} the value of success accrues separately. Write $m(y)=\min\{1,e^{-\kappa y}\}$, which is continuous and nonincreasing in $y$, and equals $1$ for $y\le0$.\footnote{The truncation at one is needed because the exponential exceeds one when the shock alone breaches the threshold, and no probability exceeds one.}
+
+\begin{definition}[Ruin bound of an action]
+The \emph{ruin bound} of $a$ at reserve $u$ is
+\[
+r_a(u)=\E\,m\bigl(u-\Theta-S_a\bigr).
+\]
+The action is \emph{$\varepsilon$-admissible} at $x$ if $r_a(\varrho(x))\le\varepsilon$.\footnote{Admissibility is a property of an action at a state, through the reserve $\varrho(x)$. The same action can be admissible at one state and not at another.} Write $\mathcal A^\varepsilon(x)$ for the set of $\varepsilon$-admissible actions and $\mathcal A^\varepsilon_{\mathrm v}(x)=\mathcal A_{\mathrm v}(x)\cap\mathcal A^\varepsilon(x)$.
+\end{definition}
+
+\begin{proposition}[Ruin bound of a single action]
+The probability that the reserve process, after attempting $a$ from reserve $u$, ever reaches $\Theta$ or below is at most $r_a(u)$. The function $r_a$ is continuous and nonincreasing in $u$, and $r_a(u)\to0$ as $u\to\infty$.
+\end{proposition}
+
+\begin{proof}
+Condition on $S_a=s$. If $u-s\le\Theta$ the reserve has already reached the threshold, and $m(u-\Theta-s)=1$. Otherwise the subsequent process starts from $u-s>\Theta$ and, by Proposition 3, reaches the threshold with probability at most $e^{-\kappa(u-s-\Theta)}=m(u-\Theta-s)$. Taking expectations gives the bound. Continuity, monotonicity, and the limit follow from those of $m$ by dominated convergence, since $S_a<\infty$ almost surely.\footnote{Almost-sure finiteness of the shock is the only regularity used. No moment condition on $S_a$ is needed because $m$ is bounded.}
+\end{proof}
+
+Define the \emph{ruin-constrained hope}
+\[
+H^\varepsilon(x)=\sup_{a\in\mathcal A^\varepsilon(x)}\Bigl\{\E\bigl[V^\ast(F(x,a,\xi))\,\mathbf 1_{\Xv}(F(x,a,\xi))\bigr]-c(x,a)\Bigr\},
+\]
+with the supremum over the empty set equal to $-\infty$.\footnote{The convention makes $H^\varepsilon(x)\le0$ whenever no action is admissible, consistent with the reading that an agent with no admissible action has no ruin-constrained hope.}
+
+\begin{proposition}[Constrained hope]
+$H^\varepsilon(x)\le H(x)$, and $H^\varepsilon(x)>0$ if and only if $\mathcal A^\varepsilon_{\mathrm v}(x)\neq\varnothing$. Moreover, since $r_a$ is nonincreasing, if $a$ is $\varepsilon$-admissible at reserve $u$ it is $\varepsilon$-admissible at every larger reserve.
+\end{proposition}
+
+\begin{proof}
+The supremum defining $H^\varepsilon$ is over a subset of the actions in $H$. The equivalence is as in Proposition 9. The last statement is the monotonicity in Proposition 17.\footnote{Monotonicity in the reserve means that a larger reserve can only enlarge the set of admissible actions, so ruin-constrained hope is nondecreasing in the reserve when the value terms are held fixed.}
+\end{proof}
+
+The constraint changes what the expected-value test permits, and in a way that depends on whether failure is survivable.
+
+\begin{proposition}[Two regimes]
+Let an action have success probability $p$ and deterministic reserve shocks $s_{\mathrm s}$ on success and $s_{\mathrm f}$ on failure, with $s_{\mathrm s}\le s_{\mathrm f}$. Let $u$ be the reserve and $h_{\mathrm f}=u-\Theta-s_{\mathrm f}$ the headroom remaining after a failure.
+\begin{enumerate}[label=(\roman*),nosep]
+\item If $h_{\mathrm f}\ge\kappa^{-1}\log(1/\varepsilon)$, then $r_a(u)\le\varepsilon$ for every $p\in[0,1]$. Admissibility is then decided by the expected-value test of Proposition 9 alone, and $p$ may be arbitrarily small.\footnote{The statement concerns admissibility, not hope: an action must also satisfy the expected-value test to belong to the viable action set.}
+\item If $h_{\mathrm f}\le0$, then $r_a(u)\ge1-p$. The action is $\varepsilon$-admissible only if $p\ge1-\varepsilon$, whatever the value of success.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Here $r_a(u)=p\,m(u-\Theta-s_{\mathrm s})+(1-p)\,m(u-\Theta-s_{\mathrm f})$. (i) Since $s_{\mathrm s}\le s_{\mathrm f}$ and $m$ is nonincreasing, $m(u-\Theta-s_{\mathrm s})\le m(u-\Theta-s_{\mathrm f})=e^{-\kappa h_{\mathrm f}}\le\varepsilon$, so $r_a(u)\le\varepsilon$ for every $p$. (ii) If $h_{\mathrm f}\le0$ then $m(u-\Theta-s_{\mathrm f})=1$, so $r_a(u)\ge1-p$.
+\end{proof}
+
+The two regimes separate a long shot whose failure is survivable from one whose failure is not. In the first, a small chance of success is enough, provided the expected value is positive, exactly as in Proposition 9. In the second, no value of success, however large, can justify the attempt unless the probability of failure is at most $\varepsilon$; the requirement is on $1-p$ and is independent of the reward.\footnote{This is a safety-first criterion of the kind studied in portfolio theory: a constraint on the probability of disaster is imposed before expected value is considered.} The two ways of making a ruinous undertaking admissible are then visible: raise $p$, or raise the headroom $h_{\mathrm f}$ by staging the undertaking, testing it in pieces, or holding a larger reserve,\footnote{Staging is not analyzed formally here. A rough version replaces one undertaking with failure shock $s_{\mathrm f}$ by a sequence of tests, each with a smaller shock, so that each stage lies in regime (i) at the reserve then remaining. A union bound over stages then bounds the total.} so that failure moves from regime (ii) to regime (i). Where failure probability is hard to reduce, the second lever is the one that remains.
+
+\subsection{What a record of clean attempts shows}
+
+An agent's own experience is the natural source of judgment about risk, and it has a structural limit. Suppose an agent makes attempts in sequence, each independently ending in ruin with probability $\sigma\in(0,1)$, and ruin is absorbing, so that observation ends with it.\footnote{Absorbing ruin is what makes the record informative only through its length: an observed record is by construction a sequence of attempts that were survived.} A \emph{clean record} of length $k$ consists of $k$ attempts without ruin.
+
+\begin{proposition}[Compatible risk]
+For $\delta\in(0,1)$, a clean record of length $k$ fails to reject, at level $\delta$, every $\sigma$ with $(1-\sigma)^k\ge\delta$, that is, every $\sigma\le1-\delta^{1/k}$. Equivalently, $1-\delta^{1/k}$ is the exact one-sided upper confidence bound for $\sigma$ at confidence $1-\delta$, and $1-\delta^{1/k}\le\ln(1/\delta)/k$ is a convenient conservative approximation.\footnote{Conservative here means that it never understates the exact bound.}
+\end{proposition}
+
+\begin{proof}
+The probability of a clean record of length $k$ is $(1-\sigma)^k$, which is at least $\delta$ exactly when $\sigma\le1-\delta^{1/k}$. The bound follows from $1-e^{-y}\le y$ with $y=\ln(1/\delta)/k$.
+\end{proof}
+
+For $\delta=0.05$ the bound is about $3/k$, the familiar rule of three \cite{hanley}.\footnote{The constant is $\ln20\approx3.0$. The rule is often stated for the upper end of a $95\%$ confidence interval when zero events are observed in $k$ independent trials.} Thirty clean attempts are compatible with a ruin probability near $10\%$ per attempt.\footnote{Indeed $1-0.05^{1/30}\approx0.095$.}
+
+\begin{proposition}[Evidence against a positive ruin probability]
+After a clean record of length $k$, the Bayes factor in favor of $\sigma_0$ over $\sigma_1>\sigma_0$ is $\bigl((1-\sigma_0)/(1-\sigma_1)\bigr)^k$. Against $\sigma_0=0$ and $\sigma_1=\sigma$, reaching a Bayes factor $B>1$ requires $k\ge\lceil k^\ast\rceil$, where
+\[
+k^\ast=\frac{\ln B}{-\ln(1-\sigma)}\qquad\text{satisfies}\qquad \frac{(1-\sigma)\ln B}{\sigma}\ \le\ k^\ast\ \le\ \frac{\ln B}{\sigma}.
+\]
+\end{proposition}
+
+\begin{proof}
+The likelihoods of the record are $(1-\sigma_0)^k$ and $(1-\sigma_1)^k$, whose ratio is the Bayes factor. For the second statement, $\sigma\le-\ln(1-\sigma)\le\sigma/(1-\sigma)$.
+\end{proof}
+
+Distinguishing a per-attempt ruin probability $\sigma$ from zero therefore requires a record of length of order $1/\sigma$. The evidence a clean record supplies accumulates slowly precisely when the risk is small, which is when it is most consequential.\footnote{For example, distinguishing $\sigma=0.01$ from zero at a Bayes factor of $20$ requires roughly $300$ clean attempts.}
+
+The problem is worse when the record is not one's own, a form of survivorship bias \cite{brown}. Suppose that among many agents attempting the same undertaking, only those who survived $k$ attempts are observed, as when accounts of an undertaking are collected from those who completed it\footnote{This is the familiar situation in which the reference class of published or remembered cases consists of successes, and failures leave no testimony.}.
+
+\begin{proposition}[Survivor records carry no information]
+Suppose the analyst observes only agents known to have survived $k$ attempts, with no information about the number of starters or the sampling fraction. Then each observed record is clean with probability $1$, the likelihood of the observed data is constant in $\sigma$, the posterior equals the prior, and the empirical ruin frequency in the sample is $0$ for every $\sigma$. The fraction of starters who survive is $(1-\sigma)^k$; it identifies $\sigma$ and is not observed.\footnote{Identification here means that the survival fraction is a strictly monotone function of $\sigma$ and so determines it.}
+\end{proposition}
+
+\begin{proof}
+Conditional on survival of $k$ attempts, the record consists of $k$ clean attempts with probability $1$ whatever $\sigma$ is. A likelihood constant in $\sigma$ leaves the prior unchanged, and the observed ruin frequency is $0$ by construction. The survival fraction $(1-\sigma)^k$ is strictly decreasing in $\sigma$.
+\end{proof}
+
+The proposition concerns the binary survival record under this sampling design. Accounts given by survivors may still carry information about shocks, near misses, and strategies.
+
+Both limitations bear on how experience can support the admissibility test of the previous subsection. The ruin bound $r_a$ is an ex ante quantity computed from the reserve and the distribution of shocks. A record can inform only the tail of that distribution, and only to the resolution that its length allows.
+
+\begin{corollary}[Certifiable admissibility]
+Suppose that in $k$ independent attempts of an action class every shock was below $s^\ast$. Then with confidence at least $1-\delta$, for every $u$,
+\[
+r_a(u)\ \le\ m(u-\Theta-s^\ast)+1-\delta^{1/k}\ \le\ m(u-\Theta-s^\ast)+\frac{\ln(1/\delta)}{k}.
+\]
+Consequently, if $m(u-\Theta-s^\ast)<\varepsilon$, the record certifies $\varepsilon$-admissibility whenever
+\[
+k\ \ge\ \frac{\ln\delta}{\ln\bigl(1-\varepsilon+m(u-\Theta-s^\ast)\bigr)},
+\]
+and, conservatively, whenever $k\ge\ln(1/\delta)/(\varepsilon-m(u-\Theta-s^\ast))$. Certification by this bound requires $k\ge(1-\varepsilon)\ln(1/\delta)/\varepsilon$ whatever the headroom, which is the best case, reached when the headroom makes the $m$ term negligible.\footnote{For $\varepsilon=0.01$ and $\delta=0.05$ the requirement is about $0.99\times2.996/0.01\approx297$ clean attempts.}
+\end{corollary}
+
+\begin{proof}
+Let $q=\Pr(S_a\ge s^\ast)$. The probability that all $k$ shocks are below $s^\ast$ is $(1-q)^k$, so by Proposition 20 applied to this event, $q\le1-\delta^{1/k}\le\ln(1/\delta)/k$ with confidence at least $1-\delta$. On $\{S_a<s^\ast\}$ we have $m(u-\Theta-S_a)\le m(u-\Theta-s^\ast)$, and on the complement $m\le1$, so $r_a(u)\le m(u-\Theta-s^\ast)+q$. Requiring $m+1-\delta^{1/k}\le\varepsilon$ is equivalent to $\delta^{1/k}\ge1-\varepsilon+m$, which rearranges to the first sample-size bound; the conservative bound follows from $1-\delta^{1/k}\le\ln(1/\delta)/k$. Since $m\ge0$, the first bound is at least $\ln(1/\delta)/(-\ln(1-\varepsilon))\ge(1-\varepsilon)\ln(1/\delta)/\varepsilon$.
+\end{proof}
+
+This is the formal basis for treating rare catastrophic failure modes structurally.\footnote{``Structurally'' means by the design of headroom or staging and not by inference from a record.} A record of a few dozen clean attempts cannot rule out a ruin probability of several percent, and a survivors' sample cannot rule out anything. What can be controlled is the headroom $h_{\mathrm f}$, which enters through $m$ and is under the agent's control before the attempt.
+
+\section{Scope and limits}
+
+The account is theoretical. It formalizes a disposition and has not been fitted to any data.\footnote{No model in this essay has been estimated or tested, and the propositions are conditional on the modeling assumptions stated with them.} Several limits should be stated.\footnote{The number of footnotes in this essay is unusually large. Each records an assumption, a caveat, or a computation that would otherwise interrupt the argument.}
+
+First, the state space and the reserve are modeling constructions. The five-component state and the linear aggregation of capacities into a reserve are convenient and may not describe any agent well. The i.i.d. assumption on the increments in Section 4 is a simplification of the coupling that Section 5 treats separately; a fuller model would combine them, for instance by modulating the increments with the latent stress $\Lambda$.
+
+Second, the parameters (the adjustment coefficient $\kappa$, the calibration errors $\eta_\varrho,\eta_I,\eta_L$, the losses $L_{\mathrm{FT}}$ and $L_{\mathrm{FR}}$) are not identified by the framework itself. The results are conditional statements about how these quantities relate, and estimating them would require data on states, actions, and outcomes.
+
+Third, several formulations were chosen with care. Hope is defined through a supremum over actions and not a sum, since a single worthwhile action is what matters. Dependence among hazards is analyzed through its effect on the distribution of simultaneous failures, not through the probability of complete success alone (Proposition 5). Conversion resilience is a minimum cut, not a count of paths. The surrogate value $U+\lambda\mu(\mathcal S)$ is treated only as a proxy for the optimal value.
+
+The dynamics of Section 10 use a single scalar parameter, a fixed weighting of disconfirming evidence, geometric exposure independent of the agent's behavior, and a fixed reporting rule. Richer models would let exposure depend on the size of the misreport and let observers update on the reports they receive.
+
+The analysis of Section 11 treats attempts as independent with a fixed ruin probability and shocks independent of later increments; dependence among attempts, learning within a class of attempts, and shocks correlated with the reserve process would change the certification bounds.
+
+What the framework does establish is a set of precise relations:\footnote{Each relation is stated with its assumptions in the corresponding proposition. The list is a summary and should not be read without them.} that a preference for unfinished states follows from the monotonicity of optimal value in the action set; that assistance from outside reduces ruin monotonically and multiplicatively; that clustering of failures raises expected shortfall while raising the chance of a clean outcome; that resilience of a conversion structure is a minimum cut; that overestimating institutional permeability carries an exact regret; that blocked updating leaves a permanent calibration error while ratchet reporting fixes a lower bound on public error, that a ruin constraint separates survivable from unsurvivable long shots, that a clean record certifies ruin probability only to order $1/k$, and that hope requires only that some action be worth taking, and persistence only that abandoning a repairable state be weighted more heavily than continuing with a terminal one. On these terms, the roots of optimism lie not only in estimated outcomes, but in the structure of what remains possible after damage.\footnote{The sentence summarizes the claim of the essay and is not a further theorem.}
+
+\begin{thebibliography}{99}
+\bibitem{koopmans} Koopmans, T. C. (1964). On flexibility of future preference. In M. W. Shelly and G. L. Bryan (eds.), \emph{Human Judgments and Optimality}. Wiley.
+\bibitem{kreps} Kreps, D. M. (1979). A representation theorem for ``preference for flexibility''. \emph{Econometrica}, 47(3), 565--577.
+\bibitem{dixit} Dixit, A. K., and Pindyck, R. S. (1994). \emph{Investment under Uncertainty}. Princeton University Press.
+\bibitem{asmussen} Asmussen, S., and Albrecher, H. (2010). \emph{Ruin Probabilities} (2nd ed.). World Scientific.
+\bibitem{levin} Levin, D. A., Peres, Y., and Wilmer, E. L. (2009). \emph{Markov Chains and Mixing Times}. American Mathematical Society.
+\bibitem{lorentz} Lorentz, G. G. (1953). \emph{Bernstein Polynomials}. University of Toronto Press.
+\bibitem{rabin} Rabin, M., and Schrag, J. L. (1999). First impressions matter: a model of confirmatory bias. \emph{Quarterly Journal of Economics}, 114(1), 37--82.
+\bibitem{hanley} Hanley, J. A., and Lippman-Hand, A. (1983). If nothing goes wrong, is everything all right? Interpreting zero numerators. \emph{JAMA}, 249(13), 1743--1745.
+\bibitem{brown} Brown, S. J., Goetzmann, W., Ibbotson, R. G., and Ross, S. A. (1992). Survivorship bias in performance studies. \emph{Review of Financial Studies}, 5(4), 553--580.
+\bibitem{menger} Menger, K. (1927). Zur allgemeinen Kurventheorie. \emph{Fundamenta Mathematicae}, 10, 96--115.
+\bibitem{diestel} Diestel, R. (2017). \emph{Graph Theory} (5th ed.). Springer.
+\bibitem{berger} Berger, J. O. (1985). \emph{Statistical Decision Theory and Bayesian Analysis} (2nd ed.). Springer.
+\end{thebibliography}
+
+\end{document}
